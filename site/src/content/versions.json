@@ -1,0 +1,76 @@
+{
+  "targetLts": "10.0",
+  "targetLtsName": ".NET 10",
+  "targetLtsSupportType": "Long Term Support (LTS)",
+  "targetLtsReleaseDate": "2025-11-11",
+  "targetLtsEndOfSupport": "2028-11-14",
+  "sdkVersion": "10.0.400",
+  "csharpLanguageVersion": "14.0",
+  "efCoreVersion": "10.0.0",
+  "aspNetCoreVersion": "10.0.0",
+  "lastVerified": "2026-11-06",
+  "headerBadgeText": "Verified on .NET 10 (LTS), C# 14, last verified 2026-11-06",
+  "historicalAndActiveReleases": {
+    "net10": {
+      "version": "10.0",
+      "supportType": "LTS",
+      "releaseDate": "2025-11-11",
+      "endOfSupport": "2028-11-14",
+      "status": "Active LTS (Current Curriculum Target)"
+    },
+    "net9": {
+      "version": "9.0",
+      "supportType": "STS",
+      "releaseDate": "2024-11-12",
+      "endOfSupport": "2026-11-10",
+      "status": "STS (Reaches End of Support Nov 2026)"
+    },
+    "net8": {
+      "version": "8.0",
+      "supportType": "LTS",
+      "releaseDate": "2023-11-14",
+      "endOfSupport": "2026-11-10",
+      "status": "Previous LTS (Reaches End of Support Nov 2026)"
+    },
+    "net7": {
+      "version": "7.0",
+      "supportType": "STS",
+      "endOfSupport": "2024-05-14",
+      "status": "Out of Support"
+    },
+    "net6": {
+      "version": "6.0",
+      "supportType": "LTS",
+      "endOfSupport": "2024-11-12",
+      "status": "Out of Support"
+    },
+    "netCore31": {
+      "version": "3.1",
+      "supportType": "LTS",
+      "endOfSupport": "2022-12-13",
+      "status": "Out of Support (Legacy)"
+    },
+    "netFramework": {
+      "version": "4.8.1",
+      "supportType": "Component of Windows",
+      "status": "Legacy Windows-only framework; no new feature development"
+    }
+  },
+  "packageVersions": {
+    "Microsoft.EntityFrameworkCore": "10.0.0",
+    "Microsoft.EntityFrameworkCore.Sqlite": "10.0.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "10.0.0",
+    "Microsoft.EntityFrameworkCore.Design": "10.0.0",
+    "Microsoft.AspNetCore.OpenApi": "10.0.0",
+    "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0",
+    "FluentValidation": "11.11.0",
+    "FluentValidation.DependencyInjectionExtensions": "11.11.0",
+    "Dapper": "2.1.35",
+    "xunit": "2.9.2",
+    "xunit.runner.visualstudio": "2.8.2",
+    "Microsoft.NET.Test.Sdk": "17.11.1",
+    "NSubstitute": "5.3.0",
+    "AwesomeAssertions": "8.0.1",
+    "Serilog.AspNetCore": "8.0.3"
+  }
+}
