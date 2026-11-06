@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md leading-relaxed">
               {siteConfig.description} Designed and engineered by Karmatix for aspiring developers and enterprise engineers worldwide.
             </p>
-            <div className="text-xs text-slate-500 dark:text-slate-500 flex items-center gap-1.5">
+            <div className="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1.5">
               <span>Made with</span>
               <Heart className="w-3.5 h-3.5 text-indigo-500 fill-indigo-500 inline" />
               <span>for the .NET community by <a href={siteConfig.publisherUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-500 transition-colors">Karmatix</a></span>

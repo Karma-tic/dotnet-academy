@@ -1,0 +1,17 @@
+# Karmatix .NET Academy
+> "Learn .NET the clear way."
+> Published by Karmatix (https://karmatix.in). Target: .NET 10 LTS & C# 14.
+
+## Overview
+Karmatix .NET Academy is a free, commercial-grade educational curriculum designed to train software engineers from zero programming knowledge to job-ready cloud engineers.
+
+## Structure
+- Modules 0 to 11 (C# Fundamentals, OOP, Async/Parallelism, EF Core, ASP.NET Core, Security, Clean Architecture, Docker, DevOps, MAUI/Blazor, Capstones).
+- 16 Tested Compilable Sample Projects in `/samples/KarmatixDotNetAcademy.sln`.
+- Career Hub: 200+ Interview Questions, 50+ Coding Problems, 6 Timed Mock Exams.
+- Certifications Guide: AZ-204, AZ-900, Microsoft Foundational C#, Applied Skills.
+- Free Resource Library: 39 verified official books, documentation, and tools.
+- Privacy & DPDP Act: 100% client-side, zero trackers, zero cookies, local storage only.
+
+## Legal & Trademark Notice
+.NET, C#, ASP.NET, Azure, Visual Studio and related names are trademarks of Microsoft Corporation. Karmatix .NET Academy is an independent educational resource and is not affiliated with or endorsed by Microsoft.

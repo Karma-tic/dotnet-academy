@@ -1,22 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Sidebar } from './components/Sidebar';
 import { LessonView } from './components/LessonView';
-import { Dashboard } from './components/Dashboard';
-import { StudyPlanner } from './components/StudyPlanner';
-import { CareerHub } from './components/CareerHub';
-import { CertificationsGuide } from './components/CertificationsGuide';
-import { ResourceLibrary } from './components/ResourceLibrary';
-import { CheatSheets } from './components/CheatSheets';
-import { GlossaryView } from './components/GlossaryView';
-import { LegalPages } from './components/LegalPages';
 import { CurriculumOverview } from './components/CurriculumOverview';
-import { SearchModal } from './components/SearchModal';
-import { CertificateModal } from './components/CertificateModal';
 import { useProgress } from './hooks/useProgress';
 import { allLessons, modulesData, searchIndex } from './content/lessons/allLessons';
 import confetti from 'canvas-confetti';
+
+// Lazy loaded views for instant initial paint & top Lighthouse scores
+const Dashboard = lazy(() => import('./components/Dashboard').then(m => ({ default: m.Dashboard })));
+const StudyPlanner = lazy(() => import('./components/StudyPlanner').then(m => ({ default: m.StudyPlanner })));
+const CareerHub = lazy(() => import('./components/CareerHub').then(m => ({ default: m.CareerHub })));
+const CertificationsGuide = lazy(() => import('./components/CertificationsGuide').then(m => ({ default: m.CertificationsGuide })));
+const ResourceLibrary = lazy(() => import('./components/ResourceLibrary').then(m => ({ default: m.ResourceLibrary })));
+const CheatSheets = lazy(() => import('./components/CheatSheets').then(m => ({ default: m.CheatSheets })));
+const GlossaryView = lazy(() => import('./components/GlossaryView').then(m => ({ default: m.GlossaryView })));
+const LegalPages = lazy(() => import('./components/LegalPages').then(m => ({ default: m.LegalPages })));
+const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
+const CertificateModal = lazy(() => import('./components/CertificateModal').then(m => ({ default: m.CertificateModal })));
 
 export function App() {
   const {
@@ -150,106 +152,116 @@ export function App() {
 
         {/* View Router Body */}
         <main className={`flex-1 min-w-0 transition-all ${activeView === 'lesson' ? 'lg:pl-80' : ''}`}>
-          {activeView === 'home' || activeView === 'curriculum' ? (
-            <CurriculumOverview
-              modules={modulesData}
-              completedLessons={state.completedLessons}
-              onSelectLesson={handleSelectLesson}
-              onNavigate={navigateTo}
-            />
-          ) : activeView === 'lesson' ? (
-            <LessonView
-              lesson={currentLesson}
-              isCompleted={isCompleted(currentLesson.slug)}
-              isBookmarked={isBookmarked(currentLesson.slug)}
-              savedNote={state.notes[currentLesson.slug] || ''}
-              onToggleComplete={() => toggleComplete(currentLesson.slug)}
-              onToggleBookmark={() => toggleBookmark(currentLesson.slug)}
-              onSaveNote={(note) => saveNote(currentLesson.slug, note)}
-              onQuizComplete={handleQuizCompletion}
-              prevLesson={prevLesson ? { slug: prevLesson.slug, title: prevLesson.title } : undefined}
-              nextLesson={nextLesson ? { slug: nextLesson.slug, title: nextLesson.title } : undefined}
-              onNavigate={(dest) => {
-                if (dest === 'curriculum') navigateTo('curriculum');
-                else handleSelectLesson(dest);
-              }}
-            />
-          ) : activeView === 'dashboard' ? (
-            <Dashboard
-              modules={modulesData}
-              completedLessons={state.completedLessons}
-              lastVisitedSlug={state.lastVisitedLesson}
-              bookmarks={state.bookmarks}
-              notes={state.notes}
-              quizScores={state.quizScores}
-              onSelectLesson={handleSelectLesson}
-              onOpenCertificate={() => setIsCertModalOpen(true)}
-              onExport={() => {
-                const data = exportProgress();
-                const blob = new Blob([data], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = `karmatix-dotnet-progress-${new Date().toISOString().slice(0, 10)}.json`;
-                a.click();
-              }}
-              onImport={importProgress}
-              onReset={resetProgress}
-            />
-          ) : activeView === 'planner' ? (
-            <StudyPlanner
-              completedCount={state.completedLessons.length}
-              totalLessons={totalLessons}
-              plannerState={state.planner}
-              onUpdatePlanner={updatePlanner}
-              onNavigateToLesson={handleSelectLesson}
-            />
-          ) : activeView === 'career' ? (
-            <CareerHub
-              onSaveMockScore={saveMockTestScore}
-              mockScores={state.mockTestScores}
-            />
-          ) : activeView === 'certifications' ? (
-            <CertificationsGuide />
-          ) : activeView === 'resources' ? (
-            <ResourceLibrary />
-          ) : activeView === 'cheatsheets' ? (
-            <CheatSheets />
-          ) : activeView === 'glossary' ? (
-            <GlossaryView />
-          ) : activeView === 'privacy' || activeView === 'terms' || activeView === 'contact' ? (
-            <LegalPages page={activeView as any} />
-          ) : (
-            /* 404 Not Found fallback */
-            <div className="py-20 text-center space-y-4">
-              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Page Not Found</h2>
-              <p className="text-slate-500">The requested page or lesson could not be located.</p>
-              <button
-                onClick={() => navigateTo('home')}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold"
-              >
-                Return to Curriculum
-              </button>
-            </div>
-          )}
+          <Suspense fallback={<div className="p-16 text-center text-sm text-slate-400">Loading learning module...</div>}>
+            {activeView === 'home' || activeView === 'curriculum' ? (
+              <CurriculumOverview
+                modules={modulesData}
+                completedLessons={state.completedLessons}
+                onSelectLesson={handleSelectLesson}
+                onNavigate={navigateTo}
+              />
+            ) : activeView === 'lesson' ? (
+              <LessonView
+                lesson={currentLesson}
+                isCompleted={isCompleted(currentLesson.slug)}
+                isBookmarked={isBookmarked(currentLesson.slug)}
+                savedNote={state.notes[currentLesson.slug] || ''}
+                onToggleComplete={() => toggleComplete(currentLesson.slug)}
+                onToggleBookmark={() => toggleBookmark(currentLesson.slug)}
+                onSaveNote={(note) => saveNote(currentLesson.slug, note)}
+                onQuizComplete={handleQuizCompletion}
+                prevLesson={prevLesson ? { slug: prevLesson.slug, title: prevLesson.title } : undefined}
+                nextLesson={nextLesson ? { slug: nextLesson.slug, title: nextLesson.title } : undefined}
+                onNavigate={(dest) => {
+                  if (dest === 'curriculum') navigateTo('curriculum');
+                  else handleSelectLesson(dest);
+                }}
+              />
+            ) : activeView === 'dashboard' ? (
+              <Dashboard
+                modules={modulesData}
+                completedLessons={state.completedLessons}
+                lastVisitedSlug={state.lastVisitedLesson}
+                bookmarks={state.bookmarks}
+                notes={state.notes}
+                quizScores={state.quizScores}
+                onSelectLesson={handleSelectLesson}
+                onOpenCertificate={() => setIsCertModalOpen(true)}
+                onExport={() => {
+                  const data = exportProgress();
+                  const blob = new Blob([data], { type: 'application/json' });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = `karmatix-dotnet-progress-${new Date().toISOString().slice(0, 10)}.json`;
+                  a.click();
+                }}
+                onImport={importProgress}
+                onReset={resetProgress}
+              />
+            ) : activeView === 'planner' ? (
+              <StudyPlanner
+                completedCount={state.completedLessons.length}
+                totalLessons={totalLessons}
+                plannerState={state.planner}
+                onUpdatePlanner={updatePlanner}
+                onNavigateToLesson={handleSelectLesson}
+              />
+            ) : activeView === 'career' ? (
+              <CareerHub
+                onSaveMockScore={saveMockTestScore}
+                mockScores={state.mockTestScores}
+              />
+            ) : activeView === 'certifications' ? (
+              <CertificationsGuide />
+            ) : activeView === 'resources' ? (
+              <ResourceLibrary />
+            ) : activeView === 'cheatsheets' ? (
+              <CheatSheets />
+            ) : activeView === 'glossary' ? (
+              <GlossaryView />
+            ) : activeView === 'privacy' || activeView === 'terms' || activeView === 'contact' ? (
+              <LegalPages page={activeView as any} />
+            ) : (
+              /* 404 Not Found fallback */
+              <div className="py-20 text-center space-y-4">
+                <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Page Not Found</h2>
+                <p className="text-slate-500">The requested page or lesson could not be located.</p>
+                <button
+                  onClick={() => navigateTo('home')}
+                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold"
+                >
+                  Return to Curriculum
+                </button>
+              </div>
+            )}
+          </Suspense>
         </main>
       </div>
 
-      {/* Global Search Modal */}
-      <SearchModal
-        isOpen={isSearchOpen}
-        onClose={() => setIsSearchOpen(false)}
-        items={searchIndex}
-        onSelect={handleSearchSelect}
-      />
+      {/* Global Search Modal - Lazy rendered */}
+      {isSearchOpen && (
+        <Suspense fallback={null}>
+          <SearchModal
+            isOpen={isSearchOpen}
+            onClose={() => setIsSearchOpen(false)}
+            items={searchIndex}
+            onSelect={handleSearchSelect}
+          />
+        </Suspense>
+      )}
 
-      {/* Course Completion Certificate Modal */}
-      <CertificateModal
-        isOpen={isCertModalOpen}
-        onClose={() => setIsCertModalOpen(false)}
-        defaultLearnerName={state.learnerName}
-        onSaveName={setLearnerName}
-      />
+      {/* Course Completion Certificate Modal - Lazy rendered */}
+      {isCertModalOpen && (
+        <Suspense fallback={null}>
+          <CertificateModal
+            isOpen={isCertModalOpen}
+            onClose={() => setIsCertModalOpen(false)}
+            defaultLearnerName={state.learnerName}
+            onSaveName={setLearnerName}
+          />
+        </Suspense>
+      )}
 
       {/* Footer */}
       <Footer onNavigate={navigateTo} />

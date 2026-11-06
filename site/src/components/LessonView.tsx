@@ -110,16 +110,17 @@ export const LessonView: React.FC<LessonViewProps> = ({
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
           <span className="font-semibold">
-            {siteConfig.versions.headerBadgeText}
+            <span className="hidden sm:inline">{siteConfig.versions.headerBadgeText}</span>
+            <span className="sm:hidden">Verified on .NET 10 LTS • C# 14</span>
           </span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {lesson.reviewStatus === 'reviewed' ? (
             <Badge variant="reviewed">✓ Reviewed by Karmatix</Badge>
           ) : (
             <Badge variant="warning">Under Review</Badge>
           )}
-          <span className="text-slate-400">|</span>
+          <span className="text-slate-400 hidden sm:inline">|</span>
           <span className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
             <Calendar className="w-3.5 h-3.5" />
             Verified {lesson.lastVerified}
@@ -138,7 +139,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white break-words">
           {lesson.title}
         </h1>
 

@@ -27,41 +27,42 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
   return (
     <div className="space-y-12 py-6 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       {/* Hero Section */}
-      <section className="text-center space-y-6 pt-6 pb-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800/60 text-indigo-700 dark:text-indigo-300 text-xs font-semibold shadow-xs">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
-          <span>{siteConfig.versions.headerBadgeText}</span>
+      <section className="text-center space-y-5 pt-4 pb-4">
+        <div className="inline-flex max-w-full items-center justify-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800/60 text-indigo-700 dark:text-indigo-300 text-xs font-semibold shadow-xs">
+          <Sparkles className="w-3.5 h-3.5 shrink-0 text-indigo-500" />
+          <span className="hidden sm:inline">{siteConfig.versions.headerBadgeText}</span>
+          <span className="sm:hidden text-[11px]">Verified on .NET 10 LTS • C# 14</span>
         </div>
 
-        <div className="space-y-3 max-w-3xl mx-auto">
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-            Learn .NET <span className="text-indigo-600 dark:text-indigo-400">the clear way.</span>
+        <div className="space-y-3 max-w-3xl mx-auto px-2">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            Learn .NET <span className="block sm:inline text-indigo-600 dark:text-indigo-400">the clear way.</span>
           </h1>
-          <p className="text-base sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
             A commercial-grade educational curriculum by <strong className="text-slate-900 dark:text-white">Karmatix</strong>. From absolute beginner to job-ready software engineer: C# 14, ASP.NET Core, EF Core, Docker, and production capstones.
           </p>
         </div>
 
         {/* Hero CTAs */}
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           <Button
             variant="primary"
             size="lg"
             onClick={() => onSelectLesson(modules[0]?.lessons[0]?.slug || '')}
-            className="shadow-md hover:shadow-indigo-500/20"
+            className="w-full sm:w-auto shadow-md hover:shadow-indigo-500/20"
           >
             Start Module 0 (Start Here)
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
 
-          <Button variant="outline" size="lg" onClick={() => onNavigate('dashboard')}>
+          <Button variant="outline" size="lg" onClick={() => onNavigate('dashboard')} className="w-full sm:w-auto">
             <Award className="w-4 h-4 mr-2 text-indigo-500" />
             Learning Dashboard ({progressPercent}%)
           </Button>
         </div>
 
         {/* Trust Badges */}
-        <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto text-left">
+        <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-3xl mx-auto text-left">
           {[
             { label: 'Compilable Projects', val: '100% Tested', desc: 'Every code sample builds with -warnaserror' },
             { label: 'Interview Q&A', val: '200+ Questions', desc: 'Curated model answers & 6 timed mock exams' },
@@ -69,9 +70,9 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
             { label: 'Cloud Ready', val: '7 Capstones', desc: 'Real SQLite, Docker, and Azure architectures' },
           ].map((item, idx) => (
             <div key={idx} className="p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-1">
-              <span className="text-[10px] uppercase font-bold tracking-wider text-slate-400 block">{item.label}</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 block">{item.label}</span>
               <p className="text-sm font-bold text-slate-900 dark:text-white">{item.val}</p>
-              <p className="text-[11px] text-slate-500 leading-snug">{item.desc}</p>
+              <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-snug">{item.desc}</p>
             </div>
           ))}
         </div>

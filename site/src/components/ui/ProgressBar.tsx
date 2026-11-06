@@ -34,6 +34,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
       <div
         className={`w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden ${heightClasses}`}
         role="progressbar"
+        aria-label={label || 'Progress'}
         aria-valuenow={clamped}
         aria-valuemin={0}
         aria-valuemax={100}

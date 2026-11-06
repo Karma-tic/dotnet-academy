@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Left: Hamburger + Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0 mr-2 sm:mr-4">
           <button
             onClick={onToggleSidebar}
             className="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:ring-2 focus:ring-indigo-500"
@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button
             onClick={() => onNavigate('home')}
-            className="flex items-center gap-2.5 text-left focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1"
+            className="flex items-center gap-2.5 text-left focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1 shrink-0"
           >
             <img src="/brand/logo.svg" alt="Karmatix Logo" className="w-8 h-8 rounded-lg shadow-sm" />
             <div>
@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({
           {[
             { id: 'curriculum', label: 'Curriculum' },
             { id: 'dashboard', label: 'Dashboard' },
-            { id: 'planner', label: '30-90 Day Plan' },
+            { id: 'planner', label: 'Study Plan' },
             { id: 'career', label: 'Career Hub' },
             { id: 'certifications', label: 'Certifications' },
             { id: 'resources', label: 'Free Resources' },
@@ -66,7 +66,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`px-3 py-1.5 rounded-lg transition-colors ${
+                className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-colors ${
                   isActive
                     ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/80 dark:bg-indigo-950/40 font-semibold'
                     : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800/60'
@@ -79,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({
         </nav>
 
         {/* Right: Search, Progress, Theme, GitHub */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
           {/* Quick Search Button */}
           <button
             onClick={onOpenSearch}
