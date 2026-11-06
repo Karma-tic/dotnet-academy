@@ -1,0 +1,36 @@
+<Solution>
+  <Folder Name="/Capstones/">
+    <Project Path="Capstones/Capstone1_BankInventory/Capstone1_BankInventory.csproj" />
+    <Project Path="Capstones/Capstone2_StudentApi/Capstone2_StudentApi.csproj" />
+    <Project Path="Capstones/Capstone3_TaskManager/Capstone3_TaskManager.csproj" />
+    <Project Path="Capstones/Capstone4_EcommerceApi/Capstone4_EcommerceApi.csproj" />
+    <Project Path="Capstones/Capstone5_SignalRChat/Capstone5_SignalRChat.csproj" />
+    <Project Path="Capstones/Capstone6_BackgroundReporting/Capstone6_BackgroundReporting.csproj" />
+    <Project Path="Capstones/Capstone7_ProductionApi/Capstone7_ProductionApi.csproj" />
+  </Folder>
+  <Folder Name="/Module00_StartHere/">
+    <Project Path="Module00_StartHere/HelloWorld/HelloWorld.csproj" />
+  </Folder>
+  <Folder Name="/Module01_Fundamentals/">
+    <Project Path="Module01_Fundamentals/FundamentalsLab/FundamentalsLab.csproj" />
+  </Folder>
+  <Folder Name="/Module02_OOP/">
+    <Project Path="Module02_OOP/DesignPatternsLab/DesignPatternsLab.csproj" />
+  </Folder>
+  <Folder Name="/Module03_Intermediate/">
+    <Project Path="Module03_Intermediate/AsyncAndLinqLab/AsyncAndLinqLab.csproj" />
+  </Folder>
+  <Folder Name="/Module04_Data/">
+    <Project Path="Module04_Data/EfCoreAndDapperLab/EfCoreAndDapperLab.csproj" />
+  </Folder>
+  <Folder Name="/Module05_AspNetCore/">
+    <Project Path="Module05_AspNetCore/MinimalApiDemo/MinimalApiDemo.csproj" />
+  </Folder>
+  <Folder Name="/Module06_Security/">
+    <Project Path="Module06_Security/SecurityAndJwtDemo/SecurityAndJwtDemo.csproj" />
+  </Folder>
+  <Folder Name="/Module07_Architecture/">
+    <Project Path="Module07_Architecture/CleanArchitectureCore/CleanArchitectureCore.csproj" />
+  </Folder>
+  <Project Path="Karmatix.Academy.Tests/Karmatix.Academy.Tests.csproj" />
+</Solution>
