@@ -34,3 +34,4 @@ export const Table: React.FC<TableProps> = ({ headers, rows, className = '' }) =
     </div>
   );
 };
+

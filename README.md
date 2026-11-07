@@ -110,3 +110,4 @@ All target versions are managed in a single canonical configuration file:
 - **Educational Text & Documentation**: Copyright &copy; 2026 Karmatix. All rights reserved.
 - **Code Samples (`/samples`)**: Permissive [MIT License](LICENSE).
 - **Trademark Notice**: *.NET, C#, ASP.NET, Azure, Visual Studio and related names are trademarks of Microsoft Corporation. Karmatix .NET Academy is an independent educational resource and is not affiliated with or endorsed by Microsoft.*
+

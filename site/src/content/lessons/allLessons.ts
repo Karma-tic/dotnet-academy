@@ -210,3 +210,4 @@ export const searchIndex: SearchItem[] = [
     url: 'cheatsheets',
   })),
 ];
+

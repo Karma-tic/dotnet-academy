@@ -77,3 +77,4 @@ app.MapGet("/api/v1/health", () => Results.Ok(new
     ]
   }
 ];
+

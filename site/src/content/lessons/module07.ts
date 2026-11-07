@@ -218,3 +218,4 @@ public void GoldMember_ReceivesFifteenPercentDiscount()
     ]
   }
 ];
+

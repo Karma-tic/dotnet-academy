@@ -13,3 +13,4 @@ Demonstrates bi-directional WebSocket communication in ASP.NET Core using strong
 dotnet run --project samples/Capstones/Capstone5_SignalRChat
 ```
 Connect via any SignalR client to \`http://localhost:5000/hub/chat\`.
+

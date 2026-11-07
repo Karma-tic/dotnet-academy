@@ -13,3 +13,4 @@ Demonstrates state machines, task assignment, identity-based authorization check
 ```bash
 dotnet run --project samples/Capstones/Capstone3_TaskManager
 ```
+

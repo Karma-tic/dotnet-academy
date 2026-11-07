@@ -36,6 +36,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
               <li>
+                <button onClick={() => onNavigate('portal')} className="hover:text-amber-500 font-medium transition-colors flex items-center gap-1 text-amber-600 dark:text-amber-400">
+                  <span>◀ All Karmatix Tracks</span>
+                </button>
+              </li>
+              <li>
                 <button onClick={() => onNavigate('curriculum')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                   Curriculum & Modules
                 </button>

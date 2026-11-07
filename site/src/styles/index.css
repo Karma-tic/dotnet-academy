@@ -4,17 +4,74 @@
 
 @layer base {
   :root {
+    --bg-base: #090b0e;
+    --bg-surface: #11151c;
+    --bg-elevated: #19202c;
+    --border-subtle: #202938;
+    --border-strong: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent-signal: #f59e0b;
+    --accent-signal-hover: #fbbf24;
+    --accent-signal-glow: rgba(245, 158, 11, 0.15);
+    --status-live: #22c55e;
+    --status-live-glow: rgba(34, 197, 94, 0.2);
+
     --brand-primary: #4F46E5;
     --brand-accent: #6366F1;
   }
 
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  html, body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: 'Geist', 'General Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  canvas {
+    max-width: 100%;
   }
 
   code, pre, kbd {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
+}
+
+/* Glass schematic card & panel styles */
+.glass-panel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel:hover {
+  border-color: var(--border-strong);
+}
+
+/* Radial spotlight effect for cards */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: var(--mouse-y, -1000px);
+  left: var(--mouse-x, -1000px);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
 }
 
 /* Print Styles for Cheat Sheets and Certificates */
@@ -36,22 +93,16 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #090b0e;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.4);
-  border-radius: 4px;
+  background: #202938;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.7);
-}
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(75, 85, 99, 0.5);
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(107, 114, 128, 0.8);
+  background: #334155;
 }

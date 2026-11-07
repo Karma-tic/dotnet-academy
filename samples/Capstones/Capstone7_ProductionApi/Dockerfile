@@ -21,3 +21,4 @@ ENV ASPNETCORE_HTTP_PORTS=8080
 EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "Capstone7_ProductionApi.dll"]
+

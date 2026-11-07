@@ -153,3 +153,4 @@ export const Quiz: React.FC<QuizProps> = ({
     </div>
   );
 };
+

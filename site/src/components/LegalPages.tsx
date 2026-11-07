@@ -221,3 +221,4 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
     </div>
   );
 };
+

@@ -12,3 +12,4 @@ Demonstrates asynchronous producer-consumer background processing using \`Micros
 ```bash
 dotnet run --project samples/Capstones/Capstone6_BackgroundReporting -- --run-host
 ```
+

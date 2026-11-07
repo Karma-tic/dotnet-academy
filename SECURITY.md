@@ -20,3 +20,4 @@ Please include:
 3. Impact assessment.
 
 We take security seriously and will acknowledge your report within 48 hours and coordinate remediation before public disclosure.
+

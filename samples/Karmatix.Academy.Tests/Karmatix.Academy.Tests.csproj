@@ -27,3 +27,4 @@
     <ProjectReference Include="..\Capstones\Capstone3_TaskManager\Capstone3_TaskManager.csproj" />
   </ItemGroup>
 </Project>
+

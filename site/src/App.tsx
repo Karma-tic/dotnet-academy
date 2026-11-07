@@ -8,6 +8,8 @@ import { useProgress } from './hooks/useProgress';
 import { allLessons, modulesData, searchIndex } from './content/lessons/allLessons';
 import confetti from 'canvas-confetti';
 
+import { PortalLandingPage } from './components/portal/PortalLandingPage';
+
 // Lazy loaded views for instant initial paint & top Lighthouse scores
 const Dashboard = lazy(() => import('./components/Dashboard').then(m => ({ default: m.Dashboard })));
 const StudyPlanner = lazy(() => import('./components/StudyPlanner').then(m => ({ default: m.StudyPlanner })));
@@ -38,8 +40,16 @@ export function App() {
     resetProgress,
   } = useProgress();
 
-  // Navigation State
-  const [activeView, setActiveView] = useState<string>('home');
+  // Navigation State: default to portal unless hash specifies otherwise
+  const getInitialView = () => {
+    if (typeof window === 'undefined') return 'portal';
+    const hash = window.location.hash.replace(/^#\/?/, '');
+    if (hash.startsWith('lesson/')) return 'lesson';
+    if (hash === '' || hash === 'portal') return 'portal';
+    return hash;
+  };
+
+  const [activeView, setActiveView] = useState<string>(getInitialView);
   const [currentLessonSlug, setCurrentLessonSlug] = useState<string>(allLessons[0]?.slug || '');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -57,6 +67,8 @@ export function App() {
           setActiveView('lesson');
           setLastVisited(slug);
         }
+      } else if (hash === '' || hash === 'portal') {
+        setActiveView('portal');
       } else if (hash) {
         setActiveView(hash);
       }
@@ -81,7 +93,11 @@ export function App() {
 
   const navigateTo = (view: string) => {
     setActiveView(view);
-    window.location.hash = `#/${view}`;
+    if (view === 'portal') {
+      window.location.hash = '#/portal';
+    } else {
+      window.location.hash = `#/${view}`;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -124,6 +140,30 @@ export function App() {
   const totalLessons = allLessons.length;
   const progressPercent = totalLessons > 0 ? Math.round((state.completedLessons.length / totalLessons) * 100) : 0;
 
+  // Standalone Glass Schematic Landing Page for Karmatix Learning Portal
+  if (activeView === 'portal') {
+    return (
+      <div className="min-h-screen bg-[#090b0e] text-[#f8fafc]">
+        <PortalLandingPage
+          onEnterDotNetCourse={() => navigateTo('curriculum')}
+          onOpenLegal={(page) => navigateTo(page)}
+        />
+
+        {/* Global Search Modal if triggered */}
+        {isSearchOpen && (
+          <Suspense fallback={null}>
+            <SearchModal
+              isOpen={isSearchOpen}
+              onClose={() => setIsSearchOpen(false)}
+              items={searchIndex}
+              onSelect={handleSearchSelect}
+            />
+          </Suspense>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       {/* Top Header */}
@@ -153,7 +193,7 @@ export function App() {
         {/* View Router Body */}
         <main className={`flex-1 min-w-0 transition-all ${activeView === 'lesson' ? 'lg:pl-80' : ''}`}>
           <Suspense fallback={<div className="p-16 text-center text-sm text-slate-400">Loading learning module...</div>}>
-            {activeView === 'home' || activeView === 'curriculum' ? (
+            {activeView === 'home' || activeView === 'curriculum' || activeView === 'dotnet' ? (
               <CurriculumOverview
                 modules={modulesData}
                 completedLessons={state.completedLessons}
@@ -227,12 +267,20 @@ export function App() {
               <div className="py-20 text-center space-y-4">
                 <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Page Not Found</h2>
                 <p className="text-slate-500">The requested page or lesson could not be located.</p>
-                <button
-                  onClick={() => navigateTo('home')}
-                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold"
-                >
-                  Return to Curriculum
-                </button>
+                <div className="flex items-center justify-center gap-3">
+                  <button
+                    onClick={() => navigateTo('portal')}
+                    className="px-4 py-2 bg-[#f59e0b] hover:bg-[#fbbf24] text-black rounded-lg text-sm font-semibold transition-colors shadow-sm"
+                  >
+                    Return to Learning Portal
+                  </button>
+                  <button
+                    onClick={() => navigateTo('curriculum')}
+                    className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold"
+                  >
+                    Return to Curriculum
+                  </button>
+                </div>
               </div>
             )}
           </Suspense>

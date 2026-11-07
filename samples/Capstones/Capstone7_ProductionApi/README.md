@@ -14,3 +14,4 @@ A production-hardened ASP.NET Core API prepared for cloud deployment on Azure Co
 docker compose up --build
 ```
 Verify health at: \`http://localhost:8080/healthz\`
+

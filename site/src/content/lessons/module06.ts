@@ -108,3 +108,4 @@ app.MapGet("/api/certified-content", () => "Welcome verified student!")
     ]
   }
 ];
+

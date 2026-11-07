@@ -102,3 +102,4 @@ public class WelcomePage : ContentPage
     ]
   }
 ];
+

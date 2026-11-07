@@ -15,3 +15,4 @@ public static class Program
         Console.WriteLine("First console project compiled and executed successfully!");
     }
 }
+

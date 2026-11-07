@@ -28,3 +28,4 @@
 ## Mandatory Trademark Notice
 In compliance with Microsoft brand guidelines:
 > ".NET, C#, ASP.NET, Azure, Visual Studio and related names are trademarks of Microsoft Corporation. Karmatix .NET Academy is an independent educational resource and is not affiliated with or endorsed by Microsoft."
+

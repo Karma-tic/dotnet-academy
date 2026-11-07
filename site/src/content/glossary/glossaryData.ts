@@ -127,3 +127,4 @@ export const glossaryData: GlossaryTerm[] = [
     analogy: 'An air traffic control tower coordinating flight paths, radar telemetry, and ground operations across all aircraft in a fleet.'
   }
 ];
+

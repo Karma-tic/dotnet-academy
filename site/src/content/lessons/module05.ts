@@ -319,3 +319,4 @@ app.MapPost("/api/courses", (CreateCourseDto dto) =>
     ]
   }
 ];
+

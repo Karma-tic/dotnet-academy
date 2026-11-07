@@ -92,3 +92,4 @@ jobs:
           curl -I http://localhost:3000/ || exit 1
           curl -I http://localhost:3000/sitemap.xml || exit 1
           echo "Preview server responsive on port 3000."
+

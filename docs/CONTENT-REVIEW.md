@@ -29,3 +29,4 @@ Before marking any lesson `reviewStatus: "reviewed"` in its frontmatter, complet
   - `lastVerified` (YYYY-MM-DD)
   - `reviewStatus` ("reviewed" or "draft")
 - [ ] **Reviewer Sign-off**: Signed off by a designated Karmatix technical reviewer.
+

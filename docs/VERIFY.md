@@ -16,3 +16,4 @@ This document tracks all external facts, links, and operational items verified f
 | .NET Aspire Status | VERIFIED | GA orchestrator and dashboard for cloud-native .NET | 2026-11-06 |
 | Contact Email / Domain | ACTION ITEM | Using default `hello@karmatix.in` & `https://karmatix.in/contact` pending custom contact address | 2026-11-06 |
 | Custom Subdomain DNS | ACTION ITEM | Pending learner DNS configuration: `learn.karmatix.in` CNAME `karma-tic.github.io` | 2026-11-06 |
+

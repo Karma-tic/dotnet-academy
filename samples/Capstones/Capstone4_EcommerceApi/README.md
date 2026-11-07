@@ -12,3 +12,4 @@ A commercial-grade multi-endpoint Web API managing catalog pagination, filtering
 ```bash
 dotnet run --project samples/Capstones/Capstone4_EcommerceApi
 ```
+

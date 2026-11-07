@@ -4,10 +4,10 @@ import { siteConfig } from '../config/site';
 
 export const ThemeToggle: React.FC = () => {
   const [isDark, setIsDark] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
+    if (typeof window === 'undefined') return true;
     const stored = localStorage.getItem(`${siteConfig.storagePrefix}theme`);
     if (stored) return stored === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return true; // Default to dark obsidian mode as specified in design system
   });
 
   useEffect(() => {
@@ -32,3 +32,4 @@ export const ThemeToggle: React.FC = () => {
     </button>
   );
 };
+
