@@ -1,7 +1,8 @@
 # Karmatix .NET Academy
 
 > **"Learn .NET the clear way."**  
-> A commercial-grade educational platform engineered by [Karmatix](https://karmatix.in) for aspiring developers and enterprise engineers.
+> A commercial-grade educational platform engineered by [Karmatix](https://karmatix.in) for aspiring developers and enterprise e
+> ngineers.
 
 [![CI Quality Gate](https://github.com/Karma-tic/dotnet-academy/actions/workflows/ci.yml/badge.svg)](https://github.com/Karma-tic/dotnet-academy/actions/workflows/ci.yml)
 [![Verified on .NET 10 LTS](https://img.shields.io/badge/.NET-10.0%20LTS-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
@@ -102,28 +103,6 @@ All target versions are managed in a single canonical configuration file:
 
 ---
 
-## 🔗 Integrating into karmatix.in
-
-Add the following HTML snippet to the header, footer, or hero section of the main corporate website (`https://karmatix.in`):
-
-```html
-<!-- Karmatix Header Navigation Link -->
-<a href="https://learn.karmatix.in" class="nav-link font-semibold text-indigo-600 hover:text-indigo-800">
-  .NET Academy <span class="badge bg-indigo-100 text-indigo-700 text-xs px-2 py-0.5 rounded-full">New</span>
-</a>
-
-<!-- Karmatix Card Promo Widget -->
-<div class="card p-6 border rounded-2xl bg-gradient-to-r from-indigo-50 to-white shadow-sm">
-  <span class="text-xs uppercase font-bold text-indigo-600 tracking-wider">Free Engineering Education</span>
-  <h3 class="text-xl font-bold text-slate-900 mt-1">Karmatix .NET Academy</h3>
-  <p class="text-sm text-slate-600 mt-2">
-    Master modern .NET 10 LTS and C# 14. Compilable enterprise samples, 200+ interview Q&A, 6 timed mock tests, and production capstones.
-  </p>
-  <a href="https://learn.karmatix.in" class="mt-4 inline-block px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold">
-    Explore Curriculum &rarr;
-  </a>
-</div>
-```
 
 ---
 
