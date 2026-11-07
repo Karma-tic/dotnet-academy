@@ -78,13 +78,13 @@ export const Header: React.FC<HeaderProps> = ({
         <nav className="hidden xl:flex items-center space-x-1 text-sm font-medium">
           {[
             { id: 'curriculum', label: 'Curriculum' },
+            { id: 'learning-paths', label: 'Paths' },
+            { id: 'daily-practice', label: 'Daily Practice' },
+            { id: 'how-to-learn', label: 'How to Learn' },
+            { id: 'get-help', label: 'Get Help' },
             { id: 'dashboard', label: 'Dashboard' },
-            { id: 'planner', label: 'Study Plan' },
             { id: 'career', label: 'Career Hub' },
-            { id: 'certifications', label: 'Certifications' },
-            { id: 'resources', label: 'Free Resources' },
-            { id: 'cheatsheets', label: 'Cheat Sheets' },
-            { id: 'glossary', label: 'Glossary' },
+            { id: 'cheatsheets', label: 'Offline Kit' },
           ].map((item) => {
             const isActive = activeTab === item.id;
             return (

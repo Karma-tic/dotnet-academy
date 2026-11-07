@@ -15,6 +15,12 @@ export interface ProgressState {
     startDate: string;
   };
   learnerName: string;
+  dailyPractice: {
+    currentStreak: number;
+    longestStreak: number;
+    lastSolvedDate: string | null;
+    solvedProblemIds: string[];
+  };
 }
 
 const DEFAULT_STATE: ProgressState = {
@@ -31,6 +37,12 @@ const DEFAULT_STATE: ProgressState = {
     startDate: new Date().toISOString().slice(0, 10),
   },
   learnerName: '',
+  dailyPractice: {
+    currentStreak: 0,
+    longestStreak: 0,
+    lastSolvedDate: null,
+    solvedProblemIds: [],
+  },
 };
 
 const STORAGE_KEY = `${siteConfig.storagePrefix}progress`;
@@ -46,6 +58,7 @@ export function useProgress() {
             ...DEFAULT_STATE,
             ...parsed,
             planner: { ...DEFAULT_STATE.planner, ...(parsed.planner || {}) },
+            dailyPractice: { ...DEFAULT_STATE.dailyPractice, ...(parsed.dailyPractice || {}) },
           };
         }
       }
@@ -162,6 +175,12 @@ export function useProgress() {
             startDate: parsed.planner?.startDate || new Date().toISOString().slice(0, 10),
           },
           learnerName: typeof parsed.learnerName === 'string' ? parsed.learnerName : '',
+          dailyPractice: {
+            currentStreak: typeof parsed.dailyPractice?.currentStreak === 'number' ? parsed.dailyPractice.currentStreak : 0,
+            longestStreak: typeof parsed.dailyPractice?.longestStreak === 'number' ? parsed.dailyPractice.longestStreak : 0,
+            lastSolvedDate: typeof parsed.dailyPractice?.lastSolvedDate === 'string' ? parsed.dailyPractice.lastSolvedDate : null,
+            solvedProblemIds: Array.isArray(parsed.dailyPractice?.solvedProblemIds) ? parsed.dailyPractice.solvedProblemIds : [],
+          },
         };
         setState(validated);
         return true;
@@ -170,6 +189,48 @@ export function useProgress() {
       console.error('Invalid JSON for progress import', e);
     }
     return false;
+  }, []);
+
+  const recordProblemSolved = useCallback((problemId: string) => {
+    setState((prev) => {
+      const today = new Date().toISOString().slice(0, 10);
+      const isAlreadySolved = prev.dailyPractice?.solvedProblemIds?.includes(problemId);
+      const solvedIds = isAlreadySolved
+        ? prev.dailyPractice.solvedProblemIds
+        : [...(prev.dailyPractice?.solvedProblemIds || []), problemId];
+
+      const lastDate = prev.dailyPractice?.lastSolvedDate;
+      let newStreak = prev.dailyPractice?.currentStreak || 0;
+      let longestStreak = prev.dailyPractice?.longestStreak || 0;
+
+      if (lastDate !== today) {
+        if (lastDate) {
+          const prevDateObj = new Date(lastDate);
+          const todayDateObj = new Date(today);
+          const diffDays = Math.round((todayDateObj.getTime() - prevDateObj.getTime()) / (1000 * 60 * 60 * 24));
+          if (diffDays === 1) {
+            newStreak += 1;
+          } else if (diffDays > 1) {
+            newStreak = 1;
+          }
+        } else {
+          newStreak = 1;
+        }
+        if (newStreak > longestStreak) {
+          longestStreak = newStreak;
+        }
+      }
+
+      return {
+        ...prev,
+        dailyPractice: {
+          currentStreak: newStreak,
+          longestStreak,
+          lastSolvedDate: today,
+          solvedProblemIds: solvedIds,
+        },
+      };
+    });
   }, []);
 
   const resetProgress = useCallback(() => {
@@ -194,6 +255,7 @@ export function useProgress() {
     setLearnerName,
     saveMockTestScore,
     updatePlanner,
+    recordProblemSolved,
     exportProgress,
     importProgress,
     resetProgress,

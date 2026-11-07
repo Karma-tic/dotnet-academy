@@ -20,6 +20,7 @@ export interface SidebarProps {
   modules: ModuleMeta[];
   currentSlug: string;
   onSelectLesson: (slug: string) => void;
+  onNavigate?: (view: string) => void;
   completedLessons: string[];
   isOpen: boolean;
   onClose: () => void;
@@ -29,6 +30,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   modules,
   currentSlug,
   onSelectLesson,
+  onNavigate,
   completedLessons,
   isOpen,
   onClose,
@@ -162,6 +164,36 @@ export const Sidebar: React.FC<SidebarProps> = ({
             );
           })}
         </nav>
+
+        {/* Learning Support Hub */}
+        {onNavigate && (
+          <div className="p-3 border-t border-slate-200 dark:border-slate-800 space-y-1 bg-slate-50/50 dark:bg-slate-950/20">
+            <div className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Learning Support
+            </div>
+            {[
+              { id: 'how-to-learn', label: 'How to Learn (10m Guide)', icon: '💡' },
+              { id: 'learning-paths', label: 'Learning Paths by Goal', icon: '🧭' },
+              { id: 'daily-practice', label: 'Problem of the Day', icon: '🔥' },
+              { id: 'get-help', label: 'Stuck? Get Help', icon: '🆘' },
+              { id: 'regional-resources', label: 'Hindi & Indian Resources', icon: '🇮🇳' },
+              { id: 'free-tiers', label: 'Free Cloud Tiers Guide', icon: '☁️' },
+              { id: 'cheatsheets', label: 'Offline Kit (Cheat Sheets)', icon: '📄' },
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => {
+                  onNavigate(item.id);
+                  if (typeof window !== 'undefined' && window.innerWidth < 1024) onClose();
+                }}
+                className="w-full flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-left"
+              >
+                <span>{item.icon}</span>
+                <span className="font-medium">{item.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </aside>
     </>
   );

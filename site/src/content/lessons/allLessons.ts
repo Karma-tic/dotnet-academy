@@ -209,5 +209,48 @@ export const searchIndex: SearchItem[] = [
     snippet: `${c.category} Quick Reference Cheat Sheet`,
     url: 'cheatsheets',
   })),
+  // Learning Support & Addendum Features
+  {
+    id: 'page-how-to-learn',
+    title: 'How to Learn .NET: 10-Minute Guide for Beginners',
+    category: 'lesson' as const,
+    snippet: "Type it don't paste it, reading compiler error messages, debugging techniques, and escaping tutorial hell.",
+    url: 'how-to-learn',
+  },
+  {
+    id: 'page-learning-paths',
+    title: 'Learning Paths by Goal: Web API, Full-Stack, Cloud & Interview',
+    category: 'lesson' as const,
+    snippet: 'Visual roadmaps for Web API, Full-Stack Blazor, Cloud & DevOps, and Interview Fast Track with progress tracking.',
+    url: 'learning-paths',
+  },
+  {
+    id: 'page-stuck-help',
+    title: 'Stuck? Get Help: Communities, Common Errors & Question Builder',
+    category: 'interview' as const,
+    snippet: 'Where to ask, interactive MCVE question template builder, and fixes for CS0103, CS0246, CS8602, NullRef.',
+    url: 'get-help',
+  },
+  {
+    id: 'page-regional-resources',
+    title: 'Regional Indian-Language Resources: Hindi .NET & C# Tutorials',
+    category: 'glossary' as const,
+    snippet: 'Verified Hindi and Indian-language channels: CodeWithHarry, Kudvenkat, Thapa Technical, and user groups.',
+    url: 'regional-resources',
+  },
+  {
+    id: 'page-free-tiers',
+    title: 'Free Cloud Tiers Guide: Azure, Codespaces, Neon, Supabase, Render, Docker Hub',
+    category: 'cheatsheet' as const,
+    snippet: 'Verified deployment practice tiers, exact quotas, credit card safety rules, and retired services warnings.',
+    url: 'free-tiers',
+  },
+  {
+    id: 'page-daily-practice',
+    title: 'Daily Practice: Problem of the Day & Streak Counter (52 Challenges)',
+    category: 'interview' as const,
+    snippet: 'Daily rotating .NET coding problem, streak counter, and 52 algorithm and architecture challenges.',
+    url: 'daily-practice',
+  },
 ];
 

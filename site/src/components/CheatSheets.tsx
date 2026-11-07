@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Printer, FileText, Copy, Check } from 'lucide-react';
+import { Printer, Copy, Check, Download } from 'lucide-react';
 import { Button } from './ui/Button';
 import { Badge } from './ui/Badge';
 import { cheatSheetsData, CheatSheet } from '../content/cheatsheets/cheatsheetsData';
@@ -27,14 +27,14 @@ export const CheatSheets: React.FC = () => {
       {/* Header */}
       <div className="text-center space-y-3 no-print">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
-          <FileText className="w-3.5 h-3.5" />
-          <span>Quick Reference</span>
+          <Download className="w-3.5 h-3.5" />
+          <span>Offline Developer Kit (8 Reference Sheets)</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          One-Page Printable Cheat Sheets
+          Offline Kit: One-Page Printable Cheat Sheets
         </h1>
         <p className="text-sm text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-          High-density reference sheets for C# syntax, LINQ, EF Core, CLI commands, and HTTP status codes. Optimized for screen and paper print.
+          High-density reference sheets for C# 14, LINQ, EF Core, ASP.NET Core, .NET CLI, Git, SQL, and HTTP status codes. Print directly or save as PDF via your browser print dialog.
         </p>
 
         {/* Sheet Switcher */}
@@ -61,7 +61,7 @@ export const CheatSheets: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 mb-1">
               <Badge variant="purple">{activeSheet.category}</Badge>
-              <span className="text-xs text-slate-400">Karmatix .NET Academy</span>
+              <span className="text-xs text-slate-400">Karmatix .NET Academy Offline Kit</span>
             </div>
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
               {activeSheet.title}
@@ -70,7 +70,7 @@ export const CheatSheets: React.FC = () => {
 
           <Button variant="outline" size="sm" onClick={handlePrint} className="no-print">
             <Printer className="w-4 h-4 mr-1.5" />
-            Print Cheat Sheet
+            Print / Save PDF
           </Button>
         </div>
 

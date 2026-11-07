@@ -10,7 +10,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer className="mt-20 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 mb-10">
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
@@ -29,10 +29,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Quick Links Col */}
+          {/* Tracks & Curriculum Col */}
           <div className="space-y-3">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
-              Navigation
+              Curriculum & Paths
             </h4>
             <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
               <li>
@@ -46,28 +46,62 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </button>
               </li>
               <li>
+                <button onClick={() => onNavigate('learning-paths')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium text-indigo-600 dark:text-indigo-400">
+                  Learning Paths by Goal
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('daily-practice')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1 text-amber-600 dark:text-amber-400">
+                  <span>Problem of the Day 🔥</span>
+                </button>
+              </li>
+              <li>
                 <button onClick={() => onNavigate('career')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                   Career Hub & 200+ Q&A
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('certifications')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  Certifications Guide
+                <button onClick={() => onNavigate('planner')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  30/60/90 Study Plan
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Learning Support Col */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-900 dark:text-white">
+              Learning Support
+            </h4>
+            <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+              <li>
+                <button onClick={() => onNavigate('how-to-learn')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium">
+                  How to Learn (10m Guide)
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('get-help')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  Stuck? Get Help
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('regional-resources')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  Hindi & Indian Resources
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('free-tiers')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  Free Cloud Tiers Guide
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('cheatsheets')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  Offline Kit (PDF Sheets)
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('resources')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                   Free Resource Library
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('cheatsheets')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  Printable Cheat Sheets
-                </button>
-              </li>
-              <li>
-                <button onClick={() => onNavigate('planner')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  30/60/90 Day Study Plan
                 </button>
               </li>
             </ul>

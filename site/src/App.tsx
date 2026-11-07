@@ -22,6 +22,14 @@ const LegalPages = lazy(() => import('./components/LegalPages').then(m => ({ def
 const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
 const CertificateModal = lazy(() => import('./components/CertificateModal').then(m => ({ default: m.CertificateModal })));
 
+// Learning Support Addendum Views
+const HowToLearnView = lazy(() => import('./components/HowToLearnView').then(m => ({ default: m.HowToLearnView })));
+const LearningPathsView = lazy(() => import('./components/LearningPathsView').then(m => ({ default: m.LearningPathsView })));
+const StuckHelpView = lazy(() => import('./components/StuckHelpView').then(m => ({ default: m.StuckHelpView })));
+const RegionalResourcesView = lazy(() => import('./components/RegionalResourcesView').then(m => ({ default: m.RegionalResourcesView })));
+const FreeTiersView = lazy(() => import('./components/FreeTiersView').then(m => ({ default: m.FreeTiersView })));
+const DailyPracticeView = lazy(() => import('./components/DailyPracticeView').then(m => ({ default: m.DailyPracticeView })));
+
 export function App() {
   const {
     state,
@@ -35,6 +43,7 @@ export function App() {
     setLearnerName,
     saveMockTestScore,
     updatePlanner,
+    recordProblemSolved,
     exportProgress,
     importProgress,
     resetProgress,
@@ -165,6 +174,7 @@ export function App() {
             modules={modulesData}
             currentSlug={currentLesson.slug}
             onSelectLesson={handleSelectLesson}
+            onNavigate={navigateTo}
             completedLessons={state.completedLessons}
             isOpen={isSidebarOpen}
             onClose={() => setIsSidebarOpen(false)}
@@ -244,6 +254,26 @@ export function App() {
                 <ResourceLibrary />
               ) : activeView === 'cheatsheets' ? (
                 <CheatSheets />
+              ) : activeView === 'how-to-learn' ? (
+                <HowToLearnView onNavigateToCurriculum={() => navigateTo('curriculum')} />
+              ) : activeView === 'learning-paths' ? (
+                <LearningPathsView
+                  modules={modulesData}
+                  completedLessons={state.completedLessons}
+                  onSelectLesson={handleSelectLesson}
+                  onNavigateToCurriculum={() => navigateTo('curriculum')}
+                />
+              ) : activeView === 'get-help' ? (
+                <StuckHelpView />
+              ) : activeView === 'regional-resources' ? (
+                <RegionalResourcesView />
+              ) : activeView === 'free-tiers' ? (
+                <FreeTiersView />
+              ) : activeView === 'daily-practice' ? (
+                <DailyPracticeView
+                  streakData={state.dailyPractice}
+                  onRecordProblemSolved={recordProblemSolved}
+                />
               ) : activeView === 'glossary' ? (
                 <GlossaryView />
               ) : activeView === 'privacy' || activeView === 'terms' || activeView === 'contact' ? (
