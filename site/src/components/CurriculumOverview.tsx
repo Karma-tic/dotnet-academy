@@ -168,6 +168,32 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
           })}
         </div>
       </section>
+
+      {/* Ko-fi Chai Support Callout */}
+      <section className="p-6 rounded-2xl border border-amber-500/20 bg-amber-500/5 dark:bg-amber-950/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <span className="text-2xl p-2.5 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 shrink-0" aria-hidden="true">
+            ☕
+          </span>
+          <div>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+              Enjoying this course? Buy us a chai
+            </h3>
+            <p className="text-xs text-slate-600 dark:text-slate-400">
+              The Karmatix .NET Academy is 100% free with no paywalls or user tracking. Donations help cover cloud servers, test runners, and ongoing maintenance.
+            </p>
+          </div>
+        </div>
+        <a
+          href="https://ko-fi.com/karmatix"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-amber-500 hover:bg-amber-600 text-white shadow-xs transition-colors"
+          aria-label="Enjoyed this course? Buy me a chai on Ko-fi (opens in new tab)"
+        >
+          <span>Enjoyed this course? Buy me a chai ☕</span>
+        </a>
+      </section>
     </div>
   );
 };

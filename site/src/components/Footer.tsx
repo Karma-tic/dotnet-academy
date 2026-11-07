@@ -27,6 +27,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <Heart className="w-3.5 h-3.5 text-indigo-500 fill-indigo-500 inline" />
               <span>for the .NET community by <a href={siteConfig.publisherUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-slate-700 dark:text-slate-300 hover:text-indigo-500 transition-colors">Karmatix</a></span>
             </div>
+            <div className="pt-2">
+              <a
+                href="https://ko-fi.com/karmatix"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/30 hover:bg-amber-500/20 transition-colors"
+                aria-label="Enjoyed this course? Buy me a chai on Ko-fi (opens in new tab)"
+              >
+                <span>Enjoyed this course? Buy me a chai ☕</span>
+              </a>
+            </div>
           </div>
 
           {/* Tracks & Curriculum Col */}
@@ -128,6 +139,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <button onClick={() => onNavigate('contact')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                   Contact & Support
                 </button>
+              </li>
+              <li>
+                <a
+                  href="https://ko-fi.com/karmatix"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors inline-flex items-center gap-1 text-amber-600 dark:text-amber-400 font-medium"
+                >
+                  <span>Support on Ko-fi ☕</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
               </li>
               <li>
                 <a

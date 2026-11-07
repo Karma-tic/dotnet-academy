@@ -221,3 +221,4 @@ public class ReportWorker(IServiceScopeFactory scopeFactory) : BackgroundService
     preventionTip: 'Never inject a Scoped service into a Singleton. Use `IServiceScopeFactory` to create an explicit scope when background services need database access.'
   }
 ];
+

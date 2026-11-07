@@ -131,6 +131,19 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Theme Toggle */}
           <ThemeToggle />
 
+          {/* Ko-fi Support Link */}
+          <a
+            href="https://ko-fi.com/karmatix"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-lg bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/30 hover:bg-amber-500/20 transition-colors"
+            title="Support Karmatix on Ko-fi"
+            aria-label="Support Karmatix on Ko-fi (opens in new tab)"
+          >
+            <span>☕</span>
+            <span className="hidden xl:inline">Support</span>
+          </a>
+
           {/* Bookmarks Quick Link */}
           <button
             onClick={() => onNavigate('dashboard')}

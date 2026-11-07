@@ -92,3 +92,4 @@ export const regionalResourcesData: RegionalResource[] = [
     recommendedAudience: 'Job seekers wanting to connect with local senior engineers and hiring managers.'
   }
 ];
+

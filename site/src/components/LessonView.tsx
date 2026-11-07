@@ -358,6 +358,23 @@ export const LessonView: React.FC<LessonViewProps> = ({
         />
       </section>
 
+      {/* Ko-fi Chai Support Callout */}
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 rounded-xl border border-amber-500/20 bg-amber-500/5 dark:bg-amber-950/20 text-xs">
+        <div className="flex items-center gap-2.5 text-slate-700 dark:text-slate-300">
+          <span className="text-base" aria-hidden="true">☕</span>
+          <span>Enjoyed this lesson? Help keep Karmatix free for developers worldwide.</span>
+        </div>
+        <a
+          href="https://ko-fi.com/karmatix"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="shrink-0 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-amber-500 hover:bg-amber-600 text-white shadow-xs transition-colors"
+          aria-label="Enjoyed this course? Buy me a chai on Ko-fi (opens in new tab)"
+        >
+          <span>Enjoyed this course? Buy me a chai ☕</span>
+        </a>
+      </div>
+
       {/* Bottom Navigation (Prev / Next) */}
       <nav className="flex items-center justify-between gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
         {prevLesson ? (
