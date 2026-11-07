@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle2, ChevronRight, ChevronDown, BookOpen, Layers } from 'lucide-react';
+import { CheckCircle2, ChevronRight, ChevronDown, BookOpen, Layers, PanelLeftClose } from 'lucide-react';
 
 export interface LessonMeta {
   slug: string;
@@ -54,18 +54,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
       )}
 
       <aside
-        className={`fixed top-16 bottom-0 left-0 z-40 w-72 sm:w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform transition-transform duration-200 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-16 bottom-0 left-0 z-40 w-72 sm:w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } overflow-y-auto flex flex-col`}
+        } overflow-y-auto flex flex-col shadow-lg lg:shadow-none`}
+        aria-label="Course curriculum navigation"
       >
         <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
             <Layers className="w-4 h-4 text-indigo-500" />
             <span>Modules (0 – 11)</span>
           </div>
-          <span className="text-xs font-medium text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">
-            {completedLessons.length} Done
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-medium text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full">
+              {completedLessons.length} Done
+            </span>
+            <button
+              onClick={onClose}
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              title="Hide sidebar (shortcut: Ctrl+B or [)"
+              aria-label="Hide sidebar"
+            >
+              <PanelLeftClose className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         <nav className="flex-1 p-3 space-y-2">
@@ -118,7 +129,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           key={lesson.slug}
                           onClick={() => {
                             onSelectLesson(lesson.slug);
-                            onClose();
+                            if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                              onClose();
+                            }
                           }}
                           className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-colors text-left ${
                             isActive

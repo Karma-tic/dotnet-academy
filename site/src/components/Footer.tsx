@@ -14,7 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <img src="/brand/logo.svg" alt="Karmatix" className="w-7 h-7 rounded" />
+              <img src={`${import.meta.env.BASE_URL}brand/logo.svg`} alt="Karmatix" className="w-7 h-7 rounded" />
               <span className="font-bold text-lg text-slate-900 dark:text-white">
                 Karmatix .NET Academy
               </span>

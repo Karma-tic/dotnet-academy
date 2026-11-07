@@ -169,7 +169,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         >
           {/* Subtle watermark seal */}
           <div className="absolute right-6 bottom-6 opacity-10 pointer-events-none">
-            <img src="/brand/logo.svg" alt="" className="w-48 h-48" />
+            <img src={`${import.meta.env.BASE_URL}brand/logo.svg`} alt="" className="w-48 h-48" />
           </div>
 
           <div className="space-y-4">

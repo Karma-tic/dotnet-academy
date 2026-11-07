@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Menu, X, Award, Bookmark } from 'lucide-react';
+import { Search, Menu, X, Award, Bookmark, PanelLeftClose, PanelLeft } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { siteConfig } from '../config/site';
 
@@ -25,19 +25,34 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Left: Hamburger + Logo */}
         <div className="flex items-center gap-3 shrink-0 mr-2 sm:mr-4">
-          <button
-            onClick={onToggleSidebar}
-            className="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:ring-2 focus:ring-indigo-500"
-            aria-label="Toggle navigation menu"
-          >
-            {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {activeTab === 'lesson' ? (
+            <button
+              onClick={onToggleSidebar}
+              className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:ring-2 focus:ring-indigo-500 flex items-center justify-center"
+              aria-label={isSidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
+              title={isSidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
+            >
+              {isSidebarOpen ? (
+                <PanelLeftClose className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+              ) : (
+                <PanelLeft className="w-5 h-5" />
+              )}
+            </button>
+          ) : (
+            <button
+              onClick={onToggleSidebar}
+              className="lg:hidden p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:ring-2 focus:ring-indigo-500"
+              aria-label="Toggle navigation menu"
+            >
+              {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          )}
 
           <button
             onClick={() => onNavigate('home')}
             className="flex items-center gap-2.5 text-left focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg p-1 shrink-0"
           >
-            <img src="/brand/logo.svg" alt="Karmatix Logo" className="w-8 h-8 rounded-lg shadow-sm" />
+            <img src={`${import.meta.env.BASE_URL}brand/logo.svg`} alt="Karmatix Logo" className="w-8 h-8 rounded-lg shadow-sm" />
             <div>
               <span className="font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
                 Karmatix <span className="text-indigo-600 dark:text-indigo-400 font-semibold text-sm">.NET</span>
