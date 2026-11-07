@@ -8,7 +8,7 @@ import { useProgress } from './hooks/useProgress';
 import { allLessons, modulesData, searchIndex } from './content/lessons/allLessons';
 import confetti from 'canvas-confetti';
 
-import { PortalLandingPage } from './components/portal/PortalLandingPage';
+
 
 // Lazy loaded views for instant initial paint & top Lighthouse scores
 const Dashboard = lazy(() => import('./components/Dashboard').then(m => ({ default: m.Dashboard })));
@@ -40,12 +40,12 @@ export function App() {
     resetProgress,
   } = useProgress();
 
-  // Navigation State: default to portal unless hash specifies otherwise
+  // Navigation State: default to curriculum unless hash specifies otherwise
   const getInitialView = () => {
-    if (typeof window === 'undefined') return 'portal';
+    if (typeof window === 'undefined') return 'curriculum';
     const hash = window.location.hash.replace(/^#\/?/, '');
     if (hash.startsWith('lesson/')) return 'lesson';
-    if (hash === '' || hash === 'portal') return 'portal';
+    if (hash === '' || hash === 'curriculum' || hash === 'home' || hash === 'portal') return 'curriculum';
     return hash;
   };
 
@@ -67,8 +67,8 @@ export function App() {
           setActiveView('lesson');
           setLastVisited(slug);
         }
-      } else if (hash === '' || hash === 'portal') {
-        setActiveView('portal');
+      } else if (hash === '' || hash === 'curriculum' || hash === 'home' || hash === 'portal') {
+        setActiveView('curriculum');
       } else if (hash) {
         setActiveView(hash);
       }
@@ -140,29 +140,7 @@ export function App() {
   const totalLessons = allLessons.length;
   const progressPercent = totalLessons > 0 ? Math.round((state.completedLessons.length / totalLessons) * 100) : 0;
 
-  // Standalone Glass Schematic Landing Page for Karmatix Learning Portal
-  if (activeView === 'portal') {
-    return (
-      <div className="min-h-screen bg-[#090b0e] text-[#f8fafc]">
-        <PortalLandingPage
-          onEnterDotNetCourse={() => navigateTo('curriculum')}
-          onOpenLegal={(page) => navigateTo(page)}
-        />
 
-        {/* Global Search Modal if triggered */}
-        {isSearchOpen && (
-          <Suspense fallback={null}>
-            <SearchModal
-              isOpen={isSearchOpen}
-              onClose={() => setIsSearchOpen(false)}
-              items={searchIndex}
-              onSelect={handleSearchSelect}
-            />
-          </Suspense>
-        )}
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
