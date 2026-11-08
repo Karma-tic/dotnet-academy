@@ -30,3 +30,4 @@ export const JargonWord: React.FC<JargonWordProps> = ({ termId, children }) => {
     </span>
   );
 };
+

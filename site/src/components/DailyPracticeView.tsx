@@ -178,7 +178,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
           {/* Description */}
           <div className="space-y-2">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Problem Statement</h4>
-            <div className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+            <div className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-normal">
               <RichTextRenderer content={activeProblem.description} />
             </div>
           </div>
@@ -242,7 +242,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
                   <pre>{activeProblem.solutionCode}</pre>
                 </div>
 
-                <div className="p-3 bg-indigo-50/50 dark:bg-indigo-950/30 rounded-xl text-xs text-slate-700 dark:text-slate-300">
+                <div className="p-3 bg-indigo-50/50 dark:bg-indigo-950/30 rounded-xl text-xs text-slate-700 dark:text-slate-200">
                   <strong className="text-indigo-600 dark:text-indigo-400">Algorithmic Complexity: </strong>
                   <RichTextRenderer content={activeProblem.explanation} />
                 </div>

@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        base: '#090b0e',
+        obsidian: '#090b0e',
         surface: {
           DEFAULT: '#11151c',
           card: '#11151c',

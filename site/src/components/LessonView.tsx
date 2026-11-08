@@ -197,9 +197,9 @@ export const LessonView: React.FC<LessonViewProps> = ({
 
         {/* ELI5 Notification Banner when active */}
         {isEli5Mode ? (
-          <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-800/60 space-y-2 animate-fade-in">
+          <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-300 dark:border-amber-700/60 space-y-2 animate-fade-in">
             <div className="flex items-center gap-2 text-amber-900 dark:text-amber-200 font-bold text-xs uppercase tracking-wider">
-              <Baby className="w-4 h-4 text-amber-600" />
+              <Baby className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               <span>ELI5 Mode Active (Kindergarten Simple)</span>
             </div>
             <p className="text-sm text-amber-950 dark:text-amber-100 leading-relaxed font-medium">
@@ -207,7 +207,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
             </p>
           </div>
         ) : (
-          <div className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          <div className="text-base sm:text-lg text-slate-700 dark:text-slate-200 leading-relaxed">
             <RichTextRenderer content={lesson.summary} />
           </div>
         )}
@@ -261,7 +261,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <span>🎯 Goal of this Lesson</span>
         </h2>
-        <div className="p-4 rounded-xl bg-slate-100/70 dark:bg-slate-800/40 text-sm leading-relaxed text-slate-800 dark:text-slate-200 border-l-4 border-indigo-600">
+        <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-sm leading-relaxed text-slate-800 dark:text-slate-100 border-l-4 border-indigo-600 shadow-xs">
           <RichTextRenderer content={lesson.goal} />
         </div>
       </section>
@@ -271,7 +271,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <span>💡 Simple Explanation</span>
         </h2>
-        <div className="text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-300 space-y-4">
+        <div className="text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-200 space-y-4">
           <RichTextRenderer content={lesson.explanation} onJargonClick={handleOpenJargon} />
         </div>
       </section>
@@ -281,16 +281,16 @@ export const LessonView: React.FC<LessonViewProps> = ({
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <span>🍕 Relatable Beginner Analogy</span>
         </h2>
-        <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/60 to-purple-50/40 dark:from-indigo-950/20 dark:to-purple-950/20 border border-indigo-100 dark:border-indigo-900/40 space-y-3 text-sm">
+        <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/60 to-purple-50/40 dark:from-indigo-950/40 dark:to-purple-950/40 border border-indigo-100 dark:border-indigo-800/60 space-y-3 text-sm">
           <div>
-            <span className="font-semibold text-indigo-900 dark:text-indigo-200">The Everyday Scenario: </span>
-            <span className="text-slate-700 dark:text-slate-300">
+            <span className="font-semibold text-indigo-900 dark:text-indigo-300">The Everyday Scenario: </span>
+            <span className="text-slate-700 dark:text-slate-200">
               <RichTextRenderer content={lesson.analogy.realWorldScenario} />
             </span>
           </div>
           <div>
-            <span className="font-semibold text-indigo-900 dark:text-indigo-200">How it Maps to .NET: </span>
-            <span className="text-slate-700 dark:text-slate-300">
+            <span className="font-semibold text-indigo-900 dark:text-indigo-300">How it Maps to .NET: </span>
+            <span className="text-slate-700 dark:text-slate-200">
               <RichTextRenderer content={lesson.analogy.techMapping} />
             </span>
           </div>
@@ -298,12 +298,12 @@ export const LessonView: React.FC<LessonViewProps> = ({
       </section>
 
       {/* ANTI-BOREDOM FEATURE: 🤯 Mind Blown Did You Know? Trivia Card */}
-      <section id="trivia" className="p-5 rounded-2xl border border-purple-200 dark:border-purple-900/50 bg-gradient-to-r from-purple-50/70 via-indigo-50/50 to-pink-50/50 dark:from-purple-950/25 dark:via-indigo-950/20 dark:to-pink-950/20 space-y-2 text-sm shadow-xs">
+      <section id="trivia" className="p-5 rounded-2xl border border-purple-200 dark:border-purple-800/60 bg-gradient-to-r from-purple-50/70 via-indigo-50/50 to-pink-50/50 dark:from-purple-950/40 dark:via-indigo-950/30 dark:to-pink-950/30 space-y-2 text-sm shadow-xs">
         <div className="flex items-center gap-2 text-purple-900 dark:text-purple-300 font-bold">
           <span className="text-xl" aria-hidden="true">🤯</span>
           <span>Mind Blown: Did You Know?</span>
         </div>
-        <div className="text-slate-700 dark:text-slate-300 leading-relaxed text-xs sm:text-sm">
+        <div className="text-slate-700 dark:text-slate-200 leading-relaxed text-xs sm:text-sm">
           <RichTextRenderer content={didYouKnowText} />
         </div>
       </section>
@@ -342,16 +342,16 @@ export const LessonView: React.FC<LessonViewProps> = ({
           {lesson.walkthrough.map((step, idx) => (
             <div
               key={idx}
-              className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-start gap-3.5"
+              className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 flex items-start gap-3.5"
             >
-              <span className="w-6 h-6 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+              <span className="w-6 h-6 rounded-full bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
                 {idx + 1}
               </span>
               <div className="space-y-1 text-sm">
                 <h4 className="font-semibold text-slate-900 dark:text-white">
                   {step.step}
                 </h4>
-                <div className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                <div className="text-slate-600 dark:text-slate-300 leading-relaxed">
                   <RichTextRenderer content={step.detail} />
                 </div>
               </div>
@@ -369,18 +369,18 @@ export const LessonView: React.FC<LessonViewProps> = ({
           {lesson.commonMistakes.map((m, idx) => (
             <div
               key={idx}
-              className="p-5 rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-amber-50/40 dark:bg-amber-950/15 space-y-2 text-sm"
+              className="p-5 rounded-2xl border border-amber-200 dark:border-amber-800/60 bg-amber-50/40 dark:bg-amber-950/25 space-y-2 text-sm"
             >
               <div className="font-semibold text-amber-900 dark:text-amber-200 flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
                 <span>Mistake: {m.mistake}</span>
               </div>
-              <div className="text-slate-700 dark:text-slate-300">
-                <strong>Why it fails: </strong>
+              <div className="text-slate-800 dark:text-slate-200">
+                <strong className="font-semibold text-slate-900 dark:text-white">Why it fails: </strong>
                 <RichTextRenderer content={m.whyItFails} />
               </div>
-              <div className="text-emerald-700 dark:text-emerald-300">
-                <strong>Correct fix: </strong>
+              <div className="text-emerald-800 dark:text-emerald-300">
+                <strong className="font-semibold text-emerald-900 dark:text-emerald-200">Correct fix: </strong>
                 <RichTextRenderer content={m.fix} />
               </div>
             </div>
@@ -389,12 +389,12 @@ export const LessonView: React.FC<LessonViewProps> = ({
       </section>
 
       {/* ANTI-BOREDOM FEATURE: 🚨 Campus & Placement Exam Alert */}
-      <section id="exam-alert" className="p-5 rounded-2xl border-l-4 border-red-500 bg-red-50/60 dark:bg-red-950/20 text-xs sm:text-sm space-y-2">
+      <section id="exam-alert" className="p-5 rounded-2xl border-l-4 border-red-500 bg-red-50/60 dark:bg-red-950/30 text-xs sm:text-sm space-y-2">
         <div className="flex items-center gap-2 text-red-800 dark:text-red-300 font-bold">
           <span className="text-base" aria-hidden="true">🚨</span>
           <span>Placement Exam Alert (TCS, Infosys, Wipro, AZ-204)</span>
         </div>
-        <div className="text-slate-700 dark:text-slate-300 leading-relaxed">
+        <div className="text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
           <RichTextRenderer content={examAlertText} />
         </div>
       </section>
@@ -404,20 +404,20 @@ export const LessonView: React.FC<LessonViewProps> = ({
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <span>🛠️ Hands-on Practice Task</span>
         </h2>
-        <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 space-y-4">
+        <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 space-y-4">
           <h3 className="font-bold text-base text-slate-900 dark:text-white">
             {lesson.practiceTask.title}
           </h3>
-          <div className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+          <div className="text-sm text-slate-800 dark:text-slate-200 leading-relaxed">
             <RichTextRenderer content={lesson.practiceTask.task} />
           </div>
 
           {lesson.practiceTask.hints.length > 0 && (
-            <div className="space-y-1 text-xs text-slate-600 dark:text-slate-400">
-              <span className="font-semibold">Hints:</span>
+            <div className="space-y-1 text-xs text-slate-700 dark:text-slate-300">
+              <span className="font-semibold text-slate-900 dark:text-white">Hints:</span>
               <ul className="list-disc pl-5 space-y-1">
                 {lesson.practiceTask.hints.map((hint, hIdx) => (
-                  <li key={hIdx}>
+                  <li key={hIdx} className="text-slate-700 dark:text-slate-300">
                     <RichTextRenderer content={hint} />
                   </li>
                 ))}

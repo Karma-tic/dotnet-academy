@@ -46,7 +46,7 @@ function renderInlineContent(text: string, _onJargonClick?: (term: string) => vo
       tokens.push(
         <strong
           key={`bold-${match.index}`}
-          className="font-bold text-slate-900 dark:text-slate-100"
+          className="font-bold text-slate-900 dark:text-white"
         >
           {boldText}
         </strong>
@@ -129,7 +129,7 @@ export const RichTextRenderer: React.FC<RichTextRendererProps> = ({
     renderTextSection(remaining, parts, blockKey++, onJargonClick);
   }
 
-  return <div className={`space-y-3 leading-relaxed text-slate-700 dark:text-slate-300 ${className}`}>{parts}</div>;
+  return <div className={`space-y-3 leading-relaxed text-slate-700 dark:text-slate-200 ${className}`}>{parts}</div>;
 };
 
 /**
@@ -148,9 +148,9 @@ function renderTextSection(
     if (!currentList) return;
     if (currentList.type === 'ul') {
       output.push(
-        <ul key={`ul-${output.length}-${sectionKey}`} className="list-disc pl-5 space-y-1.5 my-3 text-sm">
+        <ul key={`ul-${output.length}-${sectionKey}`} className="list-disc pl-5 space-y-1.5 my-3 text-sm text-slate-700 dark:text-slate-200">
           {currentList.items.map((it, idx) => (
-            <li key={idx} className="leading-relaxed">
+            <li key={idx} className="leading-relaxed text-slate-700 dark:text-slate-200">
               {renderInlineContent(it, onJargonClick)}
             </li>
           ))}
@@ -158,9 +158,9 @@ function renderTextSection(
       );
     } else {
       output.push(
-        <ol key={`ol-${output.length}-${sectionKey}`} className="list-decimal pl-5 space-y-1.5 my-3 text-sm">
+        <ol key={`ol-${output.length}-${sectionKey}`} className="list-decimal pl-5 space-y-1.5 my-3 text-sm text-slate-700 dark:text-slate-200">
           {currentList.items.map((it, idx) => (
-            <li key={idx} className="leading-relaxed">
+            <li key={idx} className="leading-relaxed text-slate-700 dark:text-slate-200">
               {renderInlineContent(it, onJargonClick)}
             </li>
           ))}
@@ -183,7 +183,7 @@ function renderTextSection(
     if (trimmed === '---' || trimmed === '***' || trimmed === '___') {
       flushList();
       output.push(
-        <hr key={`hr-${output.length}-${sectionKey}`} className="my-6 border-t border-slate-200 dark:border-slate-800" />
+        <hr key={`hr-${output.length}-${sectionKey}`} className="my-6 border-t border-slate-200 dark:border-slate-700" />
       );
       continue;
     }
@@ -237,7 +237,7 @@ function renderTextSection(
     // Normal paragraph
     flushList();
     output.push(
-      <p key={`p-${output.length}-${sectionKey}`} className="text-sm sm:text-base leading-relaxed">
+      <p key={`p-${output.length}-${sectionKey}`} className="text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-200">
         {renderInlineContent(trimmed, onJargonClick)}
       </p>
     );

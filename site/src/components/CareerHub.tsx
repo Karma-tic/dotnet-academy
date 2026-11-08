@@ -286,7 +286,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                           <span className="font-semibold text-indigo-600 dark:text-indigo-400 block text-xs uppercase tracking-wider mb-1">
                             Model Answer:
                           </span>
-                          <div className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                          <div className="text-slate-700 dark:text-slate-200 leading-relaxed">
                             <RichTextRenderer content={q.modelAnswer} />
                           </div>
                         </div>
@@ -508,7 +508,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
               <h3 className="text-xs uppercase tracking-wider font-bold text-slate-400">
                 High-Yield Must-Know Concepts
               </h3>
-              <ul className="list-disc pl-5 space-y-2 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+              <ul className="list-disc pl-5 space-y-2 text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
                 {activeRevisionDay.mustKnows.map((mk, idx) => (
                   <li key={idx}>
                     <RichTextRenderer content={mk} />
@@ -684,7 +684,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                 </div>
               </div>
 
-              <div className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+              <div className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
                 <RichTextRenderer content={selectedProblem.description} />
               </div>
 
@@ -757,7 +757,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                 </p>
               </div>
 
-              <div className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+              <div className="text-sm leading-relaxed text-slate-700 dark:text-slate-200">
                 <RichTextRenderer content={selectedArticle.content} />
               </div>
             </Card>
