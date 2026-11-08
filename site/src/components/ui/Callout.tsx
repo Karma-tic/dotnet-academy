@@ -44,10 +44,10 @@ export const Callout: React.FC<CalloutProps> = ({
     interview: {
       icon: HelpCircle,
       defaultTitle: 'Interview Alert',
-      border: 'border-indigo-300 dark:border-indigo-700/60',
-      bg: 'bg-indigo-50/70 dark:bg-indigo-950/20',
-      text: 'text-indigo-900 dark:text-indigo-200',
-      iconColor: 'text-indigo-600 dark:text-indigo-400',
+      border: 'border-violet-300 dark:border-violet-700/60',
+      bg: 'bg-violet-50/70 dark:bg-violet-950/20',
+      text: 'text-violet-900 dark:text-violet-200',
+      iconColor: 'text-violet-600 dark:text-violet-400',
     },
     enterprise: {
       icon: ShieldCheck,

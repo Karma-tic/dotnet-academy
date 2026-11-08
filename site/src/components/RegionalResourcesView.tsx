@@ -64,7 +64,7 @@ export const RegionalResourcesView: React.FC = () => {
                 <h3 className="text-base font-bold text-slate-900 dark:text-white">
                   {res.name}
                 </h3>
-                <p className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold mt-0.5">
+                <p className="text-xs text-violet-600 dark:text-violet-400 font-semibold mt-0.5">
                   by {res.creatorOrOrg}
                 </p>
               </div>
@@ -104,7 +104,7 @@ export const RegionalResourcesView: React.FC = () => {
                 href={res.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 hover:bg-indigo-100 dark:hover:bg-indigo-900/60 text-xs font-semibold text-indigo-600 dark:text-indigo-400 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-violet-50 dark:bg-violet-950/50 hover:bg-violet-100 dark:hover:bg-violet-900/60 text-xs font-semibold text-violet-600 dark:text-violet-400 transition-colors"
               >
                 <span>Open {res.platform}</span>
                 <ExternalLink className="w-3.5 h-3.5" />

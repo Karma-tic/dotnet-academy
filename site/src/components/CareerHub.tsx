@@ -142,7 +142,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-8">
       {/* Title Header */}
       <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
           <Briefcase className="w-3.5 h-3.5" />
           <span>Job-Ready .NET Exam &amp; Career Hub</span>
         </div>
@@ -172,7 +172,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
                   isActive
-                    ? 'bg-indigo-600 text-white shadow-md'
+                    ? 'bg-violet-600 text-white shadow-md'
                     : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'
                 }`}
               >
@@ -197,7 +197,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                 placeholder="Search questions or keywords..."
                 value={qaSearch}
                 onChange={(e) => setQaSearch(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500"
               />
             </div>
 
@@ -283,14 +283,14 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                     {isExpanded && (
                       <div className="p-4 pt-1 border-t border-slate-100 dark:border-slate-800/60 bg-slate-50/50 dark:bg-slate-950/30 space-y-3 text-sm">
                         <div>
-                          <span className="font-semibold text-indigo-600 dark:text-indigo-400 block text-xs uppercase tracking-wider mb-1">
+                          <span className="font-semibold text-violet-600 dark:text-violet-400 block text-xs uppercase tracking-wider mb-1">
                             Model Answer:
                           </span>
                           <div className="text-slate-700 dark:text-slate-200 leading-relaxed">
                             <RichTextRenderer content={q.modelAnswer} />
                           </div>
                         </div>
-                        <div className="p-3 rounded-lg bg-indigo-50 dark:bg-indigo-950/40 text-xs text-indigo-900 dark:text-indigo-200">
+                        <div className="p-3 rounded-lg bg-violet-50 dark:bg-violet-950/40 text-xs text-violet-900 dark:text-violet-200">
                           <strong>Key Takeaway: </strong> {q.keyTakeaway}
                         </div>
                       </div>
@@ -435,7 +435,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                               optionClasses = 'border-red-500 bg-red-50/60 dark:bg-red-950/30 text-red-900 dark:text-red-200';
                             }
                           } else if (isOptionSelected) {
-                            optionClasses = 'border-indigo-600 bg-indigo-50/60 dark:bg-indigo-950/30 text-indigo-900 dark:text-indigo-200 font-semibold';
+                            optionClasses = 'border-violet-600 bg-violet-50/60 dark:bg-violet-950/30 text-violet-900 dark:text-violet-200 font-semibold';
                           }
 
                           return (
@@ -549,10 +549,10 @@ export const CareerHub: React.FC<CareerHubProps> = ({
       {/* TAB 5: END-TO-END CAPSTONE PROJECTS */}
       {activeTab === 'capstones' && (
         <div className="space-y-6">
-          <div className="p-6 rounded-3xl bg-indigo-950 text-white border border-indigo-900/60 space-y-3">
+          <div className="p-6 rounded-3xl bg-violet-950 text-white border border-violet-900/60 space-y-3">
             <Badge variant="purple">Real Working Codebases</Badge>
             <h2 className="text-2xl font-black">Production Capstone Projects</h2>
-            <p className="text-xs sm:text-sm text-indigo-200 max-w-2xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-violet-200 max-w-2xl leading-relaxed">
               Every project below is a full, working C# application located in the course repository under <code>/samples/Capstones</code> with full xUnit test suites and Dockerfiles.
             </p>
           </div>
@@ -620,7 +620,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                     onClick={() => setCodingCategory(c)}
                     className={`px-2 py-1 rounded-md text-[11px] font-medium transition-colors ${
                       codingCategory === c
-                        ? 'bg-indigo-600 text-white'
+                        ? 'bg-violet-600 text-white'
                         : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
                     }`}
                   >
@@ -642,7 +642,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                     }}
                     className={`w-full text-left p-3 rounded-xl border transition-all text-xs flex items-center justify-between gap-2 ${
                       isSelected
-                        ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-950 dark:text-indigo-200 font-semibold shadow-xs'
+                        ? 'border-violet-600 bg-violet-50 dark:bg-violet-950/40 text-violet-950 dark:text-violet-200 font-semibold shadow-xs'
                         : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 text-slate-700 dark:text-slate-300'
                     }`}
                   >
@@ -732,7 +732,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                   onClick={() => setSelectedArticle(art)}
                   className={`w-full text-left p-3 rounded-xl border text-xs transition-all flex flex-col gap-1 ${
                     isSelected
-                      ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-950/40 text-indigo-950 dark:text-indigo-200 font-semibold shadow-xs'
+                      ? 'border-violet-600 bg-violet-50 dark:bg-violet-950/40 text-violet-950 dark:text-violet-200 font-semibold shadow-xs'
                       : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40 text-slate-700 dark:text-slate-300'
                   }`}
                 >

@@ -5,7 +5,7 @@ import { Button } from './ui/Button';
 import { Badge } from './ui/Badge';
 
 const iconMap: Record<string, React.ReactNode> = {
-  Keyboard: <Keyboard className="w-5 h-5 text-indigo-500" />,
+  Keyboard: <Keyboard className="w-5 h-5 text-violet-500" />,
   AlertTriangle: <AlertTriangle className="w-5 h-5 text-amber-500" />,
   Bug: <Bug className="w-5 h-5 text-rose-500" />,
   Compass: <Compass className="w-5 h-5 text-blue-500" />,
@@ -33,7 +33,7 @@ export const HowToLearnView: React.FC<HowToLearnViewProps> = ({ onNavigateToCurr
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
       {/* Page Header */}
       <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
           <BookOpen className="w-3.5 h-3.5" />
           <span>The 10-Minute Beginner Field Manual</span>
         </div>
@@ -61,7 +61,7 @@ export const HowToLearnView: React.FC<HowToLearnViewProps> = ({ onNavigateToCurr
                   onClick={() => setActiveSectionId(section.id)}
                   className={`w-full flex items-center justify-between p-3 rounded-xl text-left transition-all ${
                     isSelected
-                      ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 font-semibold shadow-xs border border-slate-200 dark:border-slate-700'
+                      ? 'bg-white dark:bg-slate-800 text-violet-600 dark:text-violet-400 font-semibold shadow-xs border border-slate-200 dark:border-slate-700'
                       : 'text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/40'
                   }`}
                 >
@@ -82,9 +82,9 @@ export const HowToLearnView: React.FC<HowToLearnViewProps> = ({ onNavigateToCurr
           </div>
 
           {/* Quick CTA box */}
-          <div className="p-4 bg-linear-to-br from-indigo-50 to-blue-50 dark:from-slate-900 dark:to-indigo-950/40 rounded-2xl border border-indigo-100 dark:border-indigo-900/40 space-y-3">
-            <div className="flex items-center gap-2 text-xs font-bold text-indigo-700 dark:text-indigo-300">
-              <ShieldCheck className="w-4 h-4 text-indigo-500" />
+          <div className="p-4 bg-linear-to-br from-violet-50 to-blue-50 dark:from-slate-900 dark:to-violet-950/40 rounded-2xl border border-violet-100 dark:border-violet-900/40 space-y-3">
+            <div className="flex items-center gap-2 text-xs font-bold text-violet-700 dark:text-violet-300">
+              <ShieldCheck className="w-4 h-4 text-violet-500" />
               <span>Ready to write code?</span>
             </div>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -121,8 +121,8 @@ export const HowToLearnView: React.FC<HowToLearnViewProps> = ({ onNavigateToCurr
             </h2>
 
             {/* Core Rule Callout Banner */}
-            <div className="p-4 bg-indigo-50/70 dark:bg-indigo-950/40 rounded-2xl border-l-4 border-indigo-600 dark:border-indigo-500">
-              <p className="text-xs sm:text-sm font-semibold text-indigo-950 dark:text-indigo-200 italic">
+            <div className="p-4 bg-violet-50/70 dark:bg-violet-950/40 rounded-2xl border-l-4 border-violet-600 dark:border-violet-500">
+              <p className="text-xs sm:text-sm font-semibold text-violet-950 dark:text-violet-200 italic">
                 "{activeSection.coreRule}"
               </p>
             </div>

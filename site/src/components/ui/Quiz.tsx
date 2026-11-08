@@ -60,7 +60,7 @@ export const Quiz: React.FC<QuizProps> = ({
     <div className={`my-8 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-slate-50/50 dark:bg-slate-900/40 ${className}`}>
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200 dark:border-slate-800">
         <div className="flex items-center gap-2">
-          <Award className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+          <Award className="w-5 h-5 text-violet-600 dark:text-violet-400" />
           <h3 className="font-semibold text-lg text-slate-900 dark:text-slate-100">
             Knowledge Check ({questions.length} Questions)
           </h3>
@@ -93,7 +93,7 @@ export const Quiz: React.FC<QuizProps> = ({
                 {q.options.map((opt, oIdx) => {
                   let optStyle = "border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800/60";
                   if (selected === oIdx) {
-                    optStyle = "border-indigo-500 bg-indigo-50/70 dark:bg-indigo-950/30 text-indigo-900 dark:text-indigo-200";
+                    optStyle = "border-violet-500 bg-violet-50/70 dark:bg-violet-950/30 text-violet-900 dark:text-violet-200";
                   }
                   if (isSubmitted) {
                     if (oIdx === q.correctIndex) {

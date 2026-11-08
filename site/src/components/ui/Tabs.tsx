@@ -26,7 +26,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, defaultTab, className = '' }) 
               onClick={() => setActiveTab(tab.id)}
               className={`py-2 px-3 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                 isActive
-                  ? 'border-indigo-600 text-indigo-600 dark:border-indigo-400 dark:text-indigo-400'
+                  ? 'border-violet-600 text-violet-600 dark:border-violet-400 dark:text-violet-400'
                   : 'border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >

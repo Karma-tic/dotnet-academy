@@ -40,7 +40,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
         aria-valuemax={100}
       >
         <div
-          className="bg-indigo-600 dark:bg-indigo-500 h-full rounded-full transition-all duration-500 ease-out"
+          className="bg-violet-600 dark:bg-violet-500 h-full rounded-full transition-all duration-500 ease-out"
           style={{ width: `${clamped}%` }}
         />
       </div>

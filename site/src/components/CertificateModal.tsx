@@ -132,7 +132,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
         </button>
 
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400">
+          <div className="p-2.5 rounded-xl bg-violet-50 dark:bg-violet-950/50 text-violet-600 dark:text-violet-400">
             <Award className="w-6 h-6" />
           </div>
           <div>
@@ -158,14 +158,14 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
               if (onSaveName) onSaveName(e.target.value);
             }}
             placeholder="Enter your full name"
-            className="flex-1 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="flex-1 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500"
           />
         </div>
 
         {/* Certificate Preview Card */}
         <div
           ref={certRef}
-          className="print-page border-4 border-indigo-600 dark:border-indigo-500 p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-white via-indigo-50/20 to-slate-50 dark:from-slate-900 dark:via-indigo-950/20 dark:to-slate-950 text-center relative shadow-inner overflow-hidden"
+          className="print-page border-4 border-violet-600 dark:border-violet-500 p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-white via-violet-50/20 to-slate-50 dark:from-slate-900 dark:via-violet-950/20 dark:to-slate-950 text-center relative shadow-inner overflow-hidden"
         >
           {/* Subtle watermark seal */}
           <div className="absolute right-6 bottom-6 opacity-10 pointer-events-none">
@@ -173,7 +173,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
           </div>
 
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 text-xs font-semibold uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-100 dark:bg-violet-950/60 text-violet-700 dark:text-violet-300 text-xs font-semibold uppercase tracking-widest">
               Karmatix Educational Platform
             </div>
 
@@ -186,7 +186,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
             </p>
 
             <div className="py-2">
-              <h2 className="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-200 dark:border-indigo-800 inline-block pb-1 px-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-violet-600 dark:text-violet-400 border-b-2 border-violet-200 dark:border-violet-800 inline-block pb-1 px-8">
                 {name || 'Your Full Name'}
               </h2>
             </div>

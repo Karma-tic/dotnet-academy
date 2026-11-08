@@ -28,7 +28,7 @@ export const ResourceLibrary: React.FC = () => {
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-8">
       {/* Header */}
       <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
           <BookOpen className="w-3.5 h-3.5" />
           <span>Curated Ecosystem</span>
         </div>
@@ -50,7 +50,7 @@ export const ResourceLibrary: React.FC = () => {
             placeholder="Search by name or topic..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500"
           />
         </div>
 
@@ -153,7 +153,7 @@ export const ResourceLibrary: React.FC = () => {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-medium text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1"
+                className="font-medium text-violet-600 dark:text-violet-400 hover:underline inline-flex items-center gap-1"
               >
                 <span>Visit Source</span>
                 <ExternalLink className="w-3 h-3" />

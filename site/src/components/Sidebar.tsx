@@ -63,7 +63,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       >
         <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            <Layers className="w-4 h-4 text-indigo-500" />
+            <Layers className="w-4 h-4 text-violet-500" />
             <span>Modules (0 – 11)</span>
           </div>
           <div className="flex items-center gap-2">
@@ -100,7 +100,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   className="w-full flex items-center justify-between p-3 text-left hover:bg-slate-100/70 dark:hover:bg-slate-800/50 transition-colors"
                 >
                   <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                    <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 shrink-0">
+                    <span className="text-xs font-bold text-violet-600 dark:text-violet-400 shrink-0">
                       M{mod.id}
                     </span>
                     <span className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 truncate">
@@ -137,12 +137,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                           }}
                           className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs transition-colors text-left ${
                             isActive
-                              ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 font-semibold shadow-xs'
+                              ? 'bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 font-semibold shadow-xs'
                               : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100'
                           }`}
                         >
                           <div className="flex items-center gap-2 min-w-0 pr-2">
-                            <BookOpen className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-indigo-600' : 'text-slate-400'}`} />
+                            <BookOpen className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-violet-600' : 'text-slate-400'}`} />
                             <span className="truncate">{lesson.title}</span>
                           </div>
                           <div className="flex items-center gap-1.5 shrink-0">
@@ -186,7 +186,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   onNavigate(item.id);
                   if (typeof window !== 'undefined' && window.innerWidth < 1024) onClose();
                 }}
-                className="w-full flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors text-left"
+                className="w-full flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-xs text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-violet-600 dark:hover:text-violet-400 transition-colors text-left"
               >
                 <span>{item.icon}</span>
                 <span className="font-medium">{item.label}</span>

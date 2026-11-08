@@ -8,6 +8,20 @@ export default {
   theme: {
     extend: {
       colors: {
+        dotnet: {
+          50: '#f5f3ff',
+          100: '#ede9fe',
+          200: '#ddd6fe',
+          300: '#c4b5fd',
+          400: '#a78bfa',
+          500: '#8b5cf6',
+          600: '#7c3aed', // Official .NET Purple
+          700: '#6d28d9',
+          800: '#5b21b6',
+          900: '#4c1d95',
+          accent: '#7c3aed',
+          glow: '#a78bfa',
+        },
         obsidian: '#090b0e',
         surface: {
           DEFAULT: '#11151c',
@@ -19,7 +33,7 @@ export default {
           subtleDark: '#0B0F19',
         },
         border: {
-          subtle: '#202938',
+          subtle: '#1e293b',
           strong: '#334155',
         },
         signal: {
@@ -32,22 +46,22 @@ export default {
           glow: 'rgba(34, 197, 94, 0.2)',
         },
         brand: {
-          50: '#EEF2FF',
-          100: '#E0E7FF',
-          200: '#C7D2FE',
-          300: '#A5B4FC',
-          400: '#818CF8',
-          500: '#6366F1',
-          600: '#4F46E5',
-          700: '#4338CA',
-          800: '#3730A3',
-          900: '#312E81',
+          50: '#f5f3ff',
+          100: '#ede9fe',
+          200: '#ddd6fe',
+          300: '#c4b5fd',
+          400: '#a78bfa',
+          500: '#8b5cf6',
+          600: '#7c3aed',
+          700: '#6d28d9',
+          800: '#5b21b6',
+          900: '#4c1d95',
         },
       },
       fontFamily: {
-        sans: ['Geist', 'General Sans', 'Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['Geist', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         display: ['Cabinet Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'ui-monospace', 'monospace'],
+        mono: ['Geist Mono', 'JetBrains Mono', 'Fira Code', 'ui-monospace', 'monospace'],
       },
       borderRadius: {
         card: '12px',

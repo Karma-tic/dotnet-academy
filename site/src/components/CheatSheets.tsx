@@ -26,7 +26,7 @@ export const CheatSheets: React.FC = () => {
     <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-8">
       {/* Header */}
       <div className="text-center space-y-3 no-print">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
           <Download className="w-3.5 h-3.5" />
           <span>Offline Developer Kit (8 Reference Sheets)</span>
         </div>
@@ -78,7 +78,7 @@ export const CheatSheets: React.FC = () => {
         <div className="space-y-8">
           {activeSheet.sections.map((section, sIdx) => (
             <div key={sIdx} className="space-y-3">
-              <h3 className="text-base font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider text-xs">
+              <h3 className="text-base font-bold text-violet-600 dark:text-violet-400 uppercase tracking-wider text-xs">
                 {section.title}
               </h3>
 
@@ -91,7 +91,7 @@ export const CheatSheets: React.FC = () => {
                       className="p-3.5 bg-slate-50/40 dark:bg-slate-950/20 hover:bg-slate-100/50 dark:hover:bg-slate-800/40 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-2"
                     >
                       <div className="space-y-0.5">
-                        <code className="text-xs font-mono font-bold text-slate-900 dark:text-indigo-200 block sm:inline">
+                        <code className="text-xs font-mono font-bold text-slate-900 dark:text-violet-200 block sm:inline">
                           {item.syntax}
                         </code>
                         <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -101,7 +101,7 @@ export const CheatSheets: React.FC = () => {
 
                       <button
                         onClick={() => handleCopy(item.syntax)}
-                        className="self-end sm:self-center text-slate-400 hover:text-indigo-600 transition-colors p-1 rounded no-print"
+                        className="self-end sm:self-center text-slate-400 hover:text-violet-600 transition-colors p-1 rounded no-print"
                         title="Copy syntax"
                       >
                         {isCopied ? (

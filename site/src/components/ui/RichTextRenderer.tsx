@@ -36,7 +36,7 @@ function renderInlineContent(text: string, _onJargonClick?: (term: string) => vo
       tokens.push(
         <code
           key={`code-${match.index}`}
-          className="font-mono text-xs bg-slate-100 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700/60 font-semibold"
+          className="font-mono text-xs bg-slate-100 dark:bg-slate-800 text-violet-600 dark:text-violet-400 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700/60 font-semibold"
         >
           {code}
         </code>
@@ -63,7 +63,7 @@ function renderInlineContent(text: string, _onJargonClick?: (term: string) => vo
           href={url}
           target={isExternal ? '_blank' : undefined}
           rel={isExternal ? 'noopener noreferrer' : undefined}
-          className="text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-0.5 font-medium"
+          className="text-violet-600 dark:text-violet-400 hover:underline inline-flex items-center gap-0.5 font-medium"
         >
           <span>{label}</span>
           {isExternal && <ExternalLink className="w-3 h-3 inline-block shrink-0 opacity-80" />}

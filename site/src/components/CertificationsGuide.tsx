@@ -18,7 +18,7 @@ export const CertificationsGuide: React.FC = () => {
     <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
       {/* Header */}
       <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
           <Award className="w-3.5 h-3.5" />
           <span>Objective Career Credentials</span>
         </div>
@@ -56,9 +56,9 @@ export const CertificationsGuide: React.FC = () => {
       </div>
 
       {/* Honest Editorial: Does a Certificate Matter? */}
-      <Card className="bg-gradient-to-br from-indigo-50/60 to-purple-50/40 dark:from-indigo-950/20 dark:to-purple-950/20 border-indigo-200 dark:border-indigo-900/60 p-6 sm:p-8 space-y-4">
+      <Card className="bg-gradient-to-br from-violet-50/60 to-purple-50/40 dark:from-violet-950/20 dark:to-purple-950/20 border-violet-200 dark:border-violet-900/60 p-6 sm:p-8 space-y-4">
         <div className="flex items-center gap-2.5 font-bold text-lg text-slate-900 dark:text-white">
-          <HelpCircle className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+          <HelpCircle className="w-5 h-5 text-violet-600 dark:text-violet-400" />
           <span>The Truth: Does a Certificate Actually Get You Hired?</span>
         </div>
         <div className="text-sm text-slate-700 dark:text-slate-300 space-y-3 leading-relaxed">
@@ -68,7 +68,7 @@ export const CertificationsGuide: React.FC = () => {
           <p>
             <strong>The critical caveat:</strong> No engineering hiring manager will hire you based on an exam badge alone. Multiple-choice exams test memorization; real jobs require <em>craftsmanship</em>. The absolute highest hiring leverage is a <strong>working GitHub repository with clean code, unit tests, a CI pipeline, and a deployed demo API</strong>.
           </p>
-          <p className="text-xs text-indigo-950 dark:text-indigo-200 font-semibold bg-indigo-100/60 dark:bg-indigo-900/40 p-3 rounded-xl">
+          <p className="text-xs text-violet-950 dark:text-violet-200 font-semibold bg-violet-100/60 dark:bg-violet-900/40 p-3 rounded-xl">
             💡 Strategy: Study the free Microsoft Learn learning paths first (all training text and sandboxes are 100% free!). Only pay for exam vouchers if your employer pays for it, or if you are specifically targeting enterprise consulting roles.
           </p>
         </div>
@@ -87,7 +87,7 @@ export const CertificationsGuide: React.FC = () => {
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     {cert.code && (
-                      <span className="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400 block mb-1">
+                      <span className="text-xs font-mono font-bold text-violet-600 dark:text-violet-400 block mb-1">
                         Exam {cert.code}
                       </span>
                     )}
@@ -148,7 +148,7 @@ export const CertificationsGuide: React.FC = () => {
                   href={cert.officialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1"
+                  className="font-medium text-violet-600 dark:text-violet-400 hover:underline inline-flex items-center gap-1"
                 >
                   <span>Official Page</span>
                   <ExternalLink className="w-3 h-3" />
@@ -210,7 +210,7 @@ export const CertificationsGuide: React.FC = () => {
       {/* Visual Learning Roadmaps */}
       <div className="space-y-4">
         <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <Map className="w-5 h-5 text-indigo-500" />
+          <Map className="w-5 h-5 text-violet-500" />
           <span>Curated Visual Learning Roadmaps</span>
         </h2>
 
@@ -229,7 +229,7 @@ export const CertificationsGuide: React.FC = () => {
                 href={r.url}
                 target={r.url.startsWith('http') ? '_blank' : undefined}
                 rel={r.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1 self-start"
+                className="text-xs font-semibold text-violet-600 dark:text-violet-400 hover:underline inline-flex items-center gap-1 self-start"
               >
                 <span>{r.url.startsWith('#') ? 'View Interactive Roadmap' : 'Explore Official Documentation'}</span>
                 {r.url.startsWith('http') && <ExternalLink className="w-3 h-3" />}

@@ -34,7 +34,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
       {/* Header */}
       <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
           <Compass className="w-3.5 h-3.5" />
           <span>Goal-Oriented Engineering Roadmaps</span>
         </div>
@@ -68,7 +68,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
       <div className="p-6 sm:p-8 bg-slate-900 text-white rounded-3xl border border-slate-800 shadow-xl space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-semibold mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-500/20 text-violet-300 text-xs font-semibold mb-2">
               <Compass className="w-3.5 h-3.5" />
               <span>Interactive Step-by-Step Path</span>
             </div>
@@ -98,7 +98,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
               desc: 'OOP, Records & LINQ',
               slug: 'classes-records-and-structs',
               tag: 'Language',
-              color: 'border-indigo-500/40 bg-indigo-500/10 text-indigo-300',
+              color: 'border-violet-500/40 bg-violet-500/10 text-violet-300',
             },
             {
               step: '03',
@@ -145,7 +145,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
                     {node.tag}
                   </span>
                 </div>
-                <h3 className="font-bold text-sm text-white group-hover:text-indigo-200 transition-colors">
+                <h3 className="font-bold text-sm text-white group-hover:text-violet-200 transition-colors">
                   {node.title}
                 </h3>
                 <p className="text-[11px] text-slate-300 leading-snug">
@@ -191,7 +191,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
           <div className="p-5 bg-slate-50 dark:bg-slate-950/40 rounded-2xl border border-slate-200 dark:border-slate-800 shrink-0 w-full md:w-64 space-y-3">
             <div className="flex items-center justify-between text-xs font-semibold">
               <span className="text-slate-600 dark:text-slate-300">Track Progress</span>
-              <span className="text-indigo-600 dark:text-indigo-400 font-bold">{pathPercent}%</span>
+              <span className="text-violet-600 dark:text-violet-400 font-bold">{pathPercent}%</span>
             </div>
             <ProgressBar value={pathPercent} />
             <p className="text-[11px] text-slate-500 dark:text-slate-400">
@@ -221,7 +221,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
         {/* Chronological Milestones Timeline */}
         <div className="space-y-6 pt-4">
           <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Award className="w-4 h-4 text-indigo-500" />
+            <Award className="w-4 h-4 text-violet-500" />
             <span>Week-by-Week Learning Roadmap</span>
           </h3>
 
@@ -246,7 +246,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-xs shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-violet-100 dark:bg-violet-900/40 text-violet-600 dark:text-violet-400 flex items-center justify-center font-bold text-xs shrink-0">
                         W{milestone.week}
                       </div>
                       <div>
@@ -275,7 +275,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
 
                   {/* Deliverable Box */}
                   <div className="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200/80 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 flex items-start gap-2.5">
-                    <span className="font-bold text-indigo-600 dark:text-indigo-400 shrink-0">
+                    <span className="font-bold text-violet-600 dark:text-violet-400 shrink-0">
                       Target Project:
                     </span>
                     <span className="leading-relaxed">{milestone.deliverable}</span>
@@ -287,7 +287,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
                       <button
                         key={mod.id}
                         onClick={() => onSelectLesson(mod.lessons[0]?.slug || '')}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
                       >
                         {mod.lessons.every((l) => completedLessons.includes(l.slug)) ? (
                           <CheckCircle2 className="w-3 h-3 text-emerald-500" />
@@ -305,9 +305,9 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
         </div>
 
         {/* Capstone Preview */}
-        <div className="p-6 rounded-2xl bg-linear-to-r from-indigo-50 to-purple-50 dark:from-slate-950 dark:to-indigo-950/30 border border-indigo-200 dark:border-indigo-900/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="p-6 rounded-2xl bg-linear-to-r from-violet-50 to-purple-50 dark:from-slate-950 dark:to-violet-950/30 border border-violet-200 dark:border-violet-900/40 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
-            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+            <span className="text-xs font-bold uppercase tracking-wider text-violet-600 dark:text-violet-400">
               Track Capstone Deliverable
             </span>
             <h4 className="text-base font-bold text-slate-900 dark:text-white">

@@ -95,7 +95,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
               placeholder="Search code (e.g. CS0103, NullRef)..."
               value={errorSearchQuery}
               onChange={(e) => setErrorSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500"
             />
           </div>
         </div>
@@ -108,12 +108,12 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
               onClick={() => setSelectedError(selectedError?.code === err.code ? null : err)}
               className={`p-5 rounded-2xl border transition-all cursor-pointer ${
                 selectedError?.code === err.code
-                  ? 'border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 ring-1 ring-indigo-500'
+                  ? 'border-violet-500 bg-violet-50/20 dark:bg-violet-950/20 ring-1 ring-violet-500'
                   : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-300 dark:hover:border-slate-700'
               }`}
             >
               <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400">
+                <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-violet-600 dark:text-violet-400">
                   {err.code}
                 </span>
                 <Badge variant={err.errorType === 'Compiler Error' ? 'purple' : 'warning'}>
@@ -128,7 +128,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
                 {err.symptom}
               </p>
 
-              <div className="mt-3 text-xs text-indigo-600 dark:text-indigo-400 font-semibold flex items-center gap-1">
+              <div className="mt-3 text-xs text-violet-600 dark:text-violet-400 font-semibold flex items-center gap-1">
                 <span>{selectedError?.code === err.code ? 'Hide solution' : 'Inspect fix & examples →'}</span>
               </div>
             </div>
@@ -137,10 +137,10 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
 
         {/* Detailed Modal/Expand View for Selected Error */}
         {selectedError && (
-          <div className="p-6 sm:p-8 rounded-3xl border border-indigo-200 dark:border-indigo-900 bg-white dark:bg-slate-900 shadow-lg space-y-6 animate-in fade-in duration-200">
+          <div className="p-6 sm:p-8 rounded-3xl border border-violet-200 dark:border-violet-900 bg-white dark:bg-slate-900 shadow-lg space-y-6 animate-in fade-in duration-200">
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
               <div>
-                <span className="text-xs font-mono font-bold text-indigo-600 dark:text-indigo-400">
+                <span className="text-xs font-mono font-bold text-violet-600 dark:text-violet-400">
                   Diagnostic Reference: {selectedError.code}
                 </span>
                 <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">
@@ -194,7 +194,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
       {/* Part 2: Interactive Question Template Generator */}
       <section className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 space-y-6">
         <div className="border-b border-slate-200 dark:border-slate-800 pb-4">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 text-xs font-semibold mb-2">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 text-xs font-semibold mb-2">
             <Code className="w-3.5 h-3.5" />
             <span>MCVE Question Generator</span>
           </div>
@@ -218,7 +218,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
                 placeholder="e.g. EF Core DbUpdateException on unique constraint in ASP.NET Core 10"
                 value={qTitle}
                 onChange={(e) => setQTitle(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs focus:ring-2 focus:ring-violet-500 focus:outline-none"
               />
             </div>
 
@@ -231,7 +231,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
                 placeholder="Describe the expected business outcome or feature..."
                 value={qGoal}
                 onChange={(e) => setQGoal(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs focus:ring-2 focus:ring-violet-500 focus:outline-none"
               />
             </div>
 
@@ -244,7 +244,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
                 placeholder="Mention what documentation or steps you already tried..."
                 value={qAttempt}
                 onChange={(e) => setQAttempt(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs focus:ring-2 focus:ring-violet-500 focus:outline-none"
               />
             </div>
 
@@ -257,7 +257,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
                 placeholder="Paste the compiler code or runtime exception message..."
                 value={qActual}
                 onChange={(e) => setQActual(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-mono focus:ring-2 focus:ring-violet-500 focus:outline-none"
               />
             </div>
 
@@ -270,7 +270,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
                 placeholder="Paste the 10-20 lines of code that reproduce the issue..."
                 value={qCode}
                 onChange={(e) => setQCode(e.target.value)}
-                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs font-mono focus:ring-2 focus:ring-violet-500 focus:outline-none"
               />
             </div>
           </div>
@@ -307,7 +307,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
       <section className="space-y-6">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Terminal className="w-5 h-5 text-indigo-500" />
+            <Terminal className="w-5 h-5 text-violet-500" />
             <span>Where to Post Your Question</span>
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400">

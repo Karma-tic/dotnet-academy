@@ -39,7 +39,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
   return (
     <div className="hidden xl:block w-64 shrink-0 pl-6 py-6 sticky top-20 self-start max-h-[calc(100vh-5rem)] overflow-y-auto">
       <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
-        <AlignLeft className="w-4 h-4 text-indigo-500" />
+        <AlignLeft className="w-4 h-4 text-violet-500" />
         <span>On This Page</span>
       </div>
       <nav className="space-y-1 text-xs">
@@ -53,7 +53,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
                 item.level === 3 ? 'pl-3' : ''
               } ${
                 isActive
-                  ? 'text-indigo-600 dark:text-indigo-400 font-semibold'
+                  ? 'text-violet-600 dark:text-violet-400 font-semibold'
                   : 'text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
               }`}
             >

@@ -181,8 +181,8 @@ export const BigOCalculator: React.FC = () => {
   return (
     <Card className="p-6 sm:p-8 space-y-6">
       <div className="space-y-2 border-b border-slate-200 dark:border-slate-800 pb-4">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
+          <Sparkles className="w-3.5 h-3.5 text-violet-500" />
           <span>Interactive Problem Solver &amp; Formula Estimator</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
@@ -212,7 +212,7 @@ export const BigOCalculator: React.FC = () => {
                 }}
                 className={`p-2.5 rounded-xl border text-left text-xs font-semibold transition-all ${
                   selectedCollection === col
-                    ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-200 shadow-xs'
+                    ? 'border-violet-600 bg-violet-50 dark:bg-violet-950/50 text-violet-900 dark:text-violet-200 shadow-xs'
                     : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300'
                 }`}
               >
@@ -233,7 +233,7 @@ export const BigOCalculator: React.FC = () => {
                 onClick={() => setSelectedOperation(op)}
                 className={`p-2 rounded-xl border text-left text-xs font-medium transition-all ${
                   selectedOperation === op
-                    ? 'border-indigo-600 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-200 font-bold'
+                    ? 'border-violet-600 bg-violet-50 dark:bg-violet-950/50 text-violet-900 dark:text-violet-200 font-bold'
                     : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300'
                 }`}
               >
@@ -261,7 +261,7 @@ export const BigOCalculator: React.FC = () => {
 
         {/* Memory Profile */}
         <div className="flex items-start gap-3 text-xs sm:text-sm">
-          <Layers className="w-4 h-4 text-indigo-500 shrink-0 mt-0.5" />
+          <Layers className="w-4 h-4 text-violet-500 shrink-0 mt-0.5" />
           <div>
             <span className="font-bold text-slate-900 dark:text-white">Memory &amp; Storage Profile: </span>
             <span className="text-slate-600 dark:text-slate-300">{currentData.memoryAllocation}</span>

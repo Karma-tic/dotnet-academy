@@ -68,7 +68,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
   return (
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
       {/* Header with Streak Counter */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-linear-to-r from-amber-500/10 via-orange-500/10 to-indigo-500/10 dark:from-amber-950/20 dark:via-orange-950/20 dark:to-indigo-950/20 rounded-3xl border border-amber-200 dark:border-amber-900/40">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-linear-to-r from-amber-500/10 via-orange-500/10 to-violet-500/10 dark:from-amber-950/20 dark:via-orange-950/20 dark:to-violet-950/20 rounded-3xl border border-amber-200 dark:border-amber-900/40">
         <div className="space-y-2 text-center md:text-left">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 text-xs font-bold">
             <Flame className="w-4 h-4 text-orange-500 fill-orange-500" />
@@ -95,7 +95,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
           </div>
 
           <div className="px-5 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-            <div className="flex items-center justify-center gap-1.5 text-2xl font-black text-indigo-500">
+            <div className="flex items-center justify-center gap-1.5 text-2xl font-black text-violet-500">
               <Award className="w-5 h-5" />
               <span>{streakData.longestStreak || 0}</span>
             </div>
@@ -186,7 +186,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
           {/* Starter Code */}
           <div className="space-y-2">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">C# 14 Method Signature</h4>
-            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-xs font-mono text-indigo-300 overflow-x-auto">
+            <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 text-xs font-mono text-violet-300 overflow-x-auto">
               <pre>{activeProblem.starterCode}</pre>
             </div>
           </div>
@@ -231,7 +231,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
                   </span>
                   <button
                     onClick={handleCopySolution}
-                    className="inline-flex items-center gap-1 text-xs text-indigo-600 dark:text-indigo-400 hover:underline"
+                    className="inline-flex items-center gap-1 text-xs text-violet-600 dark:text-violet-400 hover:underline"
                   >
                     {copiedCode ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
                     <span>{copiedCode ? 'Copied' : 'Copy Solution'}</span>
@@ -242,8 +242,8 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
                   <pre>{activeProblem.solutionCode}</pre>
                 </div>
 
-                <div className="p-3 bg-indigo-50/50 dark:bg-indigo-950/30 rounded-xl text-xs text-slate-700 dark:text-slate-200">
-                  <strong className="text-indigo-600 dark:text-indigo-400">Algorithmic Complexity: </strong>
+                <div className="p-3 bg-violet-50/50 dark:bg-violet-950/30 rounded-xl text-xs text-slate-700 dark:text-slate-200">
+                  <strong className="text-violet-600 dark:text-violet-400">Algorithmic Complexity: </strong>
                   <RichTextRenderer content={activeProblem.explanation} />
                 </div>
               </div>
@@ -276,7 +276,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-2 py-0.5 rounded-lg text-[10px] font-semibold transition-colors ${
                     selectedCategory === cat
-                      ? 'bg-indigo-600 text-white'
+                      ? 'bg-violet-600 text-white'
                       : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
                   }`}
                 >
@@ -317,7 +317,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
                   }}
                   className={`w-full flex items-center justify-between p-3 rounded-xl border text-left transition-all ${
                     isSelected
-                      ? 'border-indigo-500 bg-indigo-50/30 dark:bg-indigo-950/30 shadow-xs'
+                      ? 'border-violet-500 bg-violet-50/30 dark:bg-violet-950/30 shadow-xs'
                       : 'border-slate-100 dark:border-slate-800/80 bg-slate-50/30 dark:bg-slate-950/20 hover:bg-slate-100 dark:hover:bg-slate-800/50'
                   }`}
                 >

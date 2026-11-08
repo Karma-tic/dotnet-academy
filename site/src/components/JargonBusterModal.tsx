@@ -229,8 +229,8 @@ export const JargonBusterModal: React.FC<JargonBusterModalProps> = ({
                 </div>
 
                 {/* Real-World Analogy */}
-                <div className="p-4 rounded-2xl border border-indigo-200 dark:border-indigo-900/50 bg-indigo-50/40 dark:bg-indigo-950/20 space-y-2 text-xs sm:text-sm">
-                  <div className="font-bold text-indigo-900 dark:text-indigo-300 flex items-center gap-1.5">
+                <div className="p-4 rounded-2xl border border-violet-200 dark:border-violet-900/50 bg-violet-50/40 dark:bg-violet-950/20 space-y-2 text-xs sm:text-sm">
+                  <div className="font-bold text-violet-900 dark:text-violet-300 flex items-center gap-1.5">
                     <span>🍕 Relatable Real-World Analogy</span>
                   </div>
                   <p className="text-slate-700 dark:text-slate-300 leading-relaxed">

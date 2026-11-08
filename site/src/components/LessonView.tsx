@@ -133,9 +133,9 @@ export const LessonView: React.FC<LessonViewProps> = ({
       </nav>
 
       {/* Verified on .NET Banner */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50/50 dark:bg-indigo-950/20 text-xs text-indigo-950 dark:text-indigo-200">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-xl border border-violet-200 dark:border-violet-900/60 bg-violet-50/50 dark:bg-violet-950/20 text-xs text-violet-950 dark:text-violet-200">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+          <ShieldCheck className="w-4 h-4 text-violet-600 dark:text-violet-400 shrink-0" />
           <span className="font-semibold">
             <span className="hidden sm:inline">{siteConfig.versions.headerBadgeText}</span>
             <span className="sm:hidden">Verified on .NET 10 LTS • C# 14</span>
@@ -229,7 +229,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
               onClick={onToggleBookmark}
               title={isBookmarked ? 'Remove bookmark' : 'Bookmark this lesson'}
             >
-              <Bookmark className={`w-4 h-4 mr-1.5 ${isBookmarked ? 'fill-indigo-600 text-indigo-600' : ''}`} />
+              <Bookmark className={`w-4 h-4 mr-1.5 ${isBookmarked ? 'fill-violet-600 text-violet-600' : ''}`} />
               {isBookmarked ? 'Saved' : 'Bookmark'}
             </Button>
 
@@ -247,7 +247,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
             href={issueUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 inline-flex items-center gap-1"
+            className="text-xs text-slate-500 hover:text-violet-600 dark:hover:text-violet-400 inline-flex items-center gap-1"
           >
             <AlertCircle className="w-3.5 h-3.5" />
             <span>Report defect</span>
@@ -261,7 +261,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <span>🎯 Goal of this Lesson</span>
         </h2>
-        <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-sm leading-relaxed text-slate-800 dark:text-slate-100 border-l-4 border-indigo-600 shadow-xs">
+        <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-sm leading-relaxed text-slate-800 dark:text-slate-100 border-l-4 border-violet-600 shadow-xs">
           <RichTextRenderer content={lesson.goal} />
         </div>
       </section>
@@ -281,15 +281,15 @@ export const LessonView: React.FC<LessonViewProps> = ({
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <span>🍕 Relatable Beginner Analogy</span>
         </h2>
-        <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/60 to-purple-50/40 dark:from-indigo-950/40 dark:to-purple-950/40 border border-indigo-100 dark:border-indigo-800/60 space-y-3 text-sm">
+        <div className="p-5 rounded-2xl bg-gradient-to-br from-violet-50/60 to-purple-50/40 dark:from-violet-950/40 dark:to-purple-950/40 border border-violet-100 dark:border-violet-800/60 space-y-3 text-sm">
           <div>
-            <span className="font-semibold text-indigo-900 dark:text-indigo-300">The Everyday Scenario: </span>
+            <span className="font-semibold text-violet-900 dark:text-violet-300">The Everyday Scenario: </span>
             <span className="text-slate-700 dark:text-slate-200">
               <RichTextRenderer content={lesson.analogy.realWorldScenario} />
             </span>
           </div>
           <div>
-            <span className="font-semibold text-indigo-900 dark:text-indigo-300">How it Maps to .NET: </span>
+            <span className="font-semibold text-violet-900 dark:text-violet-300">How it Maps to .NET: </span>
             <span className="text-slate-700 dark:text-slate-200">
               <RichTextRenderer content={lesson.analogy.techMapping} />
             </span>
@@ -298,7 +298,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
       </section>
 
       {/* ANTI-BOREDOM FEATURE: 🤯 Mind Blown Did You Know? Trivia Card */}
-      <section id="trivia" className="p-5 rounded-2xl border border-purple-200 dark:border-purple-800/60 bg-gradient-to-r from-purple-50/70 via-indigo-50/50 to-pink-50/50 dark:from-purple-950/40 dark:via-indigo-950/30 dark:to-pink-950/30 space-y-2 text-sm shadow-xs">
+      <section id="trivia" className="p-5 rounded-2xl border border-purple-200 dark:border-purple-800/60 bg-gradient-to-r from-purple-50/70 via-violet-50/50 to-pink-50/50 dark:from-purple-950/40 dark:via-violet-950/30 dark:to-pink-950/30 space-y-2 text-sm shadow-xs">
         <div className="flex items-center gap-2 text-purple-900 dark:text-purple-300 font-bold">
           <span className="text-xl" aria-hidden="true">🤯</span>
           <span>Mind Blown: Did You Know?</span>
@@ -344,7 +344,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
               key={idx}
               className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 flex items-start gap-3.5"
             >
-              <span className="w-6 h-6 rounded-full bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+              <span className="w-6 h-6 rounded-full bg-violet-50 dark:bg-violet-950/80 text-violet-600 dark:text-violet-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
                 {idx + 1}
               </span>
               <div className="space-y-1 text-sm">
@@ -459,7 +459,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
       {/* Personal Notes Box */}
       <section className="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
         <div className="flex items-center gap-2 text-sm font-semibold text-slate-900 dark:text-white">
-          <FileEdit className="w-4 h-4 text-indigo-500" />
+          <FileEdit className="w-4 h-4 text-violet-500" />
           <span>Personal Notes for this Lesson (Stored Locally)</span>
         </div>
         <textarea
@@ -470,7 +470,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
             onSaveNote(e.target.value);
           }}
           placeholder="Jot down notes, questions, or key takeaways for your revision..."
-          className="w-full text-xs p-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full text-xs p-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-violet-500"
         />
       </section>
 
@@ -498,7 +498,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
             onClick={() => onNavigate(prevLesson.slug)}
             className="flex items-center gap-2 text-left p-3 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors group max-w-[45%]"
           >
-            <ChevronLeft className="w-5 h-5 text-slate-400 group-hover:text-indigo-600 shrink-0" />
+            <ChevronLeft className="w-5 h-5 text-slate-400 group-hover:text-violet-600 shrink-0" />
             <div className="min-w-0">
               <span className="text-[10px] uppercase font-bold text-slate-400 block">Previous</span>
               <span className="text-xs font-semibold text-slate-800 dark:text-slate-200 truncate block">
@@ -519,7 +519,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
                 {nextLesson.title}
               </span>
             </div>
-            <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-indigo-600 shrink-0" />
+            <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-violet-600 shrink-0" />
           </button>
         ) : <div />}
       </nav>

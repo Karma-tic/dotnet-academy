@@ -73,7 +73,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const getIcon = (cat: SearchItem['category']) => {
     switch (cat) {
       case 'lesson':
-        return <BookOpen className="w-4 h-4 text-indigo-500" />;
+        return <BookOpen className="w-4 h-4 text-violet-500" />;
       case 'interview':
         return <HelpCircle className="w-4 h-4 text-emerald-500" />;
       case 'cheatsheet':
@@ -129,7 +129,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                   onMouseEnter={() => setSelectedIndex(idx)}
                   className={`flex items-start gap-3 p-3 rounded-xl cursor-pointer transition-colors ${
                     isSelected
-                      ? 'bg-indigo-50/80 dark:bg-indigo-950/40 text-indigo-950 dark:text-indigo-100'
+                      ? 'bg-violet-50/80 dark:bg-violet-950/40 text-violet-950 dark:text-violet-100'
                       : 'hover:bg-slate-50 dark:hover:bg-slate-800/40'
                   }`}
                 >

@@ -20,72 +20,73 @@
 
 @layer base {
   :root {
-    --bg-base: #090b0e;
-    --bg-surface: #11151c;
-    --bg-elevated: #19202c;
-    --border-subtle: #202938;
-    --border-strong: #334155;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --accent-signal: #f59e0b;
-    --accent-signal-hover: #fbbf24;
-    --accent-signal-glow: rgba(245, 158, 11, 0.15);
-    --status-live: #22c55e;
-    --status-live-glow: rgba(34, 197, 94, 0.2);
+    --bg-primary: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --border-color: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
 
-    --brand-primary: #4F46E5;
-    --brand-accent: #6366F1;
+    --brand-primary: #7C3AED;
+    --brand-accent: #8B5CF6;
+    --accent-signal: #f59e0b;
+    --status-live: #22c55e;
+  }
+
+  .dark {
+    --bg-primary: #0B0F17;
+    --bg-card: #111827;
+    --border-color: #1E293B;
+    --text-primary: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+
+    --brand-primary: #A78BFA;
+    --brand-accent: #7C3AED;
+    --accent-signal: #f59e0b;
+    --status-live: #22c55e;
   }
 
   html, body {
-    background-color: var(--bg-base);
-    color: var(--text-primary);
-    font-family: 'Geist', 'General Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-
-  canvas {
-    max-width: 100%;
+    font-family: 'Geist', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
   code, pre, kbd {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: 'Geist Mono', 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
+
+  body {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom scrollbars matching Flutter */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
 }
 
 /* Glass schematic card & panel styles */
 .glass-panel {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
   box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-}
-
-.glass-panel:hover {
-  border-color: var(--border-strong);
-}
-
-/* Radial spotlight effect for cards */
-.spotlight-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.spotlight-card::before {
-  content: '';
-  position: absolute;
-  top: var(--mouse-y, -1000px);
-  left: var(--mouse-x, -1000px);
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  opacity: 0;
-}
-
-.spotlight-card:hover::before {
-  opacity: 1;
 }
 
 /* Print Styles for Cheat Sheets and Certificates */
@@ -103,20 +104,4 @@
     box-shadow: none !important;
     border: none !important;
   }
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #090b0e;
-}
-::-webkit-scrollbar-thumb {
-  background: #202938;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
 }

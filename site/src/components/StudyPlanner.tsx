@@ -47,7 +47,7 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({
     <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-8">
       {/* Title banner */}
       <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
           <Calendar className="w-3.5 h-3.5" />
           <span>Structured Roadmap</span>
         </div>
@@ -70,7 +70,7 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({
               onClick={() => onUpdatePlanner(item.days, item.hours)}
               className={`cursor-pointer transition-all ${
                 isSelected
-                  ? 'border-indigo-600 dark:border-indigo-500 ring-2 ring-indigo-500/20 bg-indigo-50/20 dark:bg-indigo-950/20'
+                  ? 'border-violet-600 dark:border-violet-500 ring-2 ring-violet-500/20 bg-violet-50/20 dark:bg-violet-950/20'
                   : ''
               }`}
             >
@@ -80,12 +80,12 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({
                     {item.days} Days
                   </span>
                   {isSelected && (
-                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-600 text-white">
+                    <span className="text-xs font-semibold px-2 py-0.5 rounded bg-violet-600 text-white">
                       Active Plan
                     </span>
                   )}
                 </div>
-                <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400">
+                <p className="text-xs font-medium text-violet-600 dark:text-violet-400">
                   {item.hours} Hours / Day
                 </p>
                 <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
@@ -98,11 +98,11 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({
       </div>
 
       {/* Current Pace Summary */}
-      <Card className="bg-gradient-to-r from-indigo-500/5 via-slate-50 to-indigo-500/5 dark:from-indigo-950/30 dark:via-slate-900 dark:to-indigo-950/30 border-indigo-200 dark:border-indigo-900/60 p-6">
+      <Card className="bg-gradient-to-r from-violet-500/5 via-slate-50 to-violet-500/5 dark:from-violet-950/30 dark:via-slate-900 dark:to-violet-950/30 border-violet-200 dark:border-violet-900/60 p-6">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
           <div className="space-y-1">
             <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center sm:justify-start gap-1">
-              <Clock className="w-3.5 h-3.5 text-indigo-500" />
+              <Clock className="w-3.5 h-3.5 text-violet-500" />
               Target Pace
             </span>
             <p className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -128,7 +128,7 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({
 
           <div className="space-y-1">
             <span className="text-xs text-slate-500 dark:text-slate-400 flex items-center justify-center sm:justify-start gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500" />
+              <CheckCircle2 className="w-3.5 h-3.5 text-violet-500" />
               Curriculum Progress
             </span>
             <p className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -158,7 +158,7 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({
               className="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
             >
               <div className="flex items-center gap-3">
-                <span className="w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-bold text-xs flex items-center justify-center shrink-0">
+                <span className="w-8 h-8 rounded-full bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 font-bold text-xs flex items-center justify-center shrink-0">
                   D{m.day}
                 </span>
                 <div>
@@ -172,7 +172,7 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({
               </div>
 
               <div className="text-right">
-                <span className="text-xs text-indigo-600 dark:text-indigo-400 font-medium">
+                <span className="text-xs text-violet-600 dark:text-violet-400 font-medium">
                   By Day {m.day}
                 </span>
               </div>

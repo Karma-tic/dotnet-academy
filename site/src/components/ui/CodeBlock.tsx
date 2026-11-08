@@ -38,7 +38,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
       {/* Header bar */}
       <div className="flex items-center justify-between px-4 py-2 bg-slate-950/80 border-b border-slate-800 text-xs">
         <div className="flex items-center gap-2 text-slate-400">
-          <span className="font-mono text-indigo-400 font-medium lowercase">{language}</span>
+          <span className="font-mono text-violet-400 font-medium lowercase">{language}</span>
           {filename && (
             <>
               <span className="text-slate-600">/</span>
@@ -53,7 +53,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
               href={`https://github.com/Karma-tic/dotnet-academy/tree/main/samples/${samplePath}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1 text-slate-400 hover:text-indigo-300 transition-colors px-2 py-1 rounded hover:bg-slate-800"
+              className="hidden sm:inline-flex items-center gap-1 text-slate-400 hover:text-violet-300 transition-colors px-2 py-1 rounded hover:bg-slate-800"
               title="View full source on GitHub"
             >
               <span>GitHub</span>
@@ -64,7 +64,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           {canRunLocally && (
             <button
               onClick={() => setShowRunCommand(!showRunCommand)}
-              className="inline-flex items-center gap-1 text-slate-400 hover:text-indigo-300 transition-colors px-2 py-1 rounded hover:bg-slate-800"
+              className="inline-flex items-center gap-1 text-slate-400 hover:text-violet-300 transition-colors px-2 py-1 rounded hover:bg-slate-800"
               title="Run locally instructions"
             >
               <Terminal className="w-3.5 h-3.5" />
@@ -94,10 +94,10 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
 
       {/* Local Run helper banner */}
       {showRunCommand && (
-        <div className="px-4 py-2.5 bg-indigo-950/40 border-b border-indigo-900/50 text-xs text-indigo-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div className="px-4 py-2.5 bg-violet-950/40 border-b border-violet-900/50 text-xs text-violet-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
             <span className="font-semibold text-white">To run locally: </span>
-            <code className="bg-slate-900 px-2 py-0.5 rounded text-indigo-300 font-mono">
+            <code className="bg-slate-900 px-2 py-0.5 rounded text-violet-300 font-mono">
               dotnet run {samplePath ? `--project samples/${samplePath}` : ''}
             </code>
           </div>
@@ -115,7 +115,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
               return (
                 <tr
                   key={idx}
-                  className={isHighlighted ? 'bg-indigo-950/50 -mx-4 px-4 block' : 'block'}
+                  className={isHighlighted ? 'bg-violet-950/50 -mx-4 px-4 block' : 'block'}
                 >
                   <td className="select-none text-slate-600 text-right pr-4 w-8 font-mono text-xs">
                     {lineNum}

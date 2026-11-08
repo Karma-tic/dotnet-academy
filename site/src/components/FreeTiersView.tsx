@@ -95,7 +95,7 @@ export const FreeTiersView: React.FC = () => {
                   <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                     {tier.serviceName}
                   </h3>
-                  <span className="text-xs text-indigo-600 dark:text-indigo-400 font-semibold">
+                  <span className="text-xs text-violet-600 dark:text-violet-400 font-semibold">
                     {tier.provider}
                   </span>
                 </div>

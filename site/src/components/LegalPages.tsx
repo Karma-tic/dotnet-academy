@@ -21,7 +21,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
       {page === 'privacy' && (
         <article className="space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
           <div className="space-y-2 border-b border-slate-200 dark:border-slate-800 pb-4">
-            <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold text-xs uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-violet-600 dark:text-violet-400 font-semibold text-xs uppercase tracking-wider">
               <Shield className="w-4 h-4" />
               <span>India DPDP Act 2023 Compliant</span>
             </div>
@@ -36,7 +36,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
               1. Our Zero-Tracking Philosophy
             </h2>
             <p>
-              Karmatix .NET Academy (<a href={siteConfig.publisherUrl} className="underline text-indigo-600">{siteConfig.publisherUrl}</a>) believes your educational journey is private. <strong>We do not run third-party tracking scripts, advertising beacons, fingerprinting algorithms, or analytics trackers (such as Google Analytics or Meta Pixel).</strong>
+              Karmatix .NET Academy (<a href={siteConfig.publisherUrl} className="underline text-violet-600">{siteConfig.publisherUrl}</a>) believes your educational journey is private. <strong>We do not run third-party tracking scripts, advertising beacons, fingerprinting algorithms, or analytics trackers (such as Google Analytics or Meta Pixel).</strong>
             </p>
           </section>
 
@@ -81,7 +81,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
               5. Contacting the Data Protection Representative
             </h2>
             <p>
-              For privacy queries or questions regarding data protection, email: <a href={`mailto:${siteConfig.contactEmail}`} className="underline text-indigo-600">{siteConfig.contactEmail}</a> or submit a message at <a href={siteConfig.contactUrl} target="_blank" rel="noopener noreferrer" className="underline text-indigo-600">{siteConfig.contactUrl}</a>.
+              For privacy queries or questions regarding data protection, email: <a href={`mailto:${siteConfig.contactEmail}`} className="underline text-violet-600">{siteConfig.contactEmail}</a> or submit a message at <a href={siteConfig.contactUrl} target="_blank" rel="noopener noreferrer" className="underline text-violet-600">{siteConfig.contactUrl}</a>.
             </p>
           </section>
         </article>
@@ -90,7 +90,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
       {page === 'terms' && (
         <article className="space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
           <div className="space-y-2 border-b border-slate-200 dark:border-slate-800 pb-4">
-            <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold text-xs uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-violet-600 dark:text-violet-400 font-semibold text-xs uppercase tracking-wider">
               <FileText className="w-4 h-4" />
               <span>Standard Terms</span>
             </div>
@@ -147,7 +147,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
       {page === 'contact' && (
         <article className="space-y-6 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
           <div className="space-y-2 border-b border-slate-200 dark:border-slate-800 pb-4">
-            <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold text-xs uppercase tracking-wider">
+            <div className="flex items-center gap-2 text-violet-600 dark:text-violet-400 font-semibold text-xs uppercase tracking-wider">
               <Mail className="w-4 h-4" />
               <span>Get in Touch</span>
             </div>
@@ -160,7 +160,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
             <Card className="p-6 space-y-3">
               <div className="flex items-center gap-2 font-bold text-base text-slate-900 dark:text-white">
-                <Mail className="w-5 h-5 text-indigo-600" />
+                <Mail className="w-5 h-5 text-violet-600" />
                 <span>General & Technical Inquiries</span>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400">
@@ -169,7 +169,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
               <div className="pt-2">
                 <a
                   href={`mailto:${siteConfig.contactEmail}`}
-                  className="font-mono text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline block"
+                  className="font-mono text-sm font-semibold text-violet-600 dark:text-violet-400 hover:underline block"
                 >
                   {siteConfig.contactEmail}
                 </a>
@@ -178,7 +178,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
 
             <Card className="p-6 space-y-3">
               <div className="flex items-center gap-2 font-bold text-base text-slate-900 dark:text-white">
-                <ExternalLink className="w-5 h-5 text-indigo-600" />
+                <ExternalLink className="w-5 h-5 text-violet-600" />
                 <span>Karmatix Headquarters</span>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400">
@@ -189,7 +189,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
                   href={siteConfig.publisherUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1"
+                  className="text-sm font-semibold text-violet-600 dark:text-violet-400 hover:underline inline-flex items-center gap-1"
                 >
                   <span>https://karmatix.in</span>
                   <ExternalLink className="w-3 h-3" />
@@ -210,7 +210,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
                 href={`${siteConfig.repoUrl}/issues`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1"
+                className="text-xs font-semibold text-violet-600 dark:text-violet-400 hover:underline inline-flex items-center gap-1"
               >
                 <span>Open an Issue on GitHub &rarr;</span>
               </a>

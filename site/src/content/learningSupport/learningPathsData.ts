@@ -33,7 +33,7 @@ export const learningPathsData: LearningPath[] = [
     tagline: 'Master production ASP.NET Core, EF Core, Clean Architecture, and high-throughput REST APIs.',
     estimatedWeeks: 8,
     difficulty: 'Beginner',
-    colorBadge: 'indigo',
+    colorBadge: 'violet',
     description: 'The premier enterprise pathway. Takes you from fundamental C# syntax through database modeling with EF Core, dependency injection, repository & CQRS patterns, security, validation, and production API design.',
     targetModules: [0, 1, 2, 3, 4, 5, 8],
     milestones: [
