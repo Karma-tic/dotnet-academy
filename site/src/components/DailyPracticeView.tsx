@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Flame, Award, CheckCircle2, Eye, Copy, Check } from 'lucide-react';
+import { Flame, Award, CheckCircle2, Eye, Copy, Check, Play, ExternalLink } from 'lucide-react';
 import { codingProblems, CodingProblem } from '../content/career/codingProblems';
 import { Button } from './ui/Button';
 import { Badge } from './ui/Badge';
+import { RichTextRenderer } from './ui/RichTextRenderer';
 import confetti from 'canvas-confetti';
 
 export interface DailyPracticeViewProps {
@@ -140,32 +141,46 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
               </h2>
             </div>
 
-            <Button
-              variant={isSolved ? 'outline' : 'primary'}
-              size="sm"
-              onClick={handleSolve}
-              className="shrink-0 text-xs shadow-xs"
-            >
-              {isSolved ? (
-                <>
-                  <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-emerald-500" />
-                  Solved!
-                </>
-              ) : (
-                <>
-                  <CheckCircle2 className="w-3.5 h-3.5 mr-1" />
-                  Mark as Solved
-                </>
-              )}
-            </Button>
+            <div className="flex flex-wrap items-center gap-2">
+              <a
+                href="https://dotnetfiddle.net/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 hover:bg-emerald-100 transition-colors"
+                title="Open in official .NET Fiddle online sandbox"
+              >
+                <Play className="w-3.5 h-3.5" />
+                <span>Run in .NET Fiddle</span>
+                <ExternalLink className="w-3 h-3 opacity-80" />
+              </a>
+
+              <Button
+                variant={isSolved ? 'outline' : 'primary'}
+                size="sm"
+                onClick={handleSolve}
+                className="shrink-0 text-xs shadow-xs"
+              >
+                {isSolved ? (
+                  <>
+                    <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-emerald-500" />
+                    Solved!
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle2 className="w-3.5 h-3.5 mr-1" />
+                    Mark as Solved
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
 
           {/* Description */}
           <div className="space-y-2">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Problem Statement</h4>
-            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-line font-normal">
-              {activeProblem.description}
-            </p>
+            <div className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+              <RichTextRenderer content={activeProblem.description} />
+            </div>
           </div>
 
           {/* Starter Code */}
@@ -229,7 +244,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
 
                 <div className="p-3 bg-indigo-50/50 dark:bg-indigo-950/30 rounded-xl text-xs text-slate-700 dark:text-slate-300">
                   <strong className="text-indigo-600 dark:text-indigo-400">Algorithmic Complexity: </strong>
-                  {activeProblem.explanation}
+                  <RichTextRenderer content={activeProblem.explanation} />
                 </div>
               </div>
             )}

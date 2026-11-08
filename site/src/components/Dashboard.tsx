@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
-import { Award, BookOpen, Bookmark, Download, Upload, Trash2, ArrowRight, CheckCircle2 } from 'lucide-react';
+import {
+  Award,
+  BookOpen,
+  Bookmark,
+  Download,
+  Upload,
+  Trash2,
+  ArrowRight,
+  CheckCircle2,
+  Flame,
+  Calendar,
+  AlertTriangle,
+  X
+} from 'lucide-react';
 import { Card } from './ui/Card';
 import { Button } from './ui/Button';
 import { ProgressBar } from './ui/ProgressBar';
@@ -12,8 +25,10 @@ export interface DashboardProps {
   bookmarks: string[];
   notes: Record<string, string>;
   quizScores: Record<string, number>;
+  streak?: number;
   onSelectLesson: (slug: string) => void;
   onOpenCertificate: () => void;
+  onOpenPlanner?: () => void;
   onExport: () => void;
   onImport: (json: string) => boolean;
   onReset: () => void;
@@ -24,25 +39,29 @@ export const Dashboard: React.FC<DashboardProps> = ({
   completedLessons,
   lastVisitedSlug,
   bookmarks,
+  streak = 0,
   onSelectLesson,
   onOpenCertificate,
+  onOpenPlanner,
   onExport,
   onImport,
   onReset,
 }) => {
   const [importInput, setImportInput] = useState('');
   const [showImportModal, setShowImportModal] = useState(false);
+  const [showResetConfirmModal, setShowResetConfirmModal] = useState(false);
   const [importError, setImportError] = useState<string | null>(null);
 
   const totalLessons = modules.reduce((acc, m) => acc + m.lessons.length, 0);
   const completedCount = completedLessons.length;
   const progressPercent = totalLessons > 0 ? Math.round((completedCount / totalLessons) * 100) : 0;
 
+  // Exam readiness calculation: derived from lesson progress & streak
+  const examReadiness = Math.min(100, Math.round(progressPercent * 0.85 + (streak > 0 ? Math.min(15, streak * 3) : 0)));
+
   // Flatten lessons for lookup
   const allLessons = modules.flatMap((m) => m.lessons);
   const lastLesson = allLessons.find((l) => l.slug === lastVisitedSlug) || allLessons[0];
-
-  // Remaining lessons
   const remainingLessons = allLessons.filter((l) => !completedLessons.includes(l.slug));
 
   const handleImportSubmit = () => {
@@ -60,33 +79,57 @@ export const Dashboard: React.FC<DashboardProps> = ({
     }
   };
 
-  const handleResetConfirm = () => {
-    if (window.confirm('Are you sure you want to reset all your progress, notes, and quiz scores? This action cannot be undone.')) {
-      onReset();
-    }
+  const handleResetExecute = () => {
+    onReset();
+    setShowResetConfirmModal(false);
   };
 
   return (
     <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 space-y-8">
-      {/* Top Welcome & Progress Banner */}
+      {/* Top Welcome & Quick Stats Banner */}
       <div className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-gradient-to-br from-indigo-900 via-indigo-950 to-slate-950 p-6 sm:p-10 text-white relative overflow-hidden shadow-xl">
-        <div className="relative z-10 max-w-2xl space-y-4">
+        <div className="relative z-10 max-w-3xl space-y-5">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur text-indigo-200 text-xs font-semibold">
             <Award className="w-4 h-4 text-indigo-400" />
-            <span>Karmatix .NET Academy Student Portal</span>
+            <span>Karmatix .NET Academy • Student Hub</span>
           </div>
 
           <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
-            Your Learning Dashboard
+            Welcome to Your .NET Journey
           </h1>
 
           <p className="text-sm text-indigo-200 leading-relaxed">
-            Track your journey from first lines of C# to enterprise cloud deployment. All progress is saved securely in your browser.
+            From absolute zero to job-ready .NET engineer. All your progress, quiz marks, and study milestones are stored safely in your browser.
           </p>
 
+          {/* Quick Stats Grid */}
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 p-4 rounded-2xl bg-white/10 backdrop-blur border border-white/10">
+            <div className="text-center sm:text-left">
+              <span className="text-[11px] sm:text-xs text-indigo-200 block">Completed</span>
+              <span className="text-lg sm:text-2xl font-black text-white">{completedCount}/{totalLessons}</span>
+              <span className="text-[10px] text-indigo-300 hidden sm:block">Lessons Finished</span>
+            </div>
+
+            <div className="text-center sm:text-left border-x border-white/10 px-2 sm:px-4">
+              <span className="text-[11px] sm:text-xs text-indigo-200 block">Exam Readiness</span>
+              <span className="text-lg sm:text-2xl font-black text-emerald-400">{examReadiness}%</span>
+              <span className="text-[10px] text-indigo-300 hidden sm:block">Placement Target</span>
+            </div>
+
+            <div className="text-center sm:text-left">
+              <span className="text-[11px] sm:text-xs text-indigo-200 block">Daily Streak</span>
+              <span className="text-lg sm:text-2xl font-black text-amber-400 flex items-center justify-center sm:justify-start gap-1">
+                <Flame className="w-4 h-4 fill-amber-400" />
+                <span>{streak}d</span>
+              </span>
+              <span className="text-[10px] text-indigo-300 hidden sm:block">Consecutive Days</span>
+            </div>
+          </div>
+
+          {/* Progress bar */}
           <div className="pt-2">
             <div className="flex justify-between items-center text-xs font-medium text-indigo-200 mb-2">
-              <span>Overall Completion</span>
+              <span>Overall Curriculum Completion</span>
               <span className="font-bold text-white text-sm">{progressPercent}%</span>
             </div>
             <div className="w-full bg-white/20 rounded-full h-3 overflow-hidden">
@@ -95,42 +138,52 @@ export const Dashboard: React.FC<DashboardProps> = ({
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
-            <p className="text-xs text-indigo-300 mt-2">
-              {completedCount} of {totalLessons} lessons completed &bull; {remainingLessons.length} remaining
-            </p>
           </div>
 
-          {/* Certificate Trigger Button */}
-          <div className="pt-4 flex flex-wrap gap-3">
-            <Button
-              variant="secondary"
-              onClick={onOpenCertificate}
-              className="bg-white text-indigo-950 hover:bg-indigo-50 font-semibold"
-            >
-              <Award className="w-4 h-4 mr-2 text-indigo-600" />
-              {progressPercent === 100 ? 'Claim Your Certificate' : 'Preview Certificate'}
-            </Button>
-
+          {/* Action CTAs: Continue, Planner & Certificate */}
+          <div className="pt-2 flex flex-wrap gap-3">
             {lastLesson && (
               <Button
-                variant="outline"
+                variant="primary"
                 onClick={() => onSelectLesson(lastLesson.slug)}
-                className="border-white/30 text-white hover:bg-white/10"
+                className="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold shadow-md"
               >
                 Continue Where You Left Off ({lastLesson.title})
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             )}
+
+            {onOpenPlanner && (
+              <Button
+                variant="outline"
+                onClick={onOpenPlanner}
+                className="border-white/30 text-white hover:bg-white/10"
+              >
+                <Calendar className="w-4 h-4 mr-2 text-amber-400" />
+                30/60/90-Day Study Plan
+              </Button>
+            )}
+
+            <Button
+              variant="outline"
+              onClick={onOpenCertificate}
+              className="border-white/30 text-white hover:bg-white/10"
+            >
+              <Award className="w-4 h-4 mr-2 text-indigo-300" />
+              {progressPercent === 100 ? 'Claim Certificate' : 'Preview Certificate'}
+            </Button>
           </div>
         </div>
       </div>
 
-      {/* Module by Module Progress */}
+      {/* Module by Module Progress Breakdown Cards */}
       <div className="space-y-4">
-        <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center justify-between">
-          <span>Module Progress</span>
-          <span className="text-xs font-normal text-slate-500">12 Total Modules</span>
-        </h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
+            Module Progress Breakdown
+          </h2>
+          <span className="text-xs font-medium text-slate-500">12 Total Modules</span>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {modules.map((mod) => {
@@ -181,7 +234,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         </div>
       </div>
 
-      {/* Remaining Sections List */}
+      {/* Up Next Lessons */}
       <div className="space-y-4">
         <h2 className="text-lg font-bold text-slate-900 dark:text-white">
           Up Next ({remainingLessons.length} lessons remaining)
@@ -202,7 +255,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </Card>
         ) : (
           <div className="divide-y divide-slate-100 dark:divide-slate-800 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden bg-white dark:bg-slate-900">
-            {remainingLessons.slice(0, 8).map((lesson) => (
+            {remainingLessons.slice(0, 6).map((lesson) => (
               <div
                 key={lesson.slug}
                 onClick={() => onSelectLesson(lesson.slug)}
@@ -226,7 +279,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         )}
       </div>
 
-      {/* Bookmarks & Notes Section */}
+      {/* Bookmarks & Data Portability Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="space-y-3">
           <div className="flex items-center gap-2 font-bold text-sm text-slate-900 dark:text-white">
@@ -235,7 +288,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           </div>
           {bookmarks.length === 0 ? (
             <p className="text-xs text-slate-500 py-4 text-center">
-              No bookmarks yet. Click the bookmark icon in any lesson to save it for quick review.
+              No bookmarks yet. Click the bookmark icon in any lesson to save it for quick revision.
             </p>
           ) : (
             <div className="space-y-1.5 max-h-48 overflow-y-auto">
@@ -259,7 +312,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         {/* Data Portability: Export, Import, Reset */}
         <Card className="space-y-3">
           <div className="font-bold text-sm text-slate-900 dark:text-white">
-            Data Portability & Backup
+            Data Portability &amp; Local Backup
           </div>
           <p className="text-xs text-slate-500 leading-relaxed">
             Your progress lives only in your local browser storage. Export a backup JSON to transfer to another computer or browser.
@@ -273,30 +326,78 @@ export const Dashboard: React.FC<DashboardProps> = ({
               <Upload className="w-3.5 h-3.5 mr-1.5" />
               Import Backup
             </Button>
-            <Button variant="danger" size="sm" onClick={handleResetConfirm}>
+            <Button variant="danger" size="sm" onClick={() => setShowResetConfirmModal(true)}>
               <Trash2 className="w-3.5 h-3.5 mr-1.5" />
-              Reset All
+              Reset Progress
             </Button>
           </div>
         </Card>
       </div>
 
+      {/* Safety Confirmation Modal for Reset */}
+      {showResetConfirmModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 max-w-md w-full space-y-4 shadow-2xl">
+            <div className="flex items-center gap-3 text-red-600 dark:text-red-400">
+              <div className="p-2 rounded-xl bg-red-100 dark:bg-red-950/60">
+                <AlertTriangle className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  Reset All Progress?
+                </h3>
+                <span className="text-xs text-red-500 font-semibold">Irreversible Action</span>
+              </div>
+            </div>
+
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              This will permanently delete all completed lesson checkmarks, quiz scores, personal revision notes, and streak history from your local browser storage.
+            </p>
+
+            <div className="flex items-center justify-end gap-2 pt-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowResetConfirmModal(false)}
+              >
+                Keep My Progress
+              </Button>
+              <Button
+                variant="danger"
+                size="sm"
+                onClick={handleResetExecute}
+              >
+                Yes, Reset Everything
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Import Modal */}
       {showImportModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 max-w-lg w-full space-y-4">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">
-              Import Progress Backup
-            </h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 max-w-lg w-full space-y-4 shadow-2xl">
+            <div className="flex items-center justify-between">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                Import Progress Backup
+              </h3>
+              <button
+                onClick={() => setShowImportModal(false)}
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
             <p className="text-xs text-slate-500">
-              Paste the contents of your exported JSON progress file below:
+              Paste the contents of your exported JSON progress file below to restore your progress:
             </p>
             <textarea
               rows={6}
               value={importInput}
               onChange={(e) => setImportInput(e.target.value)}
               placeholder="Paste JSON here..."
-              className="w-full font-mono text-xs p-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100"
+              className="w-full font-mono text-xs p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             {importError && (
               <p className="text-xs text-red-500">{importError}</p>

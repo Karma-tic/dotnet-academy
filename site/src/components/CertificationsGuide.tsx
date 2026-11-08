@@ -207,11 +207,11 @@ export const CertificationsGuide: React.FC = () => {
         </div>
       </Card>
 
-      {/* Community Visual Roadmaps (roadmap.sh) */}
+      {/* Visual Learning Roadmaps */}
       <div className="space-y-4">
         <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
           <Map className="w-5 h-5 text-indigo-500" />
-          <span>Industry Visual Learning Roadmaps</span>
+          <span>Curated Visual Learning Roadmaps</span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -227,12 +227,12 @@ export const CertificationsGuide: React.FC = () => {
               </div>
               <a
                 href={r.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={r.url.startsWith('http') ? '_blank' : undefined}
+                rel={r.url.startsWith('http') ? 'noopener noreferrer' : undefined}
                 className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1 self-start"
               >
-                <span>Explore Interactive Roadmap at roadmap.sh</span>
-                <ExternalLink className="w-3 h-3" />
+                <span>{r.url.startsWith('#') ? 'View Interactive Roadmap' : 'Explore Official Documentation'}</span>
+                {r.url.startsWith('http') && <ExternalLink className="w-3 h-3" />}
               </a>
             </Card>
           ))}

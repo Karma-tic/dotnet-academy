@@ -8,8 +8,6 @@ import { useProgress } from './hooks/useProgress';
 import { allLessons, modulesData, searchIndex } from './content/lessons/allLessons';
 import confetti from 'canvas-confetti';
 
-
-
 // Lazy loaded views for instant initial paint & top Lighthouse scores
 const Dashboard = lazy(() => import('./components/Dashboard').then(m => ({ default: m.Dashboard })));
 const StudyPlanner = lazy(() => import('./components/StudyPlanner').then(m => ({ default: m.StudyPlanner })));
@@ -21,6 +19,7 @@ const GlossaryView = lazy(() => import('./components/GlossaryView').then(m => ({
 const LegalPages = lazy(() => import('./components/LegalPages').then(m => ({ default: m.LegalPages })));
 const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
 const CertificateModal = lazy(() => import('./components/CertificateModal').then(m => ({ default: m.CertificateModal })));
+const JargonBusterModal = lazy(() => import('./components/JargonBusterModal').then(m => ({ default: m.JargonBusterModal })));
 
 // Learning Support Addendum Views
 const HowToLearnView = lazy(() => import('./components/HowToLearnView').then(m => ({ default: m.HowToLearnView })));
@@ -49,12 +48,17 @@ export function App() {
     resetProgress,
   } = useProgress();
 
-  // Navigation State: default to curriculum unless hash specifies otherwise
+  // Navigation State: default to home (Dashboard) unless hash specifies otherwise
   const getInitialView = () => {
-    if (typeof window === 'undefined') return 'curriculum';
+    if (typeof window === 'undefined') return 'home';
     const hash = window.location.hash.replace(/^#\/?/, '');
     if (hash.startsWith('lesson/')) return 'lesson';
-    if (hash === '' || hash === 'curriculum' || hash === 'home' || hash === 'portal') return 'curriculum';
+    if (hash === '' || hash === 'home' || hash === 'dashboard') return 'home';
+    if (hash === 'course' || hash === 'curriculum') return 'course';
+    if (hash === 'roadmap' || hash === 'learning-paths') return 'roadmap';
+    if (hash === 'practice' || hash === 'daily-practice') return 'practice';
+    if (hash === 'exam-prep' || hash === 'career') return 'exam-prep';
+    if (hash === 'cheat-sheets' || hash === 'cheatsheets') return 'cheatsheets';
     return hash;
   };
 
@@ -63,6 +67,8 @@ export function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(() => (typeof window !== 'undefined' ? window.innerWidth >= 1024 : true));
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCertModalOpen, setIsCertModalOpen] = useState(false);
+  const [isJargonOpen, setIsJargonOpen] = useState(false);
+  const [jargonInitialTerm, setJargonInitialTerm] = useState<string | undefined>(undefined);
 
   // Sync hash routing
   useEffect(() => {
@@ -76,8 +82,18 @@ export function App() {
           setActiveView('lesson');
           setLastVisited(slug);
         }
-      } else if (hash === '' || hash === 'curriculum' || hash === 'home' || hash === 'portal') {
-        setActiveView('curriculum');
+      } else if (hash === '' || hash === 'home' || hash === 'dashboard') {
+        setActiveView('home');
+      } else if (hash === 'course' || hash === 'curriculum') {
+        setActiveView('course');
+      } else if (hash === 'roadmap' || hash === 'learning-paths') {
+        setActiveView('roadmap');
+      } else if (hash === 'practice' || hash === 'daily-practice') {
+        setActiveView('practice');
+      } else if (hash === 'exam-prep' || hash === 'career') {
+        setActiveView('exam-prep');
+      } else if (hash === 'cheat-sheets' || hash === 'cheatsheets') {
+        setActiveView('cheatsheets');
       } else if (hash) {
         setActiveView(hash);
       }
@@ -88,7 +104,7 @@ export function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [setLastVisited]);
 
-  // Global Keyboard Shortcuts (Ctrl+K / Cmd+K for Search, Ctrl+B / Cmd+B for Sidebar)
+  // Global Keyboard Shortcuts (Ctrl+K / Cmd+K for Search, Ctrl+B / Cmd+B for Sidebar, Ctrl+J / Cmd+J for Jargon)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
@@ -97,10 +113,24 @@ export function App() {
       } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'b') {
         e.preventDefault();
         setIsSidebarOpen((prev) => !prev);
+      } else if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'j') {
+        e.preventDefault();
+        setJargonInitialTerm(undefined);
+        setIsJargonOpen((prev) => !prev);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Listen for custom jargon modal trigger event
+  useEffect(() => {
+    const handleCustomJargon = (e: any) => {
+      setJargonInitialTerm(e.detail || undefined);
+      setIsJargonOpen(true);
+    };
+    window.addEventListener('open-jargon-modal', handleCustomJargon as EventListener);
+    return () => window.removeEventListener('open-jargon-modal', handleCustomJargon as EventListener);
   }, []);
 
   const navigateTo = (view: string) => {
@@ -134,8 +164,8 @@ export function App() {
     if (score >= 70) {
       try {
         confetti({
-          particleCount: 50,
-          spread: 60,
+          particleCount: 60,
+          spread: 70,
           origin: { y: 0.8 },
         });
       } catch (e) {
@@ -152,8 +182,6 @@ export function App() {
   const totalLessons = allLessons.length;
   const progressPercent = totalLessons > 0 ? Math.round((state.completedLessons.length / totalLessons) * 100) : 0;
 
-
-
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
       {/* Top Header */}
@@ -164,6 +192,10 @@ export function App() {
         activeTab={activeView}
         onNavigate={navigateTo}
         progressPercent={progressPercent}
+        onOpenJargon={() => {
+          setJargonInitialTerm(undefined);
+          setIsJargonOpen(true);
+        }}
       />
 
       {/* Main Container */}
@@ -189,31 +221,8 @@ export function App() {
         >
           <main className="flex-1 min-w-0">
             <Suspense fallback={<div className="p-16 text-center text-sm text-slate-400">Loading learning module...</div>}>
-              {activeView === 'home' || activeView === 'curriculum' || activeView === 'dotnet' ? (
-                <CurriculumOverview
-                  modules={modulesData}
-                  completedLessons={state.completedLessons}
-                  onSelectLesson={handleSelectLesson}
-                  onNavigate={navigateTo}
-                />
-              ) : activeView === 'lesson' ? (
-                <LessonView
-                  lesson={currentLesson}
-                  isCompleted={isCompleted(currentLesson.slug)}
-                  isBookmarked={isBookmarked(currentLesson.slug)}
-                  savedNote={state.notes[currentLesson.slug] || ''}
-                  onToggleComplete={() => toggleComplete(currentLesson.slug)}
-                  onToggleBookmark={() => toggleBookmark(currentLesson.slug)}
-                  onSaveNote={(note) => saveNote(currentLesson.slug, note)}
-                  onQuizComplete={handleQuizCompletion}
-                  prevLesson={prevLesson ? { slug: prevLesson.slug, title: prevLesson.title } : undefined}
-                  nextLesson={nextLesson ? { slug: nextLesson.slug, title: nextLesson.title } : undefined}
-                  onNavigate={(dest) => {
-                    if (dest === 'curriculum') navigateTo('curriculum');
-                    else handleSelectLesson(dest);
-                  }}
-                />
-              ) : activeView === 'dashboard' ? (
+              {/* PAGE 1: / or /home or /dashboard (Home / Dashboard) */}
+              {activeView === 'home' || activeView === 'dashboard' ? (
                 <Dashboard
                   modules={modulesData}
                   completedLessons={state.completedLessons}
@@ -221,8 +230,10 @@ export function App() {
                   bookmarks={state.bookmarks}
                   notes={state.notes}
                   quizScores={state.quizScores}
+                  streak={state.dailyPractice.currentStreak}
                   onSelectLesson={handleSelectLesson}
                   onOpenCertificate={() => setIsCertModalOpen(true)}
+                  onOpenPlanner={() => navigateTo('planner')}
                   onExport={() => {
                     const data = exportProgress();
                     const blob = new Blob([data], { type: 'application/json' });
@@ -235,6 +246,68 @@ export function App() {
                   onImport={importProgress}
                   onReset={resetProgress}
                 />
+              ) : /* PAGE 2: /course or /curriculum (Curriculum Hub) */
+              activeView === 'course' || activeView === 'curriculum' ? (
+                <CurriculumOverview
+                  modules={modulesData}
+                  completedLessons={state.completedLessons}
+                  onSelectLesson={handleSelectLesson}
+                  onNavigate={navigateTo}
+                />
+              ) : /* PAGE 3: /roadmap or /learning-paths (Visual Career Roadmap) */
+              activeView === 'roadmap' || activeView === 'learning-paths' ? (
+                <LearningPathsView
+                  modules={modulesData}
+                  completedLessons={state.completedLessons}
+                  onSelectLesson={handleSelectLesson}
+                  onNavigateToCurriculum={() => navigateTo('course')}
+                />
+              ) : /* PAGE 4: /lesson/:lessonId (The Core 8-Part Lesson View) */
+              activeView === 'lesson' ? (
+                <LessonView
+                  lesson={currentLesson}
+                  isCompleted={isCompleted(currentLesson.slug)}
+                  isBookmarked={isBookmarked(currentLesson.slug)}
+                  savedNote={state.notes[currentLesson.slug] || ''}
+                  onToggleComplete={() => toggleComplete(currentLesson.slug)}
+                  onToggleBookmark={() => toggleBookmark(currentLesson.slug)}
+                  onSaveNote={(note) => saveNote(currentLesson.slug, note)}
+                  onQuizComplete={handleQuizCompletion}
+                  prevLesson={prevLesson ? { slug: prevLesson.slug, title: prevLesson.title } : undefined}
+                  nextLesson={nextLesson ? { slug: nextLesson.slug, title: nextLesson.title } : undefined}
+                  onNavigate={(dest) => {
+                    if (dest === 'curriculum' || dest === 'course') navigateTo('course');
+                    else handleSelectLesson(dest);
+                  }}
+                  onOpenJargon={() => {
+                    setJargonInitialTerm(undefined);
+                    setIsJargonOpen(true);
+                  }}
+                />
+              ) : /* PAGE 5: /exam-prep or /career (Exam & Technical Interview Hub) */
+              activeView === 'exam-prep' || activeView === 'career' ? (
+                <CareerHub
+                  onSaveMockScore={saveMockTestScore}
+                  mockScores={state.mockTestScores}
+                />
+              ) : /* PAGE 6: /practice or /daily-practice (Interactive Practice Lab) */
+              activeView === 'practice' || activeView === 'daily-practice' ? (
+                <DailyPracticeView
+                  streakData={state.dailyPractice}
+                  onRecordProblemSolved={recordProblemSolved}
+                />
+              ) : /* PAGE 7: /resources (Curated Verified Tools & Docs Library) */
+              activeView === 'resources' ? (
+                <ResourceLibrary />
+              ) : /* PAGE 8: /certifications (Certifications & Career Guide) */
+              activeView === 'certifications' ? (
+                <CertificationsGuide />
+              ) : /* PAGE 9: /cheat-sheets or /cheatsheets (Quick Reference Cards) */
+              activeView === 'cheatsheets' ? (
+                <CheatSheets />
+              ) : /* PAGE 10: /glossary (1-Line Plain English Dictionary) */
+              activeView === 'glossary' ? (
+                <GlossaryView />
               ) : activeView === 'planner' ? (
                 <StudyPlanner
                   completedCount={state.completedLessons.length}
@@ -243,39 +316,14 @@ export function App() {
                   onUpdatePlanner={updatePlanner}
                   onNavigateToLesson={handleSelectLesson}
                 />
-              ) : activeView === 'career' ? (
-                <CareerHub
-                  onSaveMockScore={saveMockTestScore}
-                  mockScores={state.mockTestScores}
-                />
-              ) : activeView === 'certifications' ? (
-                <CertificationsGuide />
-              ) : activeView === 'resources' ? (
-                <ResourceLibrary />
-              ) : activeView === 'cheatsheets' ? (
-                <CheatSheets />
               ) : activeView === 'how-to-learn' ? (
-                <HowToLearnView onNavigateToCurriculum={() => navigateTo('curriculum')} />
-              ) : activeView === 'learning-paths' ? (
-                <LearningPathsView
-                  modules={modulesData}
-                  completedLessons={state.completedLessons}
-                  onSelectLesson={handleSelectLesson}
-                  onNavigateToCurriculum={() => navigateTo('curriculum')}
-                />
+                <HowToLearnView onNavigateToCurriculum={() => navigateTo('course')} />
               ) : activeView === 'get-help' ? (
                 <StuckHelpView />
               ) : activeView === 'regional-resources' ? (
                 <RegionalResourcesView />
               ) : activeView === 'free-tiers' ? (
                 <FreeTiersView />
-              ) : activeView === 'daily-practice' ? (
-                <DailyPracticeView
-                  streakData={state.dailyPractice}
-                  onRecordProblemSolved={recordProblemSolved}
-                />
-              ) : activeView === 'glossary' ? (
-                <GlossaryView />
               ) : activeView === 'privacy' || activeView === 'terms' || activeView === 'contact' ? (
                 <LegalPages page={activeView as any} />
               ) : (
@@ -285,16 +333,16 @@ export function App() {
                   <p className="text-slate-500">The requested page or lesson could not be located.</p>
                   <div className="flex items-center justify-center gap-3">
                     <button
-                      onClick={() => navigateTo('portal')}
-                      className="px-4 py-2 bg-[#f59e0b] hover:bg-[#fbbf24] text-black rounded-lg text-sm font-semibold transition-colors shadow-sm"
+                      onClick={() => navigateTo('home')}
+                      className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700 transition-colors shadow-sm"
                     >
-                      Return to Learning Portal
+                      Return to Dashboard
                     </button>
                     <button
-                      onClick={() => navigateTo('curriculum')}
-                      className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold"
+                      onClick={() => navigateTo('course')}
+                      className="px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
                     >
-                      Return to Curriculum
+                      Browse Curriculum
                     </button>
                   </div>
                 </div>
@@ -302,12 +350,12 @@ export function App() {
             </Suspense>
           </main>
 
-          {/* Footer - seamlessly positioned alongside or full-width without sidebar clipping */}
+          {/* Footer with Ko-fi chai donation links */}
           <Footer onNavigate={navigateTo} />
         </div>
       </div>
 
-      {/* Global Search Modal - Lazy rendered */}
+      {/* Global Search Modal */}
       {isSearchOpen && (
         <Suspense fallback={null}>
           <SearchModal
@@ -319,7 +367,18 @@ export function App() {
         </Suspense>
       )}
 
-      {/* Course Completion Certificate Modal - Lazy rendered */}
+      {/* Jargon Buster Modal */}
+      {isJargonOpen && (
+        <Suspense fallback={null}>
+          <JargonBusterModal
+            isOpen={isJargonOpen}
+            onClose={() => setIsJargonOpen(false)}
+            initialTermId={jargonInitialTerm}
+          />
+        </Suspense>
+      )}
+
+      {/* Course Completion Certificate Modal */}
       {isCertModalOpen && (
         <Suspense fallback={null}>
           <CertificateModal

@@ -10,6 +10,7 @@ export interface HeaderProps {
   activeTab: string;
   onNavigate: (view: string) => void;
   progressPercent: number;
+  onOpenJargon?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -19,7 +20,16 @@ export const Header: React.FC<HeaderProps> = ({
   activeTab,
   onNavigate,
   progressPercent,
+  onOpenJargon,
 }) => {
+  const handleOpenJargon = () => {
+    if (onOpenJargon) {
+      onOpenJargon();
+    } else {
+      window.dispatchEvent(new CustomEvent('open-jargon-modal'));
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
@@ -77,16 +87,23 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Center: Main Navigation Links */}
         <nav className="hidden xl:flex items-center space-x-1 text-sm font-medium">
           {[
-            { id: 'curriculum', label: 'Curriculum' },
-            { id: 'learning-paths', label: 'Paths' },
-            { id: 'daily-practice', label: 'Daily Practice' },
-            { id: 'how-to-learn', label: 'How to Learn' },
-            { id: 'get-help', label: 'Get Help' },
-            { id: 'dashboard', label: 'Dashboard' },
-            { id: 'career', label: 'Career Hub' },
-            { id: 'cheatsheets', label: 'Offline Kit' },
+            { id: 'home', label: 'Dashboard' },
+            { id: 'course', label: 'Curriculum' },
+            { id: 'roadmap', label: 'Roadmap' },
+            { id: 'practice', label: 'Practice Lab' },
+            { id: 'exam-prep', label: 'Exam Prep' },
+            { id: 'resources', label: 'Resources' },
+            { id: 'cheatsheets', label: 'Cheat Sheets' },
+            { id: 'glossary', label: 'Glossary' },
           ].map((item) => {
-            const isActive = activeTab === item.id;
+            const isActive =
+              activeTab === item.id ||
+              (item.id === 'home' && (activeTab === 'home' || activeTab === 'dashboard')) ||
+              (item.id === 'course' && (activeTab === 'course' || activeTab === 'curriculum')) ||
+              (item.id === 'roadmap' && (activeTab === 'roadmap' || activeTab === 'learning-paths')) ||
+              (item.id === 'practice' && (activeTab === 'practice' || activeTab === 'daily-practice')) ||
+              (item.id === 'exam-prep' && (activeTab === 'exam-prep' || activeTab === 'career'));
+
             return (
               <button
                 key={item.id}
@@ -103,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
           })}
         </nav>
 
-        {/* Right: Search, Progress, Theme, GitHub */}
+        {/* Right: Jargon Buster, Search, Progress, Theme, Ko-fi */}
         <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
           {/* Quick Search Button */}
           <button
@@ -118,9 +135,19 @@ export const Header: React.FC<HeaderProps> = ({
             </kbd>
           </button>
 
+          {/* Jargon Buster Trigger Button */}
+          <button
+            onClick={handleOpenJargon}
+            className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-lg bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/30 hover:bg-amber-500/20 transition-colors"
+            title="Open Jargon Buster Dictionary"
+          >
+            <span>🌶️</span>
+            <span className="hidden md:inline">Jargon Buster</span>
+          </button>
+
           {/* Quick Progress Badge */}
           <button
-            onClick={() => onNavigate('dashboard')}
+            onClick={() => onNavigate('home')}
             className="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-lg border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50/50 dark:bg-indigo-950/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium hover:bg-indigo-100/50 transition-colors"
             title="View Dashboard Progress"
           >
@@ -146,7 +173,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Bookmarks Quick Link */}
           <button
-            onClick={() => onNavigate('dashboard')}
+            onClick={() => onNavigate('home')}
             className="hidden lg:flex p-2 rounded-lg text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             title="Saved Bookmarks & Notes"
           >

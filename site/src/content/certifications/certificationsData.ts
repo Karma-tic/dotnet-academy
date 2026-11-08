@@ -98,13 +98,13 @@ export const certificationsData: CertificationItem[] = [
 
 export const roadmaps = [
   {
-    name: 'ASP.NET Core Developer Roadmap',
-    url: 'https://roadmap.sh/aspnet-core',
-    description: 'The community standard visual roadmap outlining essential frameworks, ORMs, security tools, and deployment pipelines for modern ASP.NET Core.'
+    name: 'Karmatix .NET Career Roadmap',
+    url: '#/roadmap',
+    description: 'Our built-in, step-by-step interactive visual career path from absolute beginner to high-scale backend engineer and cloud DevOps architect.'
   },
   {
-    name: 'C# Language Roadmap',
-    url: 'https://roadmap.sh/r/csharp-beginner',
-    description: 'Structured step-by-step path detailing language features from syntax to advanced memory constructs like Span and Channels.'
+    name: 'Official Microsoft C# & .NET Learn Track',
+    url: 'https://learn.microsoft.com/en-us/dotnet/',
+    description: 'The definitive, authentic technical documentation, API specifications, and architectural guides directly from the .NET engineering team at Microsoft.'
   }
 ];

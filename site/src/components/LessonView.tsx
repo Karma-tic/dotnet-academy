@@ -9,13 +9,18 @@ import {
   AlertCircle,
   FileEdit,
   ExternalLink,
-  ShieldCheck
+  ShieldCheck,
+  Baby,
+  GraduationCap,
+  Play
 } from 'lucide-react';
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
 import { CodeBlock } from './ui/CodeBlock';
 import { Quiz, QuizQuestion } from './ui/Quiz';
+import { RichTextRenderer } from './ui/RichTextRenderer';
 import { siteConfig } from '../config/site';
+import { getLessonEnhancement } from '../content/lessons/lessonEnhancements';
 
 export interface LessonContent {
   slug: string;
@@ -52,6 +57,10 @@ export interface LessonContent {
     solutionCode: string;
   };
   quiz: QuizQuestion[];
+  eli5Explanation?: string;
+  didYouKnow?: string;
+  examAlert?: string;
+  sandboxUrl?: string;
 }
 
 export interface LessonViewProps {
@@ -66,6 +75,7 @@ export interface LessonViewProps {
   prevLesson?: { slug: string; title: string };
   nextLesson?: { slug: string; title: string };
   onNavigate: (slug: string) => void;
+  onOpenJargon?: () => void;
 }
 
 export const LessonView: React.FC<LessonViewProps> = ({
@@ -80,9 +90,18 @@ export const LessonView: React.FC<LessonViewProps> = ({
   prevLesson,
   nextLesson,
   onNavigate,
+  onOpenJargon,
 }) => {
   const [noteText, setNoteText] = useState(savedNote);
   const [showSolution, setShowSolution] = useState(false);
+  const [isEli5Mode, setIsEli5Mode] = useState(false);
+
+  // Retrieve curated trivia, exam alerts, and ELI5 narrative
+  const enhancement = getLessonEnhancement(lesson.slug, lesson.summary, lesson.title);
+  const eli5Text = lesson.eli5Explanation || enhancement.eli5;
+  const didYouKnowText = lesson.didYouKnow || enhancement.didYouKnow;
+  const examAlertText = lesson.examAlert || enhancement.examAlert;
+  const sandboxUrl = lesson.sandboxUrl || enhancement.sandboxUrl || 'https://dotnetfiddle.net/';
 
   const issueUrl = `${siteConfig.repoUrl}/issues/new?title=[Content Issue] ${encodeURIComponent(
     lesson.title
@@ -90,12 +109,20 @@ export const LessonView: React.FC<LessonViewProps> = ({
     `Lesson: ${lesson.title} (${lesson.slug})\nModule: ${lesson.module}\n\nDescription of defect or suggestion:\n`
   )}`;
 
+  const handleOpenJargon = () => {
+    if (onOpenJargon) {
+      onOpenJargon();
+    } else {
+      window.dispatchEvent(new CustomEvent('open-jargon-modal'));
+    }
+  };
+
   return (
     <article className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
       {/* Breadcrumbs */}
       <nav className="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
         <button onClick={() => onNavigate('curriculum')} className="hover:underline">
-          Curriculum
+          Curriculum Hub
         </button>
         <span>/</span>
         <span>Module {lesson.module}</span>
@@ -130,26 +157,64 @@ export const LessonView: React.FC<LessonViewProps> = ({
 
       {/* Lesson Header */}
       <div className="space-y-4">
-        <div className="flex flex-wrap items-center gap-2.5">
-          <Badge variant="purple">Module {lesson.module}: {lesson.moduleTitle}</Badge>
-          <Badge variant="default">{lesson.difficulty}</Badge>
-          <span className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
-            <Clock className="w-3.5 h-3.5" />
-            {lesson.duration} min read
-          </span>
+        <div className="flex flex-wrap items-center justify-between gap-2.5">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge variant="purple">Module {lesson.module}: {lesson.moduleTitle}</Badge>
+            <Badge variant="default">{lesson.difficulty}</Badge>
+            <span className="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+              <Clock className="w-3.5 h-3.5" />
+              {lesson.duration} min read
+            </span>
+          </div>
+
+          {/* ANTI-BOREDOM FEATURE: ELI5 Toggle Button */}
+          <button
+            onClick={() => setIsEli5Mode(!isEli5Mode)}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all shadow-xs ${
+              isEli5Mode
+                ? 'bg-amber-500 text-white ring-2 ring-amber-300 dark:ring-amber-600'
+                : 'bg-amber-100 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 hover:bg-amber-200 dark:hover:bg-amber-900/40'
+            }`}
+            title="Toggle Explain Like I'm 5 simplified mode"
+          >
+            {isEli5Mode ? (
+              <>
+                <GraduationCap className="w-3.5 h-3.5" />
+                <span>🎓 Technical Mode</span>
+              </>
+            ) : (
+              <>
+                <Baby className="w-3.5 h-3.5" />
+                <span>👶 Switch to ELI5 Mode</span>
+              </>
+            )}
+          </button>
         </div>
 
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white break-words">
           {lesson.title}
         </h1>
 
-        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          {lesson.summary}
-        </p>
+        {/* ELI5 Notification Banner when active */}
+        {isEli5Mode ? (
+          <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-800/60 space-y-2 animate-fade-in">
+            <div className="flex items-center gap-2 text-amber-900 dark:text-amber-200 font-bold text-xs uppercase tracking-wider">
+              <Baby className="w-4 h-4 text-amber-600" />
+              <span>ELI5 Mode Active (Kindergarten Simple)</span>
+            </div>
+            <p className="text-sm text-amber-950 dark:text-amber-100 leading-relaxed font-medium">
+              {eli5Text}
+            </p>
+          </div>
+        ) : (
+          <div className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            <RichTextRenderer content={lesson.summary} />
+          </div>
+        )}
 
-        {/* Quick actions (Bookmark + Mark complete) */}
+        {/* Quick actions (Bookmark + Mark complete + Jargon Buster) */}
         <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-y border-slate-200 dark:border-slate-800 py-3">
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Button
               variant={isCompleted ? 'secondary' : 'primary'}
               size="sm"
@@ -167,6 +232,15 @@ export const LessonView: React.FC<LessonViewProps> = ({
               <Bookmark className={`w-4 h-4 mr-1.5 ${isBookmarked ? 'fill-indigo-600 text-indigo-600' : ''}`} />
               {isBookmarked ? 'Saved' : 'Bookmark'}
             </Button>
+
+            {/* Jargon Buster Trigger Button */}
+            <button
+              onClick={handleOpenJargon}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-900/40 hover:bg-amber-100 transition-colors"
+              title="Open Jargon Buster dictionary"
+            >
+              <span>🌶️ Jargon Buster</span>
+            </button>
           </div>
 
           <a
@@ -176,54 +250,81 @@ export const LessonView: React.FC<LessonViewProps> = ({
             className="text-xs text-slate-500 hover:text-indigo-600 dark:hover:text-indigo-400 inline-flex items-center gap-1"
           >
             <AlertCircle className="w-3.5 h-3.5" />
-            <span>Report an issue</span>
+            <span>Report defect</span>
             <ExternalLink className="w-3 h-3" />
           </a>
         </div>
       </div>
 
-      {/* Goal Section */}
+      {/* 1. 🎯 Goal of this Lesson */}
       <section id="goal" className="space-y-3">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>🎯 What You Will Learn (Goal)</span>
+          <span>🎯 Goal of this Lesson</span>
         </h2>
         <div className="p-4 rounded-xl bg-slate-100/70 dark:bg-slate-800/40 text-sm leading-relaxed text-slate-800 dark:text-slate-200 border-l-4 border-indigo-600">
-          {lesson.goal}
+          <RichTextRenderer content={lesson.goal} />
         </div>
       </section>
 
-      {/* Simple Explanation */}
+      {/* 2. 💡 Simple Explanation */}
       <section id="explanation" className="space-y-4">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-          💡 Clear Explanation
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span>💡 Simple Explanation</span>
         </h2>
         <div className="text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-300 space-y-4">
-          {lesson.explanation}
+          <RichTextRenderer content={lesson.explanation} onJargonClick={handleOpenJargon} />
         </div>
       </section>
 
-      {/* Real-world Analogy */}
+      {/* 3. 🍕 Relatable Beginner Analogy */}
       <section id="analogy" className="space-y-3">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-          🧩 Real-World Analogy
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span>🍕 Relatable Beginner Analogy</span>
         </h2>
         <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-50/60 to-purple-50/40 dark:from-indigo-950/20 dark:to-purple-950/20 border border-indigo-100 dark:border-indigo-900/40 space-y-3 text-sm">
           <div>
-            <span className="font-semibold text-indigo-900 dark:text-indigo-200">The Scenario: </span>
-            <span className="text-slate-700 dark:text-slate-300">{lesson.analogy.realWorldScenario}</span>
+            <span className="font-semibold text-indigo-900 dark:text-indigo-200">The Everyday Scenario: </span>
+            <span className="text-slate-700 dark:text-slate-300">
+              <RichTextRenderer content={lesson.analogy.realWorldScenario} />
+            </span>
           </div>
           <div>
-            <span className="font-semibold text-indigo-900 dark:text-indigo-200">How it maps to .NET: </span>
-            <span className="text-slate-700 dark:text-slate-300">{lesson.analogy.techMapping}</span>
+            <span className="font-semibold text-indigo-900 dark:text-indigo-200">How it Maps to .NET: </span>
+            <span className="text-slate-700 dark:text-slate-300">
+              <RichTextRenderer content={lesson.analogy.techMapping} />
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Code Example */}
+      {/* ANTI-BOREDOM FEATURE: 🤯 Mind Blown Did You Know? Trivia Card */}
+      <section id="trivia" className="p-5 rounded-2xl border border-purple-200 dark:border-purple-900/50 bg-gradient-to-r from-purple-50/70 via-indigo-50/50 to-pink-50/50 dark:from-purple-950/25 dark:via-indigo-950/20 dark:to-pink-950/20 space-y-2 text-sm shadow-xs">
+        <div className="flex items-center gap-2 text-purple-900 dark:text-purple-300 font-bold">
+          <span className="text-xl" aria-hidden="true">🤯</span>
+          <span>Mind Blown: Did You Know?</span>
+        </div>
+        <div className="text-slate-700 dark:text-slate-300 leading-relaxed text-xs sm:text-sm">
+          <RichTextRenderer content={didYouKnowText} />
+        </div>
+      </section>
+
+      {/* 4. 💻 Clean Code Example (With Online Playground runner) */}
       <section id="code" className="space-y-3">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-          💻 Working Code Example
-        </h2>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span>💻 Clean Code Example</span>
+          </h2>
+          <a
+            href={sandboxUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-800 hover:bg-emerald-100 transition-colors"
+            title="Open online C# sandbox (.NET Fiddle / SharpLab)"
+          >
+            <Play className="w-3.5 h-3.5" />
+            <span>Run in Online Sandbox 🚀</span>
+          </a>
+        </div>
         <CodeBlock
           code={lesson.codeSnippet.code}
           language={lesson.codeSnippet.language}
@@ -232,10 +333,10 @@ export const LessonView: React.FC<LessonViewProps> = ({
         />
       </section>
 
-      {/* Step-by-Step Walkthrough */}
+      {/* 5. 🚶 Step-by-Step Walkthrough */}
       <section id="walkthrough" className="space-y-4">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-          🔍 Step-by-Step Walkthrough
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span>🚶 Step-by-Step Walkthrough</span>
         </h2>
         <div className="space-y-3">
           {lesson.walkthrough.map((step, idx) => (
@@ -250,19 +351,19 @@ export const LessonView: React.FC<LessonViewProps> = ({
                 <h4 className="font-semibold text-slate-900 dark:text-white">
                   {step.step}
                 </h4>
-                <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {step.detail}
-                </p>
+                <div className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                  <RichTextRenderer content={step.detail} />
+                </div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Common Mistakes & Fixes */}
+      {/* 6. ⚠️ Common Beginner Mistakes & Exact Fixes */}
       <section id="mistakes" className="space-y-4">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-          ⚠️ Common Mistakes & How to Fix Them
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span>⚠️ Common Mistakes &amp; Exact Fixes</span>
         </h2>
         <div className="space-y-4">
           {lesson.commonMistakes.map((m, idx) => (
@@ -271,39 +372,54 @@ export const LessonView: React.FC<LessonViewProps> = ({
               className="p-5 rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-amber-50/40 dark:bg-amber-950/15 space-y-2 text-sm"
             >
               <div className="font-semibold text-amber-900 dark:text-amber-200 flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                <AlertCircle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
                 <span>Mistake: {m.mistake}</span>
               </div>
-              <p className="text-slate-700 dark:text-slate-300">
-                <strong>Why it fails:</strong> {m.whyItFails}
-              </p>
-              <p className="text-emerald-700 dark:text-emerald-300">
-                <strong>Correct fix:</strong> {m.fix}
-              </p>
+              <div className="text-slate-700 dark:text-slate-300">
+                <strong>Why it fails: </strong>
+                <RichTextRenderer content={m.whyItFails} />
+              </div>
+              <div className="text-emerald-700 dark:text-emerald-300">
+                <strong>Correct fix: </strong>
+                <RichTextRenderer content={m.fix} />
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Practice Task */}
+      {/* ANTI-BOREDOM FEATURE: 🚨 Campus & Placement Exam Alert */}
+      <section id="exam-alert" className="p-5 rounded-2xl border-l-4 border-red-500 bg-red-50/60 dark:bg-red-950/20 text-xs sm:text-sm space-y-2">
+        <div className="flex items-center gap-2 text-red-800 dark:text-red-300 font-bold">
+          <span className="text-base" aria-hidden="true">🚨</span>
+          <span>Placement Exam Alert (TCS, Infosys, Wipro, AZ-204)</span>
+        </div>
+        <div className="text-slate-700 dark:text-slate-300 leading-relaxed">
+          <RichTextRenderer content={examAlertText} />
+        </div>
+      </section>
+
+      {/* 7. 🛠️ Hands-on Practice Task */}
       <section id="practice" className="space-y-4">
-        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-          🛠️ Hands-on Practice Task
+        <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span>🛠️ Hands-on Practice Task</span>
         </h2>
         <div className="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 space-y-4">
           <h3 className="font-bold text-base text-slate-900 dark:text-white">
             {lesson.practiceTask.title}
           </h3>
-          <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
-            {lesson.practiceTask.task}
-          </p>
+          <div className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+            <RichTextRenderer content={lesson.practiceTask.task} />
+          </div>
 
           {lesson.practiceTask.hints.length > 0 && (
             <div className="space-y-1 text-xs text-slate-600 dark:text-slate-400">
               <span className="font-semibold">Hints:</span>
               <ul className="list-disc pl-5 space-y-1">
                 {lesson.practiceTask.hints.map((hint, hIdx) => (
-                  <li key={hIdx}>{hint}</li>
+                  <li key={hIdx}>
+                    <RichTextRenderer content={hint} />
+                  </li>
                 ))}
               </ul>
             </div>
@@ -331,7 +447,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
         </div>
       </section>
 
-      {/* Mini Quiz */}
+      {/* 8. 🧠 Mini Quiz (Auto-marks complete on 70%+) */}
       <section id="quiz">
         <Quiz
           lessonSlug={lesson.slug}
@@ -358,7 +474,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
         />
       </section>
 
-      {/* Ko-fi Chai Support Callout */}
+      {/* Ko-fi Chai Support Callout (Preserved as requested) */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3 p-4 rounded-xl border border-amber-500/20 bg-amber-500/5 dark:bg-amber-950/20 text-xs">
         <div className="flex items-center gap-2.5 text-slate-700 dark:text-slate-300">
           <span className="text-base" aria-hidden="true">☕</span>
