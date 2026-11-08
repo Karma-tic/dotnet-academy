@@ -10,6 +10,7 @@ export const siteConfig = {
   contactEmail: "hello@karmatix.in",
   contactUrl: "https://karmatix.in/contact",
   repoUrl: "https://github.com/Karma-tic/dotnet-academy",
+  portalUrl: "https://learn.karmatix.in",
   domain: "learn.karmatix.in",
   copyrightYear: 2026,
   trademarkDisclaimer: ".NET, C#, ASP.NET, Azure, Visual Studio and related names are trademarks of Microsoft Corporation. Karmatix .NET Academy is an independent educational resource and is not affiliated with or endorsed by Microsoft.",
