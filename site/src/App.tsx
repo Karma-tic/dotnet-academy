@@ -245,6 +245,7 @@ export function App() {
                   }}
                   onImport={importProgress}
                   onReset={resetProgress}
+                  onNavigate={navigateTo}
                 />
               ) : /* PAGE 2: /course or /curriculum (Curriculum Hub) */
               activeView === 'course' || activeView === 'curriculum' ? (
