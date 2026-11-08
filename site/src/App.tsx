@@ -270,6 +270,7 @@ export function App() {
                   isCompleted={isCompleted(currentLesson.slug)}
                   isBookmarked={isBookmarked(currentLesson.slug)}
                   savedNote={state.notes[currentLesson.slug] || ''}
+                  quizScore={state.quizScores[currentLesson.slug]}
                   onToggleComplete={() => toggleComplete(currentLesson.slug)}
                   onToggleBookmark={() => toggleBookmark(currentLesson.slug)}
                   onSaveNote={(note) => saveNote(currentLesson.slug, note)}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Menu, X, Award, PanelLeftClose, PanelLeft, Coffee } from 'lucide-react';
+import { Search, Menu, X, Award, PanelLeftClose, PanelLeft, Coffee, Calendar } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 import { siteConfig } from '../config/site';
 
@@ -133,6 +133,16 @@ export const Header: React.FC<HeaderProps> = ({
             <kbd className="hidden sm:inline-block rounded bg-slate-200/70 px-1.5 py-0.5 text-[10px] font-mono text-slate-600 dark:bg-slate-700 dark:text-slate-300">
               ⌘K
             </kbd>
+          </button>
+
+          {/* Study Planner Button */}
+          <button
+            onClick={() => onNavigate('planner')}
+            title="Study Planner"
+            className="hidden sm:flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
+          >
+            <Calendar className="h-3.5 w-3.5 text-violet-600 dark:text-violet-400" />
+            <span className="hidden lg:inline">Plan</span>
           </button>
 
           {/* Jargon Buster Trigger Button */}

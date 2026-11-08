@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle2, ChevronRight, ChevronDown, BookOpen, Layers, PanelLeftClose } from 'lucide-react';
+import { CheckCircle2, ChevronRight, ChevronDown, BookOpen, Layers, PanelLeftClose, Search } from 'lucide-react';
 
 export interface LessonMeta {
   slug: string;
@@ -38,12 +38,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
   // Find which module contains the current lesson and keep it open
   const currentModule = modules.find((m) => m.lessons.some((l) => l.slug === currentSlug))?.id ?? 0;
   const [openModules, setOpenModules] = useState<number[]>([currentModule]);
+  const [filterQuery, setFilterQuery] = useState('');
 
   const toggleModule = (modId: number) => {
     setOpenModules((prev) =>
       prev.includes(modId) ? prev.filter((id) => id !== modId) : [...prev, modId]
     );
   };
+
+  const allSidebarLessons = modules.flatMap((m) =>
+    m.lessons.map((l) => ({ ...l, moduleTitle: m.title }))
+  );
+
+  const filteredLessons = filterQuery.trim()
+    ? allSidebarLessons.filter(
+        (l) =>
+          l.title.toLowerCase().includes(filterQuery.toLowerCase()) ||
+          l.slug.toLowerCase().includes(filterQuery.toLowerCase()) ||
+          l.moduleTitle.toLowerCase().includes(filterQuery.toLowerCase())
+      )
+    : null;
 
   return (
     <>
@@ -81,8 +95,64 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </div>
 
+        {/* Sidebar Top Filter */}
+        <div className="border-b border-slate-200 p-3.5 dark:border-slate-800">
+          <div className="relative">
+            <Search className="absolute left-3 top-2.5 h-3.5 w-3.5 text-slate-400" />
+            <input
+              type="text"
+              value={filterQuery}
+              onChange={(e) => setFilterQuery(e.target.value)}
+              placeholder="Filter lessons..."
+              className="w-full rounded-xl border border-slate-200 bg-slate-50 pl-8 pr-3 py-1.5 text-xs text-slate-900 placeholder-slate-400 focus:border-violet-500 focus:outline-hidden dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+            />
+          </div>
+        </div>
+
         <nav className="flex-1 p-3 space-y-2">
-          {modules.map((mod) => {
+          {filteredLessons ? (
+            /* Filtered Flat List */
+            <div className="space-y-1">
+              <div className="px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                Matches ({filteredLessons.length})
+              </div>
+              {filteredLessons.map((lesson) => {
+                const isLessonDone = completedLessons.includes(lesson.slug);
+                const isActive = currentSlug === lesson.slug;
+
+                return (
+                  <button
+                    key={lesson.slug}
+                    onClick={() => {
+                      onSelectLesson(lesson.slug);
+                      if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+                        onClose();
+                      }
+                    }}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs transition text-left ${
+                      isActive
+                        ? 'bg-violet-50 font-bold text-violet-700 dark:bg-violet-950/50 dark:text-violet-300 ring-1 ring-violet-500/20'
+                        : 'text-slate-700 hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-slate-800'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 min-w-0 pr-2">
+                      {isLessonDone ? (
+                        <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-500" />
+                      ) : (
+                        <span className="w-4 h-4 rounded-full border border-slate-300 dark:border-slate-600 shrink-0" />
+                      )}
+                      <span className="truncate">{lesson.title}</span>
+                    </div>
+                    <span className="text-[10px] text-slate-400 font-mono shrink-0">
+                      M{lesson.module}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            /* Full Modules Accordion */
+            modules.map((mod) => {
             const isModuleOpen = openModules.includes(mod.id);
             const modCompletedCount = mod.lessons.filter((l) =>
               completedLessons.includes(l.slug)
@@ -162,7 +232,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 )}
               </div>
             );
-          })}
+          }))}
         </nav>
 
         {/* Learning Support Hub */}
