@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en-IN" class="dark">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
-    <title>Karmatix .NET Academy | Learn .NET the clear way.</title>
-    <meta name="title" content="Karmatix .NET Academy | Learn .NET the clear way." />
-    <meta name="description" content="Comprehensive .NET 10 and C# 14 engineering course covering clean architecture, ASP.NET Core APIs, Entity Framework Core, Docker, and interview preparation." />
-    <meta name="theme-color" content="#7C3AED" />
+    <title>.NET roadmap and practice | Karmatix .NET Academy</title>
+    <meta name="title" content=".NET roadmap and practice | Karmatix .NET Academy" />
+    <meta name="description" content="The complete .NET and C# roadmap: every skill you need, where to learn it, what to build, plus 16 tested sample projects, interview questions and cheat sheets." />
+    <meta name="theme-color" content="#121110" />
     <meta name="keywords" content=".NET 10, C# 14, ASP.NET Core, Entity Framework Core, Clean Architecture, Docker, Karmatix .NET Academy" />
     <meta name="author" content="Karmatix (https://karmatix.in)" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://karma-tic.github.io/dotnet-academy/" />
-    <meta property="og:title" content="Karmatix .NET Academy | Learn .NET the clear way." />
-    <meta property="og:description" content="Comprehensive .NET 10 and C# 14 engineering course covering clean architecture, ASP.NET Core APIs, Entity Framework Core, Docker, and interview preparation." />
+    <meta property="og:title" content=".NET roadmap and practice | Karmatix .NET Academy" />
+    <meta property="og:description" content="The complete .NET and C# roadmap: every skill you need, where to learn it, what to build, plus 16 tested sample projects, interview questions and cheat sheets." />
     <meta property="og:image" content="https://karma-tic.github.io/dotnet-academy/brand/og-card.png" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://karma-tic.github.io/dotnet-academy/" />
-    <meta property="twitter:title" content="Karmatix .NET Academy | Learn .NET the clear way." />
-    <meta property="twitter:description" content="Comprehensive .NET 10 and C# 14 engineering course covering clean architecture, ASP.NET Core APIs, Entity Framework Core, Docker, and interview preparation." />
+    <meta property="twitter:title" content=".NET roadmap and practice | Karmatix .NET Academy" />
+    <meta property="twitter:description" content="The complete .NET and C# roadmap: every skill you need, where to learn it, what to build, plus 16 tested sample projects, interview questions and cheat sheets." />
     <meta property="twitter:image" content="https://karma-tic.github.io/dotnet-academy/brand/og-card.png" />
 
     <!-- Structured Data (Schema.org Course) -->
@@ -49,22 +49,9 @@
     }
     </script>
 
-    <!-- Zero-flash Dark Mode Theme Script -->
-    <script>
-      (function() {
-        try {
-          const stored = localStorage.getItem('karmatix-dotnet:v1:theme');
-          const isDark = stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
-          if (isDark) {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-        } catch (e) {}
-      })();
-    </script>
+    <script>document.documentElement.classList.add('dark');</script>
   </head>
-  <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 antialiased min-h-screen selection:bg-violet-500 selection:text-white transition-colors duration-200">
+  <body class="bg-ink text-neutral-100 antialiased min-h-screen">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

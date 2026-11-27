@@ -1,7 +1,6 @@
-import React from 'react';
-import { Search, Menu, X, Award, PanelLeftClose, PanelLeft, Coffee, Calendar } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
-import { siteConfig } from '../config/site';
+import React, { useEffect, useState } from 'react';
+import { Search, Menu, X, PanelLeftClose, PanelLeft, Calendar, ArrowUpRight } from 'lucide-react';
+import { roadmap } from '../content/roadmap.generated';
 
 export interface HeaderProps {
   onOpenSearch: () => void;
@@ -13,174 +12,117 @@ export interface HeaderProps {
   onOpenJargon?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({
-  onOpenSearch,
-  onToggleSidebar,
-  isSidebarOpen,
-  activeTab,
-  onNavigate,
-  progressPercent,
-  onOpenJargon,
-}) => {
-  const handleOpenJargon = () => {
-    if (onOpenJargon) {
-      onOpenJargon();
-    } else {
-      window.dispatchEvent(new CustomEvent('open-jargon-modal'));
-    }
-  };
+const STORAGE = 'karmatix-dotnet:v1:roadmap';
+const TOTAL = roadmap.stages.reduce((n, s) => n + s.topics.length, 0);
+const readDone = () => { try { return (JSON.parse(localStorage.getItem(STORAGE) || '[]') as string[]).length; } catch { return 0; } };
+
+const primary = [
+  { id: 'home', label: 'Roadmap' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'practice', label: 'Daily practice' },
+  { id: 'exam-prep', label: 'Interview prep' },
+  { id: 'cheatsheets', label: 'Cheat sheets' },
+  { id: 'resources', label: 'Resources' },
+];
+const secondary = [
+  { id: 'course', label: 'Notes' },
+  { id: 'certifications', label: 'Certifications' },
+  { id: 'free-tiers', label: 'Free cloud tiers' },
+  { id: 'glossary', label: 'Glossary' },
+  { id: 'get-help', label: 'Stuck?' },
+];
+const ALIASES: Record<string, string[]> = {
+  course: ['course', 'curriculum', 'lesson'], practice: ['practice', 'daily-practice'], 'exam-prep': ['exam-prep', 'career'],
+};
+
+export const Header: React.FC<HeaderProps> = ({ onOpenSearch, onToggleSidebar, isSidebarOpen, activeTab, onNavigate, onOpenJargon }) => {
+  const [open, setOpen] = useState(false);
+  const [done, setDone] = useState(readDone);
+  useEffect(() => {
+    const on = (e: Event) => setDone((e as CustomEvent).detail.done);
+    window.addEventListener('kx-roadmap-progress', on);
+    return () => window.removeEventListener('kx-roadmap-progress', on);
+  }, []);
+  useEffect(() => { setOpen(false); setDone(readDone()); }, [activeTab]);
+  useEffect(() => {
+    const k = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', k);
+    return () => window.removeEventListener('keydown', k);
+  }, []);
+
+  const pct = Math.round((done / (TOTAL || 1)) * 100);
+  const isActive = (id: string) => activeTab === id || (ALIASES[id] || []).includes(activeTab);
+  const go = (id: string) => { setOpen(false); onNavigate(id); };
+  const jargon = () => (onOpenJargon ? onOpenJargon() : window.dispatchEvent(new CustomEvent('open-jargon-modal')));
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        {/* Left: Hamburger / Sidebar toggle + Logo */}
-        <div className="flex items-center gap-3 shrink-0 mr-2 sm:mr-4">
-          {activeTab === 'lesson' ? (
-            <button
-              onClick={onToggleSidebar}
-              className="p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:ring-2 focus:ring-violet-500 flex items-center justify-center"
-              aria-label={isSidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
-              title={isSidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
-            >
-              {isSidebarOpen ? (
-                <PanelLeftClose className="w-5 h-5 text-violet-600 dark:text-violet-400" />
-              ) : (
-                <PanelLeft className="w-5 h-5" />
-              )}
-            </button>
-          ) : (
-            <button
-              onClick={onToggleSidebar}
-              className="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:ring-2 focus:ring-violet-500"
-              aria-label="Toggle navigation menu"
-            >
-              {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+    <header className="sticky top-0 z-40 w-full border-b border-slate-800 bg-slate-950/85 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
+        <div className="flex shrink-0 items-center gap-2">
+          {activeTab === 'lesson' && (
+            <button onClick={onToggleSidebar} className="hidden h-10 w-10 items-center justify-center rounded-full border border-slate-800 text-slate-400 transition-colors hover:text-slate-100 lg:inline-flex" aria-label={isSidebarOpen ? 'Hide notes list' : 'Show notes list'}>
+              {isSidebarOpen ? <PanelLeftClose className="h-4 w-4" /> : <PanelLeft className="h-4 w-4" />}
             </button>
           )}
-
-          <button
-            onClick={() => onNavigate('home')}
-            className="flex items-center gap-2.5 text-left focus:outline-none focus:ring-2 focus:ring-violet-500 rounded-lg p-1 shrink-0"
-          >
-            <img src={`${import.meta.env.BASE_URL}brand/logo.svg`} alt="Karmatix Logo" className="w-8 h-8 rounded-lg shadow-xs" />
-            <div>
-              <span className="font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
-                Karmatix <span className="text-violet-600 dark:text-violet-400 font-semibold text-sm">.NET</span>
-              </span>
-              <p className="hidden md:block text-[11px] text-slate-500 dark:text-slate-400 -mt-1 leading-none font-medium">
-                {siteConfig.tagline}
-              </p>
-            </div>
-          </button>
-
-          {/* Switch back to Karmatix Learning Portal */}
-          <a
-            href={siteConfig.portalUrl || "https://learn.karmatix.in"}
-            className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-mono font-medium rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 hover:border-amber-500/50 hover:text-amber-500 transition-colors"
-            title="Return to Karmatix Learning Portal (learn.karmatix.in)"
-          >
-            <span className="text-amber-500 text-[10px]">◀</span>
-            <span>All Tracks</span>
+          <a href="#/home" onClick={(e) => { e.preventDefault(); go('home'); }} className="group inline-flex min-h-11 items-center gap-2 rounded-md" aria-label=".NET roadmap, home">
+            <svg viewBox="0 0 24 24" className="h-[18px] w-[18px] text-ember transition-transform duration-500 group-hover:rotate-90" aria-hidden="true">
+              <g stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M12 3v18" /><path d="M4.2 7.5l15.6 9" /><path d="M4.2 16.5l15.6-9" /></g>
+            </svg>
+            <span className="font-mono text-[15px] font-medium tracking-tight text-slate-100">karmatix</span>
+            <span className="font-mono text-[15px] text-slate-500">/dotnet</span>
           </a>
         </div>
 
-        {/* Center: Main Navigation Links */}
-        <nav className="hidden xl:flex items-center space-x-1 text-sm font-medium">
-          {[
-            { id: 'home', label: 'Dashboard' },
-            { id: 'course', label: 'Curriculum' },
-            { id: 'roadmap', label: 'Roadmap' },
-            { id: 'practice', label: 'Practice Lab' },
-            { id: 'exam-prep', label: 'Exam Prep' },
-            { id: 'resources', label: 'Resources' },
-            { id: 'cheatsheets', label: 'Cheat Sheets' },
-            { id: 'glossary', label: 'Glossary' },
-          ].map((item) => {
-            const isActive =
-              activeTab === item.id ||
-              (item.id === 'home' && (activeTab === 'home' || activeTab === 'dashboard')) ||
-              (item.id === 'course' && (activeTab === 'course' || activeTab === 'curriculum')) ||
-              (item.id === 'roadmap' && (activeTab === 'roadmap' || activeTab === 'learning-paths')) ||
-              (item.id === 'practice' && (activeTab === 'practice' || activeTab === 'daily-practice')) ||
-              (item.id === 'exam-prep' && (activeTab === 'exam-prep' || activeTab === 'career'));
-
-            return (
-              <button
-                key={item.id}
-                onClick={() => onNavigate(item.id)}
-                className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap text-xs font-semibold transition ${
-                  isActive
-                    ? 'text-violet-600 dark:text-violet-400 bg-violet-50/80 dark:bg-violet-950/40 font-semibold'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800/60'
-                }`}
-              >
-                {item.label}
-              </button>
-            );
-          })}
+        <nav className="hidden items-center gap-0.5 xl:flex" aria-label="Main">
+          {primary.map((l) => (
+            <button key={l.id} onClick={() => go(l.id)} aria-current={isActive(l.id) ? 'page' : undefined}
+              className={`inline-flex min-h-10 items-center whitespace-nowrap rounded-full px-3 text-sm font-medium transition-colors ${isActive(l.id) ? 'bg-slate-900 text-slate-100' : 'text-slate-400 hover:bg-slate-900 hover:text-slate-100'}`}>
+              {l.label}
+            </button>
+          ))}
         </nav>
 
-        {/* Right: Search, Jargon, Progress, Theme, Ko-fi */}
-        <div className="flex items-center gap-2.5 shrink-0">
-          {/* Quick Search Button */}
-          <button
-            onClick={onOpenSearch}
-            className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-1.5 text-xs text-slate-500 transition hover:border-slate-300 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:border-slate-600"
-            aria-label="Open search dialog"
-          >
-            <Search className="h-3.5 w-3.5 text-slate-400" />
-            <span className="hidden md:inline">Search...</span>
-            <kbd className="hidden sm:inline-block rounded bg-slate-200/70 px-1.5 py-0.5 text-[10px] font-mono text-slate-600 dark:bg-slate-700 dark:text-slate-300">
-              ⌘K
-            </kbd>
+        <div className="flex shrink-0 items-center gap-2">
+          <button onClick={onOpenSearch} className="inline-flex h-10 items-center gap-2 rounded-full border border-slate-800 px-3 text-sm text-slate-400 transition-colors hover:border-slate-700 hover:text-slate-100" aria-label="Search">
+            <Search className="h-4 w-4" /><span className="hidden md:inline">Search</span>
+            <kbd className="hidden rounded bg-slate-800 px-1.5 py-0.5 font-mono text-[10px] text-slate-400 lg:inline-block">⌘K</kbd>
           </button>
-
-          {/* Study Planner Button */}
-          <button
-            onClick={() => onNavigate('planner')}
-            title="Study Planner"
-            className="hidden sm:flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-          >
-            <Calendar className="h-3.5 w-3.5 text-violet-600 dark:text-violet-400" />
-            <span className="hidden lg:inline">Plan</span>
+          <button onClick={() => go('planner')} className="hidden h-10 items-center gap-1.5 rounded-full border border-slate-800 px-3 text-sm text-slate-400 transition-colors hover:border-slate-700 hover:text-slate-100 sm:inline-flex" aria-label="Study planner">
+            <Calendar className="h-4 w-4 text-ember" /><span className="hidden lg:inline">Plan</span>
           </button>
-
-          {/* Jargon Buster Trigger Button */}
-          <button
-            onClick={handleOpenJargon}
-            className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded-xl bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/30 hover:bg-amber-500/20 transition-colors"
-            title="Open Jargon Buster Dictionary"
-          >
-            <span>🌶️</span>
-            <span>Jargon</span>
+          <button onClick={() => go('home')} className="hidden h-10 items-center gap-2 rounded-full border border-ember/40 bg-ember/10 px-3 text-sm font-medium text-slate-100 transition-colors hover:border-ember/70 md:inline-flex" title={`${done} of ${TOTAL} roadmap skills done`}>
+            <span className="relative h-1.5 w-12 overflow-hidden rounded-full bg-slate-800"><span className="absolute inset-y-0 left-0 rounded-full bg-ember" style={{ width: `${pct}%` }} /></span>
+            {pct}%
           </button>
-
-          {/* Progress Pill matching Flutter */}
-          <button
-            onClick={() => onNavigate('home')}
-            className="hidden sm:flex items-center gap-1.5 rounded-xl border border-violet-200/80 bg-violet-50/70 px-3 py-1 text-xs font-semibold text-violet-700 transition hover:bg-violet-100 dark:border-violet-900/60 dark:bg-violet-950/40 dark:text-violet-300"
-            title={`${progressPercent}% completed`}
-          >
-            <Award className="h-3.5 w-3.5 text-violet-600 dark:text-violet-400" />
-            <span>{progressPercent}%</span>
+          <button onClick={() => setOpen((o) => !o)} className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-800 text-slate-400 transition-colors hover:border-slate-700 hover:text-slate-100 xl:hidden" aria-expanded={open} aria-controls="kx-mobile-nav" aria-label={open ? 'Close menu' : 'Open menu'}>
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-
-          {/* Ko-fi Chai Button matching Flutter */}
-          <a
-            href="https://ko-fi.com/karmatix"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Buy me a chai on Ko-fi (opens in new tab)"
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-xl border border-amber-200/90 bg-amber-50/80 px-2.5 py-1.5 text-xs font-bold text-amber-800 transition hover:bg-amber-100 hover:border-amber-300 dark:border-amber-900/60 dark:bg-amber-950/40 dark:text-amber-300 dark:hover:bg-amber-950/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
-          >
-            <Coffee className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
-            <span>Chai ☕</span>
-          </a>
-
-          {/* Theme Toggle matching Flutter */}
-          <ThemeToggle />
         </div>
       </div>
+
+      <div className="hidden border-t border-slate-900 xl:block">
+        <nav className="mx-auto flex max-w-7xl items-center gap-1 px-4 py-1.5 text-xs sm:px-6" aria-label="More">
+          <span className="mr-1 text-slate-600">More:</span>
+          {secondary.map((l) => (
+            <button key={l.id} onClick={() => go(l.id)} className={`inline-flex min-h-8 items-center rounded-full px-2.5 transition-colors ${isActive(l.id) ? 'text-slate-100' : 'text-slate-500 hover:text-slate-100'}`}>{l.label}</button>
+          ))}
+          <button onClick={jargon} className="inline-flex min-h-8 items-center rounded-full px-2.5 text-slate-500 transition-colors hover:text-slate-100">Jargon buster</button>
+          <a href="https://learn.karmatix.in/roadmaps/" className="ml-auto inline-flex min-h-8 items-center gap-1 rounded-full px-2.5 text-slate-500 transition-colors hover:text-slate-100">All stack roadmaps on Karmatix Learn <ArrowUpRight className="h-3 w-3" /></a>
+        </nav>
+      </div>
+
+      {open && (
+        <nav id="kx-mobile-nav" className="border-t border-slate-800 bg-slate-900 px-4 pb-5 pt-2 xl:hidden" aria-label="Mobile">
+          <ul className="flex flex-col">
+            {[...primary, ...secondary, { id: 'planner', label: 'Study planner' }].map((l) => (
+              <li key={l.id}>
+                <button onClick={() => go(l.id)} className={`flex min-h-12 w-full items-center border-b border-slate-800 text-left text-base font-medium ${isActive(l.id) ? 'text-ember' : 'text-slate-100'}`}>{l.label}</button>
+              </li>
+            ))}
+            <li><a href="https://learn.karmatix.in/roadmaps/" className="flex min-h-12 items-center justify-between text-base text-slate-400">All stack roadmaps <ArrowUpRight className="h-4 w-4" /></a></li>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 };

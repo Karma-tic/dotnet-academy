@@ -58,7 +58,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Background subtle grid
-      ctx.strokeStyle = '#202938';
+      ctx.strokeStyle = '#2b2926';
       ctx.lineWidth = 1;
       const gridSize = 28;
       for (let x = 0; x < canvas.width; x += gridSize) {
@@ -76,14 +76,14 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
 
       // Three Architectural Planes (Isometric Perspective)
       const planes = [
-        { id: 1, y: 70, label: 'L1: Ingress & TLS Termination', color: activeLayer === 1 ? '#f59e0b' : '#334155' },
-        { id: 2, y: 175, label: 'L2: Memory & Worker Concurrency', color: activeLayer === 2 ? '#f59e0b' : '#334155' },
-        { id: 3, y: 280, label: 'L3: Write Ahead Log & Disk Flush', color: activeLayer === 3 ? '#f59e0b' : '#334155' },
+        { id: 1, y: 70, label: 'L1: Ingress & TLS Termination', color: activeLayer === 1 ? '#ff6433' : '#3a3733' },
+        { id: 2, y: 175, label: 'L2: Memory & Worker Concurrency', color: activeLayer === 2 ? '#ff6433' : '#3a3733' },
+        { id: 3, y: 280, label: 'L3: Write Ahead Log & Disk Flush', color: activeLayer === 3 ? '#ff6433' : '#3a3733' },
       ];
 
       planes.forEach((plane) => {
         // Plane platform
-        ctx.fillStyle = plane.id === activeLayer ? '#19202c' : '#11151c';
+        ctx.fillStyle = plane.id === activeLayer ? '#1c1b19' : '#171614';
         ctx.strokeStyle = plane.color;
         ctx.lineWidth = plane.id === activeLayer ? 2 : 1;
 
@@ -93,25 +93,25 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
         ctx.stroke();
 
         // Platform label
-        ctx.fillStyle = plane.id === activeLayer ? '#f8fafc' : '#94a3b8';
+        ctx.fillStyle = plane.id === activeLayer ? '#f4f1ec' : '#b9b2a8';
         ctx.font = '600 13px JetBrains Mono, monospace';
         ctx.fillText(plane.label, 56, plane.y + 26);
 
         // Sub status line
-        ctx.fillStyle = plane.id === activeLayer ? '#f59e0b' : '#64748b';
+        ctx.fillStyle = plane.id === activeLayer ? '#ff6433' : '#8f887f';
         ctx.font = '500 11px JetBrains Mono, monospace';
         const sub = plane.id === 1 ? 'TCP Socket Flow' : plane.id === 2 ? 'L1/L2 Cache Prefetch' : 'Direct IO Append';
         ctx.fillText(sub, 56, plane.y + 48);
 
         // Active node indicator
-        ctx.fillStyle = plane.id === activeLayer ? '#22c55e' : '#475569';
+        ctx.fillStyle = plane.id === activeLayer ? '#22c55e' : '#5a554f';
         ctx.beginPath();
         ctx.arc(canvas.width - 64, plane.y + 34, 4, 0, Math.PI * 2);
         ctx.fill();
       });
 
       // Data Trace Connecting Lines
-      ctx.strokeStyle = '#f59e0b';
+      ctx.strokeStyle = '#ff6433';
       ctx.lineWidth = 1.5;
       ctx.setLineDash([4, 4]);
 
@@ -128,8 +128,8 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
       packetOffset = (packetOffset + 1.5) % 280;
       const packetY = 70 + packetOffset;
       if (packetY < 348) {
-        ctx.fillStyle = '#f59e0b';
-        ctx.shadowColor = '#f59e0b';
+        ctx.fillStyle = '#ff6433';
+        ctx.shadowColor = '#ff6433';
         ctx.shadowBlur = 8;
         ctx.beginPath();
         ctx.arc(canvas.width / 2, packetY, 3.5, 0, Math.PI * 2);
@@ -150,19 +150,19 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
   const currentTelemetry = LAYER_TELEMETRY[activeLayer];
 
   return (
-    <section id="hero" className="relative pt-20 pb-16 md:pt-28 md:pb-24 border-b border-[#202938] overflow-hidden">
+    <section id="hero" className="relative pt-20 pb-16 md:pt-28 md:pb-24 border-b border-[#2b2926] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column (55% budget: max 4 text elements, <= 2 lines headline, <= 20 words subtext) */}
           <div className="lg:col-span-7 min-w-0 space-y-6">
             {/* 1. Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#11151c] border border-[#202938] text-[11px] sm:text-xs font-mono font-medium text-[#f59e0b] max-w-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-pulse shrink-0"></span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-[11px] sm:text-xs font-mono font-medium text-[#ff6433] max-w-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6433] animate-pulse shrink-0"></span>
               <span className="truncate">SYSTEMS FIRST · ZERO HAND-WAVING</span>
             </div>
 
             {/* 2. Headline (Strictly max 2 lines on desktop) */}
-            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#f8fafc] leading-[1.15] break-words">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#f4f1ec] leading-[1.15] break-words">
               Engineering education<br className="sm:hidden" /> the clear way.
             </h1>
 
@@ -175,7 +175,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
               <button
                 onClick={onExploreClick}
-                className="w-full sm:w-auto px-6 py-3 bg-[#f59e0b] hover:bg-[#fbbf24] text-black font-semibold text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-3 bg-[#ff6433] hover:bg-[#ff8a5c] text-black font-semibold text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center justify-center gap-2"
               >
                 <span>Explore Curriculum</span>
                 <ArrowRight className="w-4 h-4" />
@@ -185,7 +185,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
                 href="https://wa.me/919999999999?text=Hi%20Karmatix%2C%20I%20want%20to%20learn%20more%20about%20the%20engineering%20tracks."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-5 py-3 bg-[#11151c] hover:bg-[#19202c] border border-[#202938] hover:border-[#334155] text-[#f8fafc] text-sm font-medium rounded-full transition-colors min-h-[44px] flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-5 py-3 bg-[#171614] hover:bg-[#1c1b19] border border-[#2b2926] hover:border-[#3a3733] text-[#f4f1ec] text-sm font-medium rounded-full transition-colors min-h-[44px] flex items-center justify-center gap-2"
               >
                 <MessageSquare className="w-4 h-4 text-[#22c55e]" />
                 <span className="sm:hidden">Chat on WhatsApp (+91)</span>
@@ -195,13 +195,13 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
 
             {/* Trust Micro-Row */}
             <div className="pt-4 flex flex-wrap items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs text-slate-300 font-mono">
-              <span className="px-2.5 py-1 rounded-full bg-[#11151c] border border-[#202938]">
+              <span className="px-2.5 py-1 rounded-full bg-[#171614] border border-[#2b2926]">
                 Go / Rust Internals
               </span>
-              <span className="px-2.5 py-1 rounded-full bg-[#11151c] border border-[#202938]">
+              <span className="px-2.5 py-1 rounded-full bg-[#171614] border border-[#2b2926]">
                 Distributed Systems
               </span>
-              <span className="px-2.5 py-1 rounded-full bg-[#11151c] border border-[#202938]">
+              <span className="px-2.5 py-1 rounded-full bg-[#171614] border border-[#2b2926]">
                 100% Real Codebases
               </span>
             </div>
@@ -209,18 +209,18 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
 
           {/* Right Column: Interactive Glass Schematic Canvas */}
           <div className="lg:col-span-5 min-w-0 max-w-full">
-            <div className="p-3 sm:p-5 rounded-xl border border-[#202938] bg-[#11151c] shadow-inset-highlight space-y-4 overflow-hidden w-full max-w-full">
+            <div className="p-3 sm:p-5 rounded-xl border border-[#2b2926] bg-[#171614] shadow-inset-highlight space-y-4 overflow-hidden w-full max-w-full">
               {/* Header Bar */}
-              <div className="flex items-center justify-between border-b border-[#202938] pb-3 text-xs text-[#94a3b8]">
+              <div className="flex items-center justify-between border-b border-[#2b2926] pb-3 text-xs text-[#b9b2a8]">
                 <div className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-[#f59e0b]" />
-                  <span className="font-mono font-medium text-[#f8fafc]">SYSTEM SCHEMATIC</span>
+                  <Activity className="w-4 h-4 text-[#ff6433]" />
+                  <span className="font-mono font-medium text-[#f4f1ec]">SYSTEM SCHEMATIC</span>
                 </div>
                 <span className="font-mono text-[11px] text-[#22c55e]">INTERACTIVE ENGINE</span>
               </div>
 
               {/* Layer Selector Tabs */}
-              <div className="grid grid-cols-3 gap-1 sm:gap-1.5 p-1 bg-[#090b0e] border border-[#202938] rounded-lg">
+              <div className="grid grid-cols-3 gap-1 sm:gap-1.5 p-1 bg-[#121110] border border-[#2b2926] rounded-lg">
                 {[
                   { id: 1, label: 'L1: Ingress', short: 'L1', icon: Network },
                   { id: 2, label: 'L2: Memory', short: 'L2', icon: Cpu },
@@ -234,8 +234,8 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
                       onClick={() => setActiveLayer(item.id)}
                       className={`py-2 px-1 sm:px-2 rounded font-mono text-xs flex items-center justify-center gap-1 sm:gap-1.5 transition-colors min-h-[44px] ${
                         isActive
-                          ? 'bg-[#19202c] text-[#f59e0b] border border-[#334155]'
-                          : 'text-[#94a3b8] hover:text-[#f8fafc]'
+                          ? 'bg-[#1c1b19] text-[#ff6433] border border-[#3a3733]'
+                          : 'text-[#b9b2a8] hover:text-[#f4f1ec]'
                       }`}
                     >
                       <Icon className="w-3.5 h-3.5 shrink-0" />
@@ -247,7 +247,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
               </div>
 
               {/* Canvas Viewport */}
-              <div className="relative rounded-lg overflow-hidden border border-[#202938] bg-[#090b0e] w-full max-w-full">
+              <div className="relative rounded-lg overflow-hidden border border-[#2b2926] bg-[#121110] w-full max-w-full">
                 <canvas
                   ref={canvasRef}
                   width={420}
@@ -258,14 +258,14 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
               </div>
 
               {/* Live Telemetry Box */}
-              <div className="p-3.5 rounded-lg bg-[#090b0e] border border-[#202938] space-y-1.5 font-mono text-xs overflow-hidden">
-                <div className="flex items-center justify-between text-[#f8fafc] font-semibold border-b border-[#202938]/60 pb-1">
+              <div className="p-3.5 rounded-lg bg-[#121110] border border-[#2b2926] space-y-1.5 font-mono text-xs overflow-hidden">
+                <div className="flex items-center justify-between text-[#f4f1ec] font-semibold border-b border-[#2b2926]/60 pb-1">
                   <span className="truncate mr-2">{currentTelemetry.title}</span>
-                  <span className="text-[#f59e0b] shrink-0 text-[11px] sm:text-xs">latency: {currentTelemetry.latency}</span>
+                  <span className="text-[#ff6433] shrink-0 text-[11px] sm:text-xs">latency: {currentTelemetry.latency}</span>
                 </div>
-                <p className="text-[#94a3b8] text-[11px] truncate">{currentTelemetry.metric1}</p>
-                <p className="text-[#94a3b8] text-[11px] truncate">{currentTelemetry.metric2}</p>
-                <p className="text-[#64748b] text-[11px] truncate">{currentTelemetry.metric3}</p>
+                <p className="text-[#b9b2a8] text-[11px] truncate">{currentTelemetry.metric1}</p>
+                <p className="text-[#b9b2a8] text-[11px] truncate">{currentTelemetry.metric2}</p>
+                <p className="text-[#8f887f] text-[11px] truncate">{currentTelemetry.metric3}</p>
               </div>
             </div>
           </div>

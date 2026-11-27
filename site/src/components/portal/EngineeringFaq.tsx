@@ -33,18 +33,18 @@ export const EngineeringFaq: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="py-20 border-b border-[#202938] bg-[#090b0e]">
+    <section id="faq" className="py-20 border-b border-[#2b2926] bg-[#121110]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="space-y-3 text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#11151c] border border-[#202938] text-xs font-mono font-medium text-[#f59e0b]">
-            <HelpCircle className="w-3.5 h-3.5 text-[#f59e0b]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
+            <HelpCircle className="w-3.5 h-3.5 text-[#ff6433]" />
             <span>DIRECT ANSWERS</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f8fafc]">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
             Engineering Directness FAQ
           </h2>
-          <p className="text-sm sm:text-base text-[#94a3b8] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#b9b2a8] leading-relaxed">
             Straight answers to common technical, curriculum, and admissions questions. Zero sales fluff.
           </p>
         </div>
@@ -56,23 +56,23 @@ export const EngineeringFaq: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="rounded-xl border border-[#202938] bg-[#11151c] shadow-inset-highlight overflow-hidden transition-colors"
+                className="rounded-xl border border-[#2b2926] bg-[#171614] shadow-inset-highlight overflow-hidden transition-colors"
               >
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-[#f8fafc] hover:text-[#f59e0b] transition-colors min-h-[52px]"
+                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-[#f4f1ec] hover:text-[#ff6433] transition-colors min-h-[52px]"
                   aria-expanded={isOpen}
                 >
                   <span>{faq.q}</span>
                   <ChevronDown
-                    className={`w-5 h-5 text-[#94a3b8] shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'transform rotate-180 text-[#f59e0b]' : ''
+                    className={`w-5 h-5 text-[#b9b2a8] shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'transform rotate-180 text-[#ff6433]' : ''
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-[#94a3b8] leading-relaxed border-t border-[#202938]/60">
+                  <div className="px-6 pb-5 pt-1 text-xs sm:text-sm text-[#b9b2a8] leading-relaxed border-t border-[#2b2926]/60">
                     <p>{faq.a}</p>
                   </div>
                 )}

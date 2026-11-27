@@ -119,19 +119,19 @@ export const PinnedDissection: React.FC = () => {
     <section
       id="mental-models"
       ref={containerRef}
-      className="relative min-h-[100dvh] py-16 lg:py-0 flex items-center border-b border-[#202938] bg-[#090b0e]"
+      className="relative min-h-[100dvh] py-16 lg:py-0 flex items-center border-b border-[#2b2926] bg-[#121110]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
         {/* Section Header */}
         <div className="mb-10 space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#11151c] border border-[#202938] text-xs font-mono font-medium text-[#f59e0b]">
-            <Radio className="w-3.5 h-3.5 text-[#f59e0b]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
+            <Radio className="w-3.5 h-3.5 text-[#ff6433]" />
             <span>SYSTEMS DISSECTION</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f8fafc]">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
             Interactive Systems Scrollytelling
           </h2>
-          <p className="text-sm sm:text-base text-[#94a3b8] max-w-xl">
+          <p className="text-sm sm:text-base text-[#b9b2a8] max-w-xl">
             Trace a single network packet through the kernel ingress boundary, across memory buffers, and down to durable disk sync.
           </p>
         </div>
@@ -148,8 +148,8 @@ export const PinnedDissection: React.FC = () => {
                   onClick={() => setActiveChapterIndex(idx)}
                   className={`px-3 py-1.5 rounded-full font-mono text-xs transition-colors min-h-[36px] flex items-center gap-1.5 ${
                     activeChapterIndex === idx
-                      ? 'bg-[#f59e0b] text-black font-semibold'
-                      : 'bg-[#11151c] border border-[#202938] text-[#94a3b8] hover:text-[#f8fafc]'
+                      ? 'bg-[#ff6433] text-black font-semibold'
+                      : 'bg-[#171614] border border-[#2b2926] text-[#b9b2a8] hover:text-[#f4f1ec]'
                   }`}
                 >
                   <span>Stage {c.id}</span>
@@ -157,20 +157,20 @@ export const PinnedDissection: React.FC = () => {
               ))}
             </div>
 
-            <div className="p-6 rounded-xl border border-[#202938] bg-[#11151c] shadow-inset-highlight space-y-4">
-              <span className="font-mono text-xs font-bold text-[#f59e0b] tracking-wider block">
+            <div className="p-6 rounded-xl border border-[#2b2926] bg-[#171614] shadow-inset-highlight space-y-4">
+              <span className="font-mono text-xs font-bold text-[#ff6433] tracking-wider block">
                 {activeChapter.badge}
               </span>
-              <h3 className="text-2xl font-bold text-[#f8fafc] leading-snug">
+              <h3 className="text-2xl font-bold text-[#f4f1ec] leading-snug">
                 {activeChapter.title}
               </h3>
-              <p className="text-sm text-[#94a3b8] leading-relaxed">
+              <p className="text-sm text-[#b9b2a8] leading-relaxed">
                 {activeChapter.summary}
               </p>
 
-              <div className="space-y-2 pt-2 border-t border-[#202938]">
+              <div className="space-y-2 pt-2 border-t border-[#2b2926]">
                 {activeChapter.details.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2 text-xs text-[#f8fafc]">
+                  <div key={idx} className="flex items-start gap-2 text-xs text-[#f4f1ec]">
                     <span className="text-[#22c55e] mt-0.5">✓</span>
                     <span>{item}</span>
                   </div>
@@ -178,11 +178,11 @@ export const PinnedDissection: React.FC = () => {
               </div>
 
               {/* Live Spec Metrics */}
-              <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[#202938]">
+              <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[#2b2926]">
                 {activeChapter.specs.map((s, idx) => (
-                  <div key={idx} className="p-2 rounded bg-[#090b0e] border border-[#202938] text-center font-mono">
-                    <span className="text-[10px] text-[#64748b] block">{s.label}</span>
-                    <span className="text-xs font-bold text-[#f59e0b]">{s.val}</span>
+                  <div key={idx} className="p-2 rounded bg-[#121110] border border-[#2b2926] text-center font-mono">
+                    <span className="text-[10px] text-[#8f887f] block">{s.label}</span>
+                    <span className="text-xs font-bold text-[#ff6433]">{s.val}</span>
                   </div>
                 ))}
               </div>
@@ -191,22 +191,22 @@ export const PinnedDissection: React.FC = () => {
 
           {/* Right Column: Visual Stage Inspection Canvas Pane */}
           <div className="col-span-6">
-            <div className="p-6 rounded-xl border border-[#202938] bg-[#11151c] shadow-inset-highlight space-y-5">
-              <div className="flex items-center justify-between border-b border-[#202938] pb-3 text-xs font-mono">
-                <span className="text-[#94a3b8]">KERNEL EXECUTION TRACE</span>
+            <div className="p-6 rounded-xl border border-[#2b2926] bg-[#171614] shadow-inset-highlight space-y-5">
+              <div className="flex items-center justify-between border-b border-[#2b2926] pb-3 text-xs font-mono">
+                <span className="text-[#b9b2a8]">KERNEL EXECUTION TRACE</span>
                 <span className="text-[#22c55e]">STATUS: REALTIME SYNCHRONIZED</span>
               </div>
 
               {/* Dynamic Visual Stage Container */}
-              <div className="p-6 rounded-lg bg-[#090b0e] border border-[#202938] min-h-[300px] flex flex-col justify-center items-center text-center space-y-4">
+              <div className="p-6 rounded-lg bg-[#121110] border border-[#2b2926] min-h-[300px] flex flex-col justify-center items-center text-center space-y-4">
                 {activeChapterIndex === 0 && (
                   <div className="space-y-3 w-full">
-                    <Server className="w-12 h-12 text-[#f59e0b] mx-auto animate-pulse" />
-                    <p className="font-mono text-sm font-bold text-[#f8fafc]">epoll_wait() Event Multiplexing</p>
-                    <p className="text-xs text-[#94a3b8] max-w-sm mx-auto">
+                    <Server className="w-12 h-12 text-[#ff6433] mx-auto animate-pulse" />
+                    <p className="font-mono text-sm font-bold text-[#f4f1ec]">epoll_wait() Event Multiplexing</p>
+                    <p className="text-xs text-[#b9b2a8] max-w-sm mx-auto">
                       Non-blocking file descriptors waiting on kernel readiness queue. Zero context-switching overhead.
                     </p>
-                    <div className="p-2.5 rounded bg-[#11151c] border border-[#202938] font-mono text-xs text-[#22c55e]">
+                    <div className="p-2.5 rounded bg-[#171614] border border-[#2b2926] font-mono text-xs text-[#22c55e]">
                       READY SOCKS: 50,000 | TIME SLICE: 0.02ms | THREADS: 1
                     </div>
                   </div>
@@ -214,12 +214,12 @@ export const PinnedDissection: React.FC = () => {
 
                 {activeChapterIndex === 1 && (
                   <div className="space-y-3 w-full">
-                    <Cpu className="w-12 h-12 text-[#f59e0b] mx-auto animate-pulse" />
-                    <p className="font-mono text-sm font-bold text-[#f8fafc]">Atomic Ring Buffer & Backpressure</p>
-                    <p className="text-xs text-[#94a3b8] max-w-sm mx-auto">
+                    <Cpu className="w-12 h-12 text-[#ff6433] mx-auto animate-pulse" />
+                    <p className="font-mono text-sm font-bold text-[#f4f1ec]">Atomic Ring Buffer & Backpressure</p>
+                    <p className="text-xs text-[#b9b2a8] max-w-sm mx-auto">
                       Lock-free circular FIFO memory buffer. When consumer lags, upstream socket reads pause automatically.
                     </p>
-                    <div className="p-2.5 rounded bg-[#11151c] border border-[#202938] font-mono text-xs text-[#f59e0b]">
+                    <div className="p-2.5 rounded bg-[#171614] border border-[#2b2926] font-mono text-xs text-[#ff6433]">
                       RING FILL: 42% | LOCKLESS CAS OPS: 4.8M/sec | DROPS: 0
                     </div>
                   </div>
@@ -227,12 +227,12 @@ export const PinnedDissection: React.FC = () => {
 
                 {activeChapterIndex === 2 && (
                   <div className="space-y-3 w-full">
-                    <HardDrive className="w-12 h-12 text-[#f59e0b] mx-auto animate-pulse" />
-                    <p className="font-mono text-sm font-bold text-[#f8fafc]">Write Ahead Log & Atomic Disk Sync</p>
-                    <p className="text-xs text-[#94a3b8] max-w-sm mx-auto">
+                    <HardDrive className="w-12 h-12 text-[#ff6433] mx-auto animate-pulse" />
+                    <p className="font-mono text-sm font-bold text-[#f4f1ec]">Write Ahead Log & Atomic Disk Sync</p>
+                    <p className="text-xs text-[#b9b2a8] max-w-sm mx-auto">
                       Append-only sequential disk writes. Group commits guarantee complete transaction persistence through power outage.
                     </p>
-                    <div className="p-2.5 rounded bg-[#11151c] border border-[#202938] font-mono text-xs text-[#22c55e]">
+                    <div className="p-2.5 rounded bg-[#171614] border border-[#2b2926] font-mono text-xs text-[#22c55e]">
                       FLUSH MODE: O_DIRECT | BATCH SIZE: 4KB | INTEGRITY: 100%
                     </div>
                   </div>
@@ -246,19 +246,19 @@ export const PinnedDissection: React.FC = () => {
         <div className="lg:hidden space-y-6">
           {CHAPTERS.map((c, idx) => (
             <div key={c.id} className="relative">
-              <div className="p-5 rounded-xl border border-[#202938] bg-[#11151c] shadow-inset-highlight space-y-3">
-                <span className="font-mono text-xs font-bold text-[#f59e0b] tracking-wider block">
+              <div className="p-5 rounded-xl border border-[#2b2926] bg-[#171614] shadow-inset-highlight space-y-3">
+                <span className="font-mono text-xs font-bold text-[#ff6433] tracking-wider block">
                   {c.badge}
                 </span>
-                <h3 className="text-lg font-bold text-[#f8fafc]">
+                <h3 className="text-lg font-bold text-[#f4f1ec]">
                   {c.title}
                 </h3>
-                <p className="text-xs text-[#94a3b8] leading-relaxed">
+                <p className="text-xs text-[#b9b2a8] leading-relaxed">
                   {c.summary}
                 </p>
-                <div className="space-y-1.5 pt-2 border-t border-[#202938]">
+                <div className="space-y-1.5 pt-2 border-t border-[#2b2926]">
                   {c.details.map((item, dIdx) => (
-                    <div key={dIdx} className="flex items-start gap-2 text-xs text-[#f8fafc]">
+                    <div key={dIdx} className="flex items-start gap-2 text-xs text-[#f4f1ec]">
                       <span className="text-[#22c55e]">✓</span>
                       <span>{item}</span>
                     </div>
@@ -266,7 +266,7 @@ export const PinnedDissection: React.FC = () => {
                 </div>
               </div>
               {idx < CHAPTERS.length - 1 && (
-                <div className="flex justify-center my-2 text-[#f59e0b]">
+                <div className="flex justify-center my-2 text-[#ff6433]">
                   <ArrowDown className="w-4 h-4 animate-bounce" />
                 </div>
               )}

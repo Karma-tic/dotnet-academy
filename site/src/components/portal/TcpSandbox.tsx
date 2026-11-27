@@ -67,31 +67,31 @@ export const TcpSandbox: React.FC = () => {
   }, [cwnd, rtt]);
 
   return (
-    <section id="sandbox" className="py-20 border-b border-[#202938] bg-[#090b0e]">
+    <section id="sandbox" className="py-20 border-b border-[#2b2926] bg-[#121110]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="space-y-3 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#11151c] border border-[#202938] text-xs font-mono font-medium text-[#f59e0b]">
-            <Zap className="w-3.5 h-3.5 text-[#f59e0b]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
+            <Zap className="w-3.5 h-3.5 text-[#ff6433]" />
             <span>INTERACTIVE EXPERIMENT</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f8fafc]">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
             TCP Congestion Window & Slow Start Simulator
           </h2>
-          <p className="text-sm sm:text-base text-[#94a3b8] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#b9b2a8] leading-relaxed">
             Hands-on mental models build intuition faster than video streaming. Adjust packet loss and latency to watch the TCP congestion window adapt in real time.
           </p>
         </div>
 
         {/* Simulator Grid */}
-        <div className="p-6 sm:p-8 rounded-xl border border-[#202938] bg-[#11151c] shadow-inset-highlight space-y-8">
+        <div className="p-6 sm:p-8 rounded-xl border border-[#2b2926] bg-[#171614] shadow-inset-highlight space-y-8">
           {/* Controls Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-[#202938] pb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-b border-[#2b2926] pb-6">
             {/* Slider 1: Packet Loss */}
             <div className="space-y-2 font-mono text-xs">
-              <div className="flex justify-between items-center text-[#94a3b8]">
+              <div className="flex justify-between items-center text-[#b9b2a8]">
                 <span>Simulate Packet Loss:</span>
-                <span className="text-[#f59e0b] font-bold">{packetLoss}%</span>
+                <span className="text-[#ff6433] font-bold">{packetLoss}%</span>
               </div>
               <input
                 type="range"
@@ -100,17 +100,17 @@ export const TcpSandbox: React.FC = () => {
                 step="1"
                 value={packetLoss}
                 onChange={(e) => setPacketLoss(Number(e.target.value))}
-                className="w-full accent-[#f59e0b] cursor-pointer"
+                className="w-full accent-[#ff6433] cursor-pointer"
                 aria-label="Packet loss slider"
               />
-              <span className="text-[11px] text-[#64748b]">0% (Lossless fiber) to 15% (Congested mobile 4G)</span>
+              <span className="text-[11px] text-[#8f887f]">0% (Lossless fiber) to 15% (Congested mobile 4G)</span>
             </div>
 
             {/* Slider 2: Round Trip Time (RTT) */}
             <div className="space-y-2 font-mono text-xs">
-              <div className="flex justify-between items-center text-[#94a3b8]">
+              <div className="flex justify-between items-center text-[#b9b2a8]">
                 <span>Round Trip Time (RTT):</span>
-                <span className="text-[#f59e0b] font-bold">{rtt}ms</span>
+                <span className="text-[#ff6433] font-bold">{rtt}ms</span>
               </div>
               <input
                 type="range"
@@ -119,25 +119,25 @@ export const TcpSandbox: React.FC = () => {
                 step="10"
                 value={rtt}
                 onChange={(e) => setRtt(Number(e.target.value))}
-                className="w-full accent-[#f59e0b] cursor-pointer"
+                className="w-full accent-[#ff6433] cursor-pointer"
                 aria-label="Round trip time slider"
               />
-              <span className="text-[11px] text-[#64748b]">20ms (Local intra-region) to 240ms (Trans-oceanic)</span>
+              <span className="text-[11px] text-[#8f887f]">20ms (Local intra-region) to 240ms (Trans-oceanic)</span>
             </div>
 
             {/* Telemetry Summary & Reset */}
-            <div className="flex items-center justify-between p-3 rounded-lg bg-[#090b0e] border border-[#202938]">
+            <div className="flex items-center justify-between p-3 rounded-lg bg-[#121110] border border-[#2b2926]">
               <div className="font-mono text-xs space-y-1">
-                <span className="text-[#64748b] block text-[10px]">CURRENT PHASE</span>
+                <span className="text-[#8f887f] block text-[10px]">CURRENT PHASE</span>
                 <span className={`font-bold ${
-                  phase === 'Packet Drop Recovery' ? 'text-red-400' : phase === 'Slow Start' ? 'text-[#f59e0b]' : 'text-[#22c55e]'
+                  phase === 'Packet Drop Recovery' ? 'text-red-400' : phase === 'Slow Start' ? 'text-[#ff6433]' : 'text-[#22c55e]'
                 }`}>
                   {phase}
                 </span>
               </div>
               <button
                 onClick={handleReset}
-                className="p-2 rounded bg-[#19202c] border border-[#334155] text-[#94a3b8] hover:text-[#f8fafc] hover:border-[#f59e0b] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2 rounded bg-[#1c1b19] border border-[#3a3733] text-[#b9b2a8] hover:text-[#f4f1ec] hover:border-[#ff6433] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                 title="Reset Simulation"
               >
                 <RefreshCw className="w-4 h-4" />
@@ -148,21 +148,21 @@ export const TcpSandbox: React.FC = () => {
           {/* Live Packet Pipeline Visualization */}
           <div className="space-y-4">
             <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-[#94a3b8]">PACKETS IN FLIGHT (CWND: {cwnd} MSS):</span>
+              <span className="text-[#b9b2a8]">PACKETS IN FLIGHT (CWND: {cwnd} MSS):</span>
               <span className="text-[#22c55e] font-semibold">Throughput: {throughputEst} Mbps</span>
             </div>
 
             {/* Animated SVG Visualizer */}
-            <div className="p-3 sm:p-4 rounded-xl bg-[#090b0e] border border-[#202938] overflow-hidden min-h-[140px] flex items-center">
+            <div className="p-3 sm:p-4 rounded-xl bg-[#121110] border border-[#2b2926] overflow-hidden min-h-[140px] flex items-center">
               <div className="w-full flex items-center justify-between gap-2 sm:gap-4">
                 {/* Client Node */}
-                <div className="p-2 sm:p-3 rounded-lg bg-[#11151c] border border-[#202938] text-center font-mono text-[10px] sm:text-xs shrink-0 w-16 sm:w-24">
-                  <span className="text-[#64748b] block text-[9px] sm:text-[10px]">CLIENT</span>
-                  <span className="text-[#f8fafc] font-bold">Sender</span>
+                <div className="p-2 sm:p-3 rounded-lg bg-[#171614] border border-[#2b2926] text-center font-mono text-[10px] sm:text-xs shrink-0 w-16 sm:w-24">
+                  <span className="text-[#8f887f] block text-[9px] sm:text-[10px]">CLIENT</span>
+                  <span className="text-[#f4f1ec] font-bold">Sender</span>
                 </div>
 
                 {/* Packet Flight Corridor */}
-                <div className="flex-1 relative h-16 flex items-center justify-center overflow-hidden border-y border-[#202938]/40 min-w-0">
+                <div className="flex-1 relative h-16 flex items-center justify-center overflow-hidden border-y border-[#2b2926]/40 min-w-0">
                   <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 px-1 sm:px-2 max-w-full">
                     {Array.from({ length: Math.min(24, cwnd) }).map((_, i) => (
                       <div
@@ -170,7 +170,7 @@ export const TcpSandbox: React.FC = () => {
                         className={`w-3.5 sm:w-4 h-5 sm:h-6 rounded-xs transition-all duration-300 flex items-center justify-center text-[8px] sm:text-[9px] font-mono font-bold ${
                           droppedPacket
                             ? 'bg-red-500/80 text-white scale-90'
-                            : 'bg-[#f59e0b] text-black shadow-xs'
+                            : 'bg-[#ff6433] text-black shadow-xs'
                         }`}
                       >
                         {i + 1}
@@ -187,8 +187,8 @@ export const TcpSandbox: React.FC = () => {
                 </div>
 
                 {/* Server Node */}
-                <div className="p-2 sm:p-3 rounded-lg bg-[#11151c] border border-[#202938] text-center font-mono text-[10px] sm:text-xs shrink-0 w-16 sm:w-24">
-                  <span className="text-[#64748b] block text-[9px] sm:text-[10px]">SERVER</span>
+                <div className="p-2 sm:p-3 rounded-lg bg-[#171614] border border-[#2b2926] text-center font-mono text-[10px] sm:text-xs shrink-0 w-16 sm:w-24">
+                  <span className="text-[#8f887f] block text-[9px] sm:text-[10px]">SERVER</span>
                   <span className="text-[#22c55e] font-bold">Receiver</span>
                 </div>
               </div>
@@ -196,11 +196,11 @@ export const TcpSandbox: React.FC = () => {
 
             {/* CWND Progression Sparkline Bar */}
             <div className="space-y-1.5 pt-2">
-              <div className="flex justify-between items-center text-[11px] font-mono text-[#64748b]">
+              <div className="flex justify-between items-center text-[11px] font-mono text-[#8f887f]">
                 <span>CWND HISTORICAL SAMPLES:</span>
                 <span>ssthresh: {ssthresh} MSS</span>
               </div>
-              <div className="h-10 flex items-end gap-1 p-1 bg-[#090b0e] border border-[#202938] rounded-lg">
+              <div className="h-10 flex items-end gap-1 p-1 bg-[#121110] border border-[#2b2926] rounded-lg">
                 {history.map((val, idx) => {
                   const heightPercent = Math.min(100, Math.max(8, (val / 64) * 100));
                   return (
@@ -208,7 +208,7 @@ export const TcpSandbox: React.FC = () => {
                       key={idx}
                       style={{ height: `${heightPercent}%` }}
                       className={`flex-1 rounded-xs transition-all duration-200 ${
-                        val >= ssthresh ? 'bg-[#22c55e]' : 'bg-[#f59e0b]'
+                        val >= ssthresh ? 'bg-[#22c55e]' : 'bg-[#ff6433]'
                       }`}
                       title={`CWND: ${val} MSS`}
                     />
