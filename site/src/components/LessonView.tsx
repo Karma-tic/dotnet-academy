@@ -107,7 +107,8 @@ export const LessonView: React.FC<LessonViewProps> = ({
   const [isEli5Mode, setIsEli5Mode] = useState(false);
 
   const hasQuiz = Boolean(lesson.quiz && lesson.quiz.length > 0);
-  const isNextLocked = hasQuiz && (quizScore === undefined || quizScore < 60);
+  // Notes are optional reference material now, so nothing is locked.
+  const isNextLocked = false as boolean;
 
   // Sync state when lesson changes
   useEffect(() => {

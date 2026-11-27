@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Sidebar } from './components/Sidebar';
@@ -7,9 +7,18 @@ import { CurriculumOverview } from './components/CurriculumOverview';
 import { useProgress } from './hooks/useProgress';
 import { allLessons, modulesData, searchIndex } from './content/lessons/allLessons';
 import confetti from 'canvas-confetti';
+import { RoadmapView, type RoadmapData } from './components/RoadmapView';
+import { roadmap } from './content/roadmap.generated';
+import { stageExtras } from './content/roadmapExtras';
+import { ProjectsView } from './components/ProjectsView';
+
+const RoadmapLink = ({ to, className, children }: { to: string; className?: string; children: React.ReactNode }) => (
+  <a href={`#/${to}`} className={className}>{children}</a>
+);
+// Old course entry points now open the roadmap
+const ROADMAP_ALIASES = ['', 'home', 'dashboard', 'roadmap', 'learning-paths'];
 
 // Lazy loaded views for instant initial paint & top Lighthouse scores
-const Dashboard = lazy(() => import('./components/Dashboard').then(m => ({ default: m.Dashboard })));
 const StudyPlanner = lazy(() => import('./components/StudyPlanner').then(m => ({ default: m.StudyPlanner })));
 const CareerHub = lazy(() => import('./components/CareerHub').then(m => ({ default: m.CareerHub })));
 const CertificationsGuide = lazy(() => import('./components/CertificationsGuide').then(m => ({ default: m.CertificationsGuide })));
@@ -23,7 +32,6 @@ const JargonBusterModal = lazy(() => import('./components/JargonBusterModal').th
 
 // Learning Support Addendum Views
 const HowToLearnView = lazy(() => import('./components/HowToLearnView').then(m => ({ default: m.HowToLearnView })));
-const LearningPathsView = lazy(() => import('./components/LearningPathsView').then(m => ({ default: m.LearningPathsView })));
 const StuckHelpView = lazy(() => import('./components/StuckHelpView').then(m => ({ default: m.StuckHelpView })));
 const RegionalResourcesView = lazy(() => import('./components/RegionalResourcesView').then(m => ({ default: m.RegionalResourcesView })));
 const FreeTiersView = lazy(() => import('./components/FreeTiersView').then(m => ({ default: m.FreeTiersView })));
@@ -43,17 +51,14 @@ export function App() {
     saveMockTestScore,
     updatePlanner,
     recordProblemSolved,
-    exportProgress,
-    importProgress,
-    resetProgress,
   } = useProgress();
 
   // Navigation State: default to home (Dashboard) unless hash specifies otherwise
   const getInitialView = () => {
     if (typeof window === 'undefined') return 'home';
-    const hash = window.location.hash.replace(/^#\/?/, '');
+    const hash = window.location.hash.replace(/^#\/?/, '').split('#')[0];
     if (hash.startsWith('lesson/')) return 'lesson';
-    if (hash === '' || hash === 'home' || hash === 'dashboard') return 'home';
+    if (ROADMAP_ALIASES.includes(hash)) return 'home';
     if (hash === 'course' || hash === 'curriculum') return 'course';
     if (hash === 'roadmap' || hash === 'learning-paths') return 'roadmap';
     if (hash === 'practice' || hash === 'daily-practice') return 'practice';
@@ -73,7 +78,8 @@ export function App() {
   // Sync hash routing
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace(/^#\/?/, '');
+      const [hash, anchor] = window.location.hash.replace(/^#\/?/, '').split('#');
+      if (anchor) setTimeout(() => document.getElementById(anchor)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
       if (hash.startsWith('lesson/')) {
         const slug = hash.replace('lesson/', '');
         const exists = allLessons.find((l) => l.slug === slug);
@@ -82,12 +88,10 @@ export function App() {
           setActiveView('lesson');
           setLastVisited(slug);
         }
-      } else if (hash === '' || hash === 'home' || hash === 'dashboard') {
+      } else if (ROADMAP_ALIASES.includes(hash)) {
         setActiveView('home');
       } else if (hash === 'course' || hash === 'curriculum') {
         setActiveView('course');
-      } else if (hash === 'roadmap' || hash === 'learning-paths') {
-        setActiveView('roadmap');
       } else if (hash === 'practice' || hash === 'daily-practice') {
         setActiveView('practice');
       } else if (hash === 'exam-prep' || hash === 'career') {
@@ -183,7 +187,7 @@ export function App() {
   const progressPercent = totalLessons > 0 ? Math.round((state.completedLessons.length / totalLessons) * 100) : 0;
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+    <div className="min-h-screen flex flex-col overflow-x-clip bg-slate-950 text-slate-100">
       {/* Top Header */}
       <Header
         onOpenSearch={() => setIsSearchOpen(true)}
@@ -222,30 +226,13 @@ export function App() {
           <main className="flex-1 min-w-0">
             <Suspense fallback={<div className="p-16 text-center text-sm text-slate-400">Loading learning module...</div>}>
               {/* PAGE 1: / or /home or /dashboard (Home / Dashboard) */}
-              {activeView === 'home' || activeView === 'dashboard' ? (
-                <Dashboard
-                  modules={modulesData}
-                  completedLessons={state.completedLessons}
-                  lastVisitedSlug={state.lastVisitedLesson}
-                  bookmarks={state.bookmarks}
-                  notes={state.notes}
-                  quizScores={state.quizScores}
-                  streak={state.dailyPractice.currentStreak}
-                  onSelectLesson={handleSelectLesson}
-                  onOpenCertificate={() => setIsCertModalOpen(true)}
-                  onOpenPlanner={() => navigateTo('planner')}
-                  onExport={() => {
-                    const data = exportProgress();
-                    const blob = new Blob([data], { type: 'application/json' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = `karmatix-dotnet-progress-${new Date().toISOString().slice(0, 10)}.json`;
-                    a.click();
-                  }}
-                  onImport={importProgress}
-                  onReset={resetProgress}
-                  onNavigate={navigateTo}
+              {activeView === 'home' ? (
+                <RoadmapView
+                  roadmap={roadmap as unknown as RoadmapData}
+                  extras={stageExtras}
+                  storageKey="karmatix-dotnet:v1:roadmap"
+                  heroCta={{ to: 'projects', label: 'See the tested projects' }}
+                  InternalLink={RoadmapLink}
                 />
               ) : /* PAGE 2: /course or /curriculum (Curriculum Hub) */
               activeView === 'course' || activeView === 'curriculum' ? (
@@ -256,13 +243,8 @@ export function App() {
                   onNavigate={navigateTo}
                 />
               ) : /* PAGE 3: /roadmap or /learning-paths (Visual Career Roadmap) */
-              activeView === 'roadmap' || activeView === 'learning-paths' ? (
-                <LearningPathsView
-                  modules={modulesData}
-                  completedLessons={state.completedLessons}
-                  onSelectLesson={handleSelectLesson}
-                  onNavigateToCurriculum={() => navigateTo('course')}
-                />
+              activeView === 'projects' ? (
+                <ProjectsView />
               ) : /* PAGE 4: /lesson/:lessonId (The Core 8-Part Lesson View) */
               activeView === 'lesson' ? (
                 <LessonView
@@ -338,13 +320,13 @@ export function App() {
                       onClick={() => navigateTo('home')}
                       className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-semibold hover:bg-violet-700 transition-colors shadow-sm"
                     >
-                      Return to Dashboard
+                      Open the roadmap
                     </button>
                     <button
                       onClick={() => navigateTo('course')}
                       className="px-4 py-2 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 rounded-lg text-sm font-semibold hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors"
                     >
-                      Browse Curriculum
+                      Browse notes
                     </button>
                   </div>
                 </div>

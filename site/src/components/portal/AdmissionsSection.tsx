@@ -30,17 +30,17 @@ const STEPS = [
 
 export const AdmissionsSection: React.FC = () => {
   return (
-    <section id="admissions" className="py-20 border-b border-[#202938]">
+    <section id="admissions" className="py-20 border-b border-[#2b2926]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="space-y-3 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#11151c] border border-[#202938] text-xs font-mono font-medium text-[#f59e0b]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
             <span>ADMISSIONS ROADMAP</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f8fafc]">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
             Transparent Admissions & Payment
           </h2>
-          <p className="text-sm sm:text-base text-[#94a3b8] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#b9b2a8] leading-relaxed">
             Zero high-pressure sales calls. We assess mutual engineering fit before accepting any payment.
           </p>
         </div>
@@ -52,24 +52,24 @@ export const AdmissionsSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="p-6 rounded-xl border border-[#202938] bg-[#11151c] shadow-inset-highlight space-y-4 flex flex-col justify-between"
+                className="p-6 rounded-xl border border-[#2b2926] bg-[#171614] shadow-inset-highlight space-y-4 flex flex-col justify-between"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-bold text-[#f59e0b] bg-[#f59e0b]/10 border border-[#f59e0b]/20 px-2.5 py-1 rounded-full">
+                    <span className="font-mono text-xs font-bold text-[#ff6433] bg-[#ff6433]/10 border border-[#ff6433]/20 px-2.5 py-1 rounded-full">
                       STEP {s.num}
                     </span>
-                    <Icon className="w-5 h-5 text-[#94a3b8]" />
+                    <Icon className="w-5 h-5 text-[#b9b2a8]" />
                   </div>
-                  <h3 className="text-base font-bold text-[#f8fafc]">
+                  <h3 className="text-base font-bold text-[#f4f1ec]">
                     {s.title}
                   </h3>
-                  <p className="text-xs text-[#94a3b8] leading-relaxed">
+                  <p className="text-xs text-[#b9b2a8] leading-relaxed">
                     {s.desc}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#202938] text-[11px] font-mono text-[#22c55e] flex items-center gap-1.5">
+                <div className="pt-3 border-t border-[#2b2926] text-[11px] font-mono text-[#22c55e] flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>Verified Standard</span>
                 </div>
@@ -79,15 +79,15 @@ export const AdmissionsSection: React.FC = () => {
         </div>
 
         {/* Direct WhatsApp Advisor Callout Card */}
-        <div className="p-6 sm:p-8 rounded-xl border border-[#202938] bg-gradient-to-r from-[#11151c] via-[#11151c] to-[#19202c] shadow-inset-highlight flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="p-6 sm:p-8 rounded-xl border border-[#2b2926] bg-gradient-to-r from-[#171614] via-[#171614] to-[#1c1b19] shadow-inset-highlight flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-2 max-w-xl text-center md:text-left">
             <span className="font-mono text-xs uppercase tracking-wider text-[#22c55e] font-bold block">
               Direct Engineering Advisory
             </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#f8fafc]">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#f4f1ec]">
               Unsure which track fits your background?
             </h3>
-            <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#b9b2a8] leading-relaxed">
               Speak directly with an engineering mentor over WhatsApp. Get honest technical guidance on prerequisites, work commitments, and career goals.
             </p>
           </div>
