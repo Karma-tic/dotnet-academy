@@ -42,7 +42,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center gap-2.5">
               <span className="font-bold text-xl text-[#f4f1ec]">Karmatix</span>
-              <span className="font-mono text-xs text-[#ff6433] bg-[#ff6433]/10 border border-[#ff6433]/20 px-2 py-0.5 rounded-full font-medium">
+              <span className="font-mono text-xs text-[#9b7ff7] bg-[#9b7ff7]/10 border border-[#9b7ff7]/20 px-2 py-0.5 rounded-full font-medium">
                 [Learning]
               </span>
             </div>
@@ -55,7 +55,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-[#22c55e] shrink-0" />
                 <span className="text-[#8f887f]">SERVER CLOCK:</span>
-                <span className="text-[#ff6433] font-bold">{istTime || '08:30:00'} IST</span>
+                <span className="text-[#9b7ff7] font-bold">{istTime || '08:30:00'} IST</span>
               </div>
               <span className="text-[#8f887f] text-[11px]">(Bangalore, IN)</span>
             </div>
@@ -70,7 +70,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
               <li>
                 <button
                   onClick={onEnterDotNetCourse}
-                  className="hover:text-[#ff6433] transition-colors flex items-center gap-1.5 text-left"
+                  className="hover:text-[#9b7ff7] transition-colors flex items-center gap-1.5 text-left"
                 >
                   <span className="text-[#22c55e]">●</span>
                   <span>.NET & Systems (Flagship)</span>
@@ -79,7 +79,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
               <li>
                 <button
                   onClick={() => onNavigateSection('curriculum')}
-                  className="hover:text-[#ff6433] transition-colors text-left"
+                  className="hover:text-[#9b7ff7] transition-colors text-left"
                 >
                   Systems & Concurrency (Go / Rust)
                 </button>
@@ -87,7 +87,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
               <li>
                 <button
                   onClick={() => onNavigateSection('curriculum')}
-                  className="hover:text-[#ff6433] transition-colors text-left"
+                  className="hover:text-[#9b7ff7] transition-colors text-left"
                 >
                   Distributed Systems & Backend
                 </button>
@@ -95,7 +95,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
               <li>
                 <button
                   onClick={() => onNavigateSection('curriculum')}
-                  className="hover:text-[#ff6433] transition-colors text-left"
+                  className="hover:text-[#9b7ff7] transition-colors text-left"
                 >
                   Full-Stack Engineering & Craft
                 </button>
@@ -112,7 +112,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
               <li>
                 <button
                   onClick={() => onNavigateSection('mental-models')}
-                  className="hover:text-[#ff6433] transition-colors text-left"
+                  className="hover:text-[#9b7ff7] transition-colors text-left"
                 >
                   Systems Dissection
                 </button>
@@ -120,7 +120,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
               <li>
                 <button
                   onClick={() => onNavigateSection('curriculum')}
-                  className="hover:text-[#ff6433] transition-colors text-left"
+                  className="hover:text-[#9b7ff7] transition-colors text-left"
                 >
                   TCP Congestion Sandbox
                 </button>
@@ -128,7 +128,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
               <li>
                 <button
                   onClick={onEnterDotNetCourse}
-                  className="hover:text-[#ff6433] transition-colors text-left"
+                  className="hover:text-[#9b7ff7] transition-colors text-left"
                 >
                   200+ Interview Q&A Hub
                 </button>
@@ -138,7 +138,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
                   href="https://github.com/Karma-tic/dotnet-academy"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#ff6433] transition-colors flex items-center gap-1"
+                  className="hover:text-[#9b7ff7] transition-colors flex items-center gap-1"
                 >
                   <span>GitHub Repositories</span>
                   <ExternalLink className="w-3 h-3" />
@@ -158,7 +158,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
                   href="https://karmatix.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#ff6433] transition-colors flex items-center gap-1"
+                  className="hover:text-[#9b7ff7] transition-colors flex items-center gap-1"
                 >
                   <span>Karmatix Studio</span>
                   <ExternalLink className="w-3 h-3" />
@@ -169,7 +169,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
                   href="https://wa.me/919999999999"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#ff6433] transition-colors"
+                  className="hover:text-[#9b7ff7] transition-colors"
                 >
                   WhatsApp Advisory Desk
                 </a>
@@ -177,7 +177,7 @@ export const PortalFooter: React.FC<PortalFooterProps> = ({
               <li>
                 <button
                   onClick={() => onOpenLegal('contact')}
-                  className="hover:text-[#ff6433] transition-colors text-left"
+                  className="hover:text-[#9b7ff7] transition-colors text-left"
                 >
                   Corporate L&D Inquiries
                 </button>

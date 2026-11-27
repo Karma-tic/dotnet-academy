@@ -80,7 +80,7 @@ export const JargonBusterModal: React.FC<JargonBusterModalProps> = ({
             </span>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
+                <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                   Jargon Buster Widget
                 </h2>
                 <Badge variant="warning">Anti-Boredom Engine</Badge>
@@ -193,7 +193,7 @@ export const JargonBusterModal: React.FC<JargonBusterModalProps> = ({
                 {/* Term Header */}
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                       {activeTerm.term}
                     </h3>
                     <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">

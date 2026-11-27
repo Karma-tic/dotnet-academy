@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink, Search, Filter, BookOpen, ShieldCheck } from 'lucide-react';
+import { ExternalLink, Search, Filter, ShieldCheck } from 'lucide-react';
 import { Card } from './ui/Card';
 import { Badge } from './ui/Badge';
 import { resourcesData } from '../content/resources/resourcesData';
@@ -27,15 +27,11 @@ export const ResourceLibrary: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-8">
       {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
-          <BookOpen className="w-3.5 h-3.5" />
-          <span>Curated Ecosystem</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Verified Free Resource Library
+      <div className="kx-glow space-y-3 rounded-2xl border border-slate-800 p-6 sm:p-10">
+        <h1 className="text-3xl sm:text-[2.6rem] font-semibold leading-tight tracking-[-0.03em] text-slate-100">
+          Resources
         </h1>
-        <p className="text-sm text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        <p className="max-w-2xl text-base leading-relaxed text-slate-400">
           Every resource is manually tested and verified. Zero broken links, zero low-quality scrapers, zero affiliate promotions.
         </p>
       </div>

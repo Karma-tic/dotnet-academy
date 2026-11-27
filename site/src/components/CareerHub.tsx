@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Briefcase,
+  
   HelpCircle,
   Code2,
   Clock,
@@ -141,20 +141,16 @@ export const CareerHub: React.FC<CareerHubProps> = ({
   return (
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-8">
       {/* Title Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
-          <Briefcase className="w-3.5 h-3.5" />
-          <span>Job-Ready .NET Exam &amp; Career Hub</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Exam Prep &amp; Technical Interview Accelerator
+      <div className="kx-glow space-y-3 rounded-2xl border border-slate-800 p-6 sm:p-10">
+        <h1 className="text-3xl sm:text-[2.6rem] font-semibold leading-tight tracking-[-0.03em] text-slate-100">
+          Interview prep
         </h1>
-        <p className="text-sm text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        <p className="max-w-2xl text-base leading-relaxed text-slate-400">
           200+ curated interview Q&amp;A, 50+ coding problems, 6 timed company mock tests, an interactive Big-O calculator, and a 7-day last-minute revision plan.
         </p>
 
         {/* Tab Switcher */}
-        <div className="flex flex-wrap justify-center gap-2 pt-4">
+        <div className="flex flex-wrap gap-2 pt-4">
           {[
             { id: 'qa', label: 'Q&A (200+)', icon: HelpCircle },
             { id: 'mock', label: 'Mock Tests (6)', icon: Clock },
@@ -378,7 +374,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
                 <div className="flex items-center gap-4">
                   {!mockSubmitted && (
                     <div
-                      className={`font-mono text-sm sm:text-base font-black px-3 py-1 rounded-lg border ${
+                      className={`font-mono text-sm sm:text-base font-bold px-3 py-1 rounded-lg border ${
                         timeRemaining < 300
                           ? 'border-red-500 text-red-600 bg-red-50 dark:bg-red-950/40 animate-pulse'
                           : 'border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200'
@@ -551,7 +547,7 @@ export const CareerHub: React.FC<CareerHubProps> = ({
         <div className="space-y-6">
           <div className="p-6 rounded-3xl bg-violet-950 text-white border border-violet-900/60 space-y-3">
             <Badge variant="purple">Real Working Codebases</Badge>
-            <h2 className="text-2xl font-black">Production Capstone Projects</h2>
+            <h2 className="text-2xl font-bold">Production Capstone Projects</h2>
             <p className="text-xs sm:text-sm text-violet-200 max-w-2xl leading-relaxed">
               Every project below is a full, working C# application located in the course repository under <code>/samples/Capstones</code> with full xUnit test suites and Dockerfiles.
             </p>

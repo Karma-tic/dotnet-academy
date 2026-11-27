@@ -76,9 +76,9 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
 
       // Three Architectural Planes (Isometric Perspective)
       const planes = [
-        { id: 1, y: 70, label: 'L1: Ingress & TLS Termination', color: activeLayer === 1 ? '#ff6433' : '#3a3733' },
-        { id: 2, y: 175, label: 'L2: Memory & Worker Concurrency', color: activeLayer === 2 ? '#ff6433' : '#3a3733' },
-        { id: 3, y: 280, label: 'L3: Write Ahead Log & Disk Flush', color: activeLayer === 3 ? '#ff6433' : '#3a3733' },
+        { id: 1, y: 70, label: 'L1: Ingress & TLS Termination', color: activeLayer === 1 ? '#9b7ff7' : '#3a3733' },
+        { id: 2, y: 175, label: 'L2: Memory & Worker Concurrency', color: activeLayer === 2 ? '#9b7ff7' : '#3a3733' },
+        { id: 3, y: 280, label: 'L3: Write Ahead Log & Disk Flush', color: activeLayer === 3 ? '#9b7ff7' : '#3a3733' },
       ];
 
       planes.forEach((plane) => {
@@ -98,7 +98,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
         ctx.fillText(plane.label, 56, plane.y + 26);
 
         // Sub status line
-        ctx.fillStyle = plane.id === activeLayer ? '#ff6433' : '#8f887f';
+        ctx.fillStyle = plane.id === activeLayer ? '#9b7ff7' : '#8f887f';
         ctx.font = '500 11px JetBrains Mono, monospace';
         const sub = plane.id === 1 ? 'TCP Socket Flow' : plane.id === 2 ? 'L1/L2 Cache Prefetch' : 'Direct IO Append';
         ctx.fillText(sub, 56, plane.y + 48);
@@ -111,7 +111,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
       });
 
       // Data Trace Connecting Lines
-      ctx.strokeStyle = '#ff6433';
+      ctx.strokeStyle = '#9b7ff7';
       ctx.lineWidth = 1.5;
       ctx.setLineDash([4, 4]);
 
@@ -128,8 +128,8 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
       packetOffset = (packetOffset + 1.5) % 280;
       const packetY = 70 + packetOffset;
       if (packetY < 348) {
-        ctx.fillStyle = '#ff6433';
-        ctx.shadowColor = '#ff6433';
+        ctx.fillStyle = '#9b7ff7';
+        ctx.shadowColor = '#9b7ff7';
         ctx.shadowBlur = 8;
         ctx.beginPath();
         ctx.arc(canvas.width / 2, packetY, 3.5, 0, Math.PI * 2);
@@ -156,8 +156,8 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
           {/* Left Column (55% budget: max 4 text elements, <= 2 lines headline, <= 20 words subtext) */}
           <div className="lg:col-span-7 min-w-0 space-y-6">
             {/* 1. Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-[11px] sm:text-xs font-mono font-medium text-[#ff6433] max-w-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6433] animate-pulse shrink-0"></span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-[11px] sm:text-xs font-mono font-medium text-[#9b7ff7] max-w-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#9b7ff7] animate-pulse shrink-0"></span>
               <span className="truncate">SYSTEMS FIRST · ZERO HAND-WAVING</span>
             </div>
 
@@ -175,7 +175,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
               <button
                 onClick={onExploreClick}
-                className="w-full sm:w-auto px-6 py-3 bg-[#ff6433] hover:bg-[#ff8a5c] text-black font-semibold text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-3 bg-[#9b7ff7] hover:bg-[#b39dfc] text-black font-semibold text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center justify-center gap-2"
               >
                 <span>Explore Curriculum</span>
                 <ArrowRight className="w-4 h-4" />
@@ -213,7 +213,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
               {/* Header Bar */}
               <div className="flex items-center justify-between border-b border-[#2b2926] pb-3 text-xs text-[#b9b2a8]">
                 <div className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-[#ff6433]" />
+                  <Activity className="w-4 h-4 text-[#9b7ff7]" />
                   <span className="font-mono font-medium text-[#f4f1ec]">SYSTEM SCHEMATIC</span>
                 </div>
                 <span className="font-mono text-[11px] text-[#22c55e]">INTERACTIVE ENGINE</span>
@@ -234,7 +234,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
                       onClick={() => setActiveLayer(item.id)}
                       className={`py-2 px-1 sm:px-2 rounded font-mono text-xs flex items-center justify-center gap-1 sm:gap-1.5 transition-colors min-h-[44px] ${
                         isActive
-                          ? 'bg-[#1c1b19] text-[#ff6433] border border-[#3a3733]'
+                          ? 'bg-[#1c1b19] text-[#9b7ff7] border border-[#3a3733]'
                           : 'text-[#b9b2a8] hover:text-[#f4f1ec]'
                       }`}
                     >
@@ -261,7 +261,7 @@ export const HeroSchematic: React.FC<HeroSchematicProps> = ({
               <div className="p-3.5 rounded-lg bg-[#121110] border border-[#2b2926] space-y-1.5 font-mono text-xs overflow-hidden">
                 <div className="flex items-center justify-between text-[#f4f1ec] font-semibold border-b border-[#2b2926]/60 pb-1">
                   <span className="truncate mr-2">{currentTelemetry.title}</span>
-                  <span className="text-[#ff6433] shrink-0 text-[11px] sm:text-xs">latency: {currentTelemetry.latency}</span>
+                  <span className="text-[#9b7ff7] shrink-0 text-[11px] sm:text-xs">latency: {currentTelemetry.latency}</span>
                 </div>
                 <p className="text-[#b9b2a8] text-[11px] truncate">{currentTelemetry.metric1}</p>
                 <p className="text-[#b9b2a8] text-[11px] truncate">{currentTelemetry.metric2}</p>

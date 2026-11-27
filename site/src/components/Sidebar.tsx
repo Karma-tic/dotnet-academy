@@ -244,7 +244,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             {[
               { id: 'how-to-learn', label: 'How to Learn (10m Guide)', icon: '💡' },
               { id: 'learning-paths', label: 'Learning Paths by Goal', icon: '🧭' },
-              { id: 'daily-practice', label: 'Problem of the Day', icon: '🔥' },
+              { id: 'daily-practice', label: 'Daily practice', icon: '🔥' },
               { id: 'get-help', label: 'Stuck? Get Help', icon: '🆘' },
               { id: 'regional-resources', label: 'Hindi & Indian Resources', icon: '🇮🇳' },
               { id: 'free-tiers', label: 'Free Cloud Tiers Guide', icon: '☁️' },

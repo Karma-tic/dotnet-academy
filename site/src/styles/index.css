@@ -116,17 +116,17 @@
 
 /* Karmatix roadmap pieces */
 :root { color-scheme: dark; }
-::selection { background: rgba(255, 100, 51, .35); color: #f4f1ec; }
+::selection { background: rgba(155, 127, 247, .4); color: #f4f1ec; }
 .kx-check { appearance: none; }
 .kx-check:checked {
-  background-color: #ff6433; border-color: #ff6433;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a0f0a' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  background-color: #9b7ff7; border-color: #9b7ff7;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23120a2e' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
   background-size: 14px; background-position: center; background-repeat: no-repeat;
 }
 .kx-glow {
   background:
-    radial-gradient(60% 55% at 78% 0%, rgba(255, 100, 51, .16) 0%, transparent 70%),
-    radial-gradient(40% 40% at 0% 100%, rgba(255, 100, 51, .06) 0%, transparent 70%);
+    radial-gradient(60% 55% at 78% 0%, rgba(81, 43, 212, .28) 0%, transparent 70%),
+    radial-gradient(40% 40% at 0% 100%, rgba(155, 127, 247, .08) 0%, transparent 70%);
 }
 .kx-scroll-row { display: flex; gap: .5rem; overflow-x: auto; scrollbar-width: none; mask-image: linear-gradient(to right, #000 calc(100% - 32px), transparent); }
 .kx-scroll-row::-webkit-scrollbar { display: none; }

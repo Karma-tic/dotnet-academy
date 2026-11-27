@@ -57,7 +57,7 @@ export const AntiSlopManifesto: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="space-y-3 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#9b7ff7]">
             <span>ENGINEERING CRAFT</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
@@ -77,7 +77,7 @@ export const AntiSlopManifesto: React.FC = () => {
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-[#ff6433] uppercase tracking-wider font-semibold">
+                <span className="font-mono text-xs text-[#9b7ff7] uppercase tracking-wider font-semibold">
                   Internals Focus
                 </span>
                 <Eye className="w-4 h-4 text-[#b9b2a8]" />
@@ -96,7 +96,7 @@ export const AntiSlopManifesto: React.FC = () => {
                 <span className="font-mono text-xs text-[#b9b2a8]">Inspection Mode:</span>
                 <button
                   onClick={() => setViewMemoryLayout(!viewMemoryLayout)}
-                  className="px-2.5 py-1 text-xs font-mono rounded-full bg-[#1c1b19] border border-[#3a3733] text-[#ff6433] hover:border-[#ff6433] transition-colors min-h-[32px]"
+                  className="px-2.5 py-1 text-xs font-mono rounded-full bg-[#1c1b19] border border-[#3a3733] text-[#9b7ff7] hover:border-[#9b7ff7] transition-colors min-h-[32px]"
                 >
                   {viewMemoryLayout ? 'View High-Level' : 'Inspect Raw Memory'}
                 </button>
@@ -109,15 +109,15 @@ export const AntiSlopManifesto: React.FC = () => {
                   <p className="text-[#8f887f] text-[11px] mt-1">Pointer heap indirection (unknown overhead)</p>
                 </div>
               ) : (
-                <div className="font-mono text-xs space-y-1 bg-[#171614] p-3 rounded border border-[#ff6433]/40">
+                <div className="font-mono text-xs space-y-1 bg-[#171614] p-3 rounded border border-[#9b7ff7]/40">
                   <p className="text-[#22c55e]">// 64-Byte Cache Line Layout</p>
                   <div className="flex items-center justify-between text-[11px]">
                     <span className="text-[#b9b2a8]">0x00: u64 id (8B)</span>
-                    <span className="text-[#ff6433]">Aligned</span>
+                    <span className="text-[#9b7ff7]">Aligned</span>
                   </div>
                   <div className="flex items-center justify-between text-[11px]">
                     <span className="text-[#b9b2a8]">0x08: f64 price (8B)</span>
-                    <span className="text-[#ff6433]">L1 Hit: 0.9ns</span>
+                    <span className="text-[#9b7ff7]">L1 Hit: 0.9ns</span>
                   </div>
                   <div className="flex items-center justify-between text-[11px]">
                     <span className="text-[#8f887f]">0x10: 48B Data Buffer</span>
@@ -135,7 +135,7 @@ export const AntiSlopManifesto: React.FC = () => {
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-[#ff6433] uppercase tracking-wider font-semibold">
+                <span className="font-mono text-xs text-[#9b7ff7] uppercase tracking-wider font-semibold">
                   Fault Isolation
                 </span>
                 <ShieldAlert className="w-4 h-4 text-[#b9b2a8]" />
@@ -176,7 +176,7 @@ export const AntiSlopManifesto: React.FC = () => {
                     key={n.id}
                     className={`p-2 rounded text-center border text-[11px] ${
                       n.role === 'Leader'
-                        ? 'bg-[#1c1b19] border-[#ff6433] text-[#ff6433]'
+                        ? 'bg-[#1c1b19] border-[#9b7ff7] text-[#9b7ff7]'
                         : n.role === 'Dead'
                         ? 'bg-red-950/30 border-red-900 text-red-400 opacity-60'
                         : n.role === 'Candidate'
@@ -203,7 +203,7 @@ export const AntiSlopManifesto: React.FC = () => {
           >
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-[#ff6433] uppercase tracking-wider font-semibold">
+                <span className="font-mono text-xs text-[#9b7ff7] uppercase tracking-wider font-semibold">
                   System Design
                 </span>
                 <Sliders className="w-4 h-4 text-[#b9b2a8]" />
@@ -220,7 +220,7 @@ export const AntiSlopManifesto: React.FC = () => {
             <div className="p-4 rounded-lg bg-[#121110] border border-[#2b2926] space-y-3 font-mono text-xs">
               <div className="flex justify-between items-center text-[#b9b2a8]">
                 <span>Architectural Trade-off:</span>
-                <span className="text-[#ff6433] font-semibold">
+                <span className="text-[#9b7ff7] font-semibold">
                   {balance < 40 ? 'Linearizable ACID' : balance > 65 ? 'Eventual High-P99' : 'Balanced Quorum'}
                 </span>
               </div>
@@ -231,7 +231,7 @@ export const AntiSlopManifesto: React.FC = () => {
                 max="100"
                 value={balance}
                 onChange={(e) => setBalance(Number(e.target.value))}
-                className="w-full accent-[#ff6433] cursor-pointer"
+                className="w-full accent-[#9b7ff7] cursor-pointer"
                 aria-label="Trade-off balance slider"
               />
 
@@ -242,7 +242,7 @@ export const AntiSlopManifesto: React.FC = () => {
                 </div>
                 <div className="p-1.5 rounded bg-[#171614] border border-[#2b2926] text-center">
                   <span className="text-[#8f887f] block text-[9px]">THROUGHPUT</span>
-                  <span className="text-[#ff6433] font-bold">{balance * 120}k rps</span>
+                  <span className="text-[#9b7ff7] font-bold">{balance * 120}k rps</span>
                 </div>
                 <div className="p-1.5 rounded bg-[#171614] border border-[#2b2926] text-center">
                   <span className="text-[#8f887f] block text-[9px]">LATENCY P99</span>

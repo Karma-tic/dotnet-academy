@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HelpCircle, ExternalLink, Copy, Check, AlertCircle, Terminal, Search, Code } from 'lucide-react';
+import { ExternalLink, Copy, Check, AlertCircle, Terminal, Search, Code } from 'lucide-react';
 import { helpCommunitiesData, commonErrorDiagnoses, CommonErrorDiagnosis } from '../content/learningSupport/stuckHelpData';
 import { Button } from './ui/Button';
 import { Badge } from './ui/Badge';
@@ -61,15 +61,11 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
   return (
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
       {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 dark:bg-rose-950/50 text-rose-700 dark:text-rose-300 text-xs font-semibold">
-          <HelpCircle className="w-3.5 h-3.5" />
-          <span>Troubleshooting & Community Rescue</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Stuck? Get Fast, Expert Help
+      <div className="kx-glow space-y-3 rounded-2xl border border-slate-800 p-6 sm:p-10">
+        <h1 className="text-3xl sm:text-[2.6rem] font-semibold leading-tight tracking-[-0.03em] text-slate-100">
+          Stuck? Get help fast
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="max-w-2xl text-base leading-relaxed text-slate-400">
           Getting stuck is not a failure; it is how software engineers discover edge cases. Follow our diagnostic guide or use our interactive question builder to get your bug resolved quickly.
         </p>
       </div>
@@ -143,7 +139,7 @@ ${qCode || '// Paste minimal reproducible code snippet here'}
                 <span className="text-xs font-mono font-bold text-violet-600 dark:text-violet-400">
                   Diagnostic Reference: {selectedError.code}
                 </span>
-                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                   {selectedError.title}
                 </h3>
               </div>

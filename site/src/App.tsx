@@ -11,6 +11,28 @@ import { RoadmapView, type RoadmapData } from './components/RoadmapView';
 import { roadmap } from './content/roadmap.generated';
 import { stageExtras } from './content/roadmapExtras';
 import { ProjectsView } from './components/ProjectsView';
+import { DotnetTerminal } from './components/DotnetTerminal';
+import { BrandIcon } from './components/BrandIcon';
+import { siDotnet, siNuget, siDocker, siPostgresql, siGithubactions } from 'simple-icons';
+
+const STACK = [
+  { icon: siDotnet, label: '.NET', color: '#b39dfc' },
+  { icon: null, label: 'C#', color: '' },
+  { icon: siNuget, label: 'NuGet', color: '#5aa9e6' },
+  { icon: siPostgresql, label: 'PostgreSQL', color: '#6f8fef' },
+  { icon: siDocker, label: 'Docker', color: undefined },
+  { icon: siGithubactions, label: 'GitHub Actions', color: undefined },
+];
+const Stack = () => (
+  <ul className="flex flex-wrap gap-2" aria-label="What you will use">
+    {STACK.map((t) => (
+      <li key={t.label} className="inline-flex h-9 items-center gap-2 rounded-full border border-slate-800 bg-slate-900/70 pl-2.5 pr-3.5 text-sm text-slate-300">
+        {t.icon ? <BrandIcon icon={t.icon} className="h-4 w-4" color={t.color} /> : <span className="inline-flex h-4 w-4 items-center justify-center rounded-[4px] bg-[#512bd4] text-[9px] font-bold text-white" aria-hidden="true">C#</span>}
+        {t.label}
+      </li>
+    ))}
+  </ul>
+);
 
 const RoadmapLink = ({ to, className, children }: { to: string; className?: string; children: React.ReactNode }) => (
   <a href={`#/${to}`} className={className}>{children}</a>
@@ -233,6 +255,8 @@ export function App() {
                   storageKey="karmatix-dotnet:v1:roadmap"
                   heroCta={{ to: 'projects', label: 'See the tested projects' }}
                   InternalLink={RoadmapLink}
+                  heroVisual={<DotnetTerminal />}
+                  stack={<Stack />}
                 />
               ) : /* PAGE 2: /course or /curriculum (Curriculum Hub) */
               activeView === 'course' || activeView === 'curriculum' ? (

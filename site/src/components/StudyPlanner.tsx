@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Clock, Target, CheckCircle2 } from 'lucide-react';
+import { Clock, Target, CheckCircle2 } from 'lucide-react';
 import { Card } from './ui/Card';
 import { ProgressBar } from './ui/ProgressBar';
 
@@ -44,17 +44,13 @@ export const StudyPlanner: React.FC<StudyPlannerProps> = ({
   ];
 
   return (
-    <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-8">
+    <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-8">
       {/* Title banner */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
-          <Calendar className="w-3.5 h-3.5" />
-          <span>Structured Roadmap</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+      <div className="kx-glow space-y-3 rounded-2xl border border-slate-800 p-6 sm:p-10">
+        <h1 className="text-3xl sm:text-[2.6rem] font-semibold leading-tight tracking-[-0.03em] text-slate-100">
           30 / 60 / 90-Day Study Planner
         </h1>
-        <p className="text-sm text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        <p className="max-w-2xl text-base leading-relaxed text-slate-400">
           Tailor your daily study schedule. Learn .NET systematically with clear weekly milestones and realistic daily goals.
         </p>
       </div>

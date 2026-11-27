@@ -24,12 +24,12 @@ export const PortalNav: React.FC<PortalNavProps> = ({
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <button
             onClick={() => handleNavClick('hero')}
-            className="flex items-center gap-1.5 sm:gap-2.5 text-left focus:outline-none focus:ring-2 focus:ring-[#ff6433] rounded-lg p-1"
+            className="flex items-center gap-1.5 sm:gap-2.5 text-left focus:outline-none focus:ring-2 focus:ring-[#9b7ff7] rounded-lg p-1"
           >
             <span className="font-bold text-base sm:text-xl tracking-tight text-white">
               Karmatix
             </span>
-            <span className="font-mono text-[10px] sm:text-xs text-[#ff6433] bg-[#ff6433]/10 border border-[#ff6433]/20 px-1.5 sm:px-2 py-0.5 rounded-full font-medium">
+            <span className="font-mono text-[10px] sm:text-xs text-[#9b7ff7] bg-[#9b7ff7]/10 border border-[#9b7ff7]/20 px-1.5 sm:px-2 py-0.5 rounded-full font-medium">
               [Learning]
             </span>
           </button>
@@ -89,7 +89,7 @@ export const PortalNav: React.FC<PortalNavProps> = ({
           {/* Primary CTA: Explore Tracks */}
           <button
             onClick={() => handleNavClick('curriculum')}
-            className="px-4 py-2 bg-[#ff6433] hover:bg-[#ff8a5c] text-black font-medium text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center gap-1.5"
+            className="px-4 py-2 bg-[#9b7ff7] hover:bg-[#b39dfc] text-black font-medium text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center gap-1.5"
           >
             <span>Explore Tracks</span>
             <ArrowUpRight className="w-4 h-4" />
@@ -159,7 +159,7 @@ export const PortalNav: React.FC<PortalNavProps> = ({
                 setIsMobileMenuOpen(false);
                 onEnterDotNetCourse();
               }}
-              className="w-full py-2.5 px-4 bg-[#ff6433] hover:bg-[#ff8a5c] text-black font-medium text-sm rounded-full text-center"
+              className="w-full py-2.5 px-4 bg-[#9b7ff7] hover:bg-[#b39dfc] text-black font-medium text-sm rounded-full text-center"
             >
               Start .NET Flagship Track
             </button>

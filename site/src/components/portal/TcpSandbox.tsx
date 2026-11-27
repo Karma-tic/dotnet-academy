@@ -71,8 +71,8 @@ export const TcpSandbox: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="space-y-3 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
-            <Zap className="w-3.5 h-3.5 text-[#ff6433]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#9b7ff7]">
+            <Zap className="w-3.5 h-3.5 text-[#9b7ff7]" />
             <span>INTERACTIVE EXPERIMENT</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
@@ -91,7 +91,7 @@ export const TcpSandbox: React.FC = () => {
             <div className="space-y-2 font-mono text-xs">
               <div className="flex justify-between items-center text-[#b9b2a8]">
                 <span>Simulate Packet Loss:</span>
-                <span className="text-[#ff6433] font-bold">{packetLoss}%</span>
+                <span className="text-[#9b7ff7] font-bold">{packetLoss}%</span>
               </div>
               <input
                 type="range"
@@ -100,7 +100,7 @@ export const TcpSandbox: React.FC = () => {
                 step="1"
                 value={packetLoss}
                 onChange={(e) => setPacketLoss(Number(e.target.value))}
-                className="w-full accent-[#ff6433] cursor-pointer"
+                className="w-full accent-[#9b7ff7] cursor-pointer"
                 aria-label="Packet loss slider"
               />
               <span className="text-[11px] text-[#8f887f]">0% (Lossless fiber) to 15% (Congested mobile 4G)</span>
@@ -110,7 +110,7 @@ export const TcpSandbox: React.FC = () => {
             <div className="space-y-2 font-mono text-xs">
               <div className="flex justify-between items-center text-[#b9b2a8]">
                 <span>Round Trip Time (RTT):</span>
-                <span className="text-[#ff6433] font-bold">{rtt}ms</span>
+                <span className="text-[#9b7ff7] font-bold">{rtt}ms</span>
               </div>
               <input
                 type="range"
@@ -119,7 +119,7 @@ export const TcpSandbox: React.FC = () => {
                 step="10"
                 value={rtt}
                 onChange={(e) => setRtt(Number(e.target.value))}
-                className="w-full accent-[#ff6433] cursor-pointer"
+                className="w-full accent-[#9b7ff7] cursor-pointer"
                 aria-label="Round trip time slider"
               />
               <span className="text-[11px] text-[#8f887f]">20ms (Local intra-region) to 240ms (Trans-oceanic)</span>
@@ -130,14 +130,14 @@ export const TcpSandbox: React.FC = () => {
               <div className="font-mono text-xs space-y-1">
                 <span className="text-[#8f887f] block text-[10px]">CURRENT PHASE</span>
                 <span className={`font-bold ${
-                  phase === 'Packet Drop Recovery' ? 'text-red-400' : phase === 'Slow Start' ? 'text-[#ff6433]' : 'text-[#22c55e]'
+                  phase === 'Packet Drop Recovery' ? 'text-red-400' : phase === 'Slow Start' ? 'text-[#9b7ff7]' : 'text-[#22c55e]'
                 }`}>
                   {phase}
                 </span>
               </div>
               <button
                 onClick={handleReset}
-                className="p-2 rounded bg-[#1c1b19] border border-[#3a3733] text-[#b9b2a8] hover:text-[#f4f1ec] hover:border-[#ff6433] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                className="p-2 rounded bg-[#1c1b19] border border-[#3a3733] text-[#b9b2a8] hover:text-[#f4f1ec] hover:border-[#9b7ff7] transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                 title="Reset Simulation"
               >
                 <RefreshCw className="w-4 h-4" />
@@ -170,7 +170,7 @@ export const TcpSandbox: React.FC = () => {
                         className={`w-3.5 sm:w-4 h-5 sm:h-6 rounded-xs transition-all duration-300 flex items-center justify-center text-[8px] sm:text-[9px] font-mono font-bold ${
                           droppedPacket
                             ? 'bg-red-500/80 text-white scale-90'
-                            : 'bg-[#ff6433] text-black shadow-xs'
+                            : 'bg-[#9b7ff7] text-black shadow-xs'
                         }`}
                       >
                         {i + 1}
@@ -208,7 +208,7 @@ export const TcpSandbox: React.FC = () => {
                       key={idx}
                       style={{ height: `${heightPercent}%` }}
                       className={`flex-1 rounded-xs transition-all duration-200 ${
-                        val >= ssthresh ? 'bg-[#22c55e]' : 'bg-[#ff6433]'
+                        val >= ssthresh ? 'bg-[#22c55e]' : 'bg-[#9b7ff7]'
                       }`}
                       title={`CWND: ${val} MSS`}
                     />

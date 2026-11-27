@@ -33,20 +33,16 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
   return (
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
       {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
-          <Compass className="w-3.5 h-3.5" />
-          <span>Goal-Oriented Engineering Roadmaps</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+      <div className="kx-glow space-y-3 rounded-2xl border border-slate-800 p-6 sm:p-10">
+        <h1 className="text-3xl sm:text-[2.6rem] font-semibold leading-tight tracking-[-0.03em] text-slate-100">
           Choose Your .NET Career Track
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="max-w-2xl text-base leading-relaxed text-slate-400">
           Don't study randomly. Choose a verified curriculum sequence mapped to your specific industry career objective, complete with week-by-week milestones and project deliverables.
         </p>
 
         {/* Track Selection Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 pt-4">
+        <div className="flex flex-wrap gap-2 pt-4">
           {learningPathsData.map((path) => {
             const isSelected = path.id === selectedPath.id;
             return (
@@ -72,7 +68,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
               <Compass className="w-3.5 h-3.5" />
               <span>Interactive Step-by-Step Path</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white">
+            <h2 className="text-xl sm:text-2xl font-bold text-white">
               Visual .NET Career Roadmap
             </h2>
           </div>
@@ -179,7 +175,7 @@ export const LearningPathsView: React.FC<LearningPathsViewProps> = ({
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
               {selectedPath.title}
             </h2>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">

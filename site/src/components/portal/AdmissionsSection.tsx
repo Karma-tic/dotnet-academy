@@ -34,7 +34,7 @@ export const AdmissionsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="space-y-3 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#9b7ff7]">
             <span>ADMISSIONS ROADMAP</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
@@ -56,7 +56,7 @@ export const AdmissionsSection: React.FC = () => {
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-xs font-bold text-[#ff6433] bg-[#ff6433]/10 border border-[#ff6433]/20 px-2.5 py-1 rounded-full">
+                    <span className="font-mono text-xs font-bold text-[#9b7ff7] bg-[#9b7ff7]/10 border border-[#9b7ff7]/20 px-2.5 py-1 rounded-full">
                       STEP {s.num}
                     </span>
                     <Icon className="w-5 h-5 text-[#b9b2a8]" />

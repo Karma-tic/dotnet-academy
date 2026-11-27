@@ -35,7 +35,7 @@ export const CurriculumOverview: React.FC<CurriculumOverviewProps> = ({
         </div>
 
         <div className="space-y-3 max-w-3xl mx-auto px-2">
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white tracking-tight leading-tight">
             Learn .NET <span className="block sm:inline text-violet-600 dark:text-violet-400">the clear way.</span>
           </h1>
           <p className="text-sm sm:text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mx-auto">
