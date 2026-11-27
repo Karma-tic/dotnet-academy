@@ -18,13 +18,11 @@ export const roadmap = {
       "weeks": "3 to 4",
       "goal": "Get fluent in C# and the dotnet CLI.",
       "topics": [
-        "Install the .NET 10 SDK, VS Code with C# Dev Kit or Visual Studio",
-        "dotnet new, build, run and test from the terminal",
-        "Types, nullable reference types, control flow, methods",
-        "Classes, records, structs, interfaces and inheritance",
+        "Install the .NET SDK and use dotnet new, run and test",
+        "Types, nullable references and control flow",
+        "Classes, records and interfaces",
         "Collections and generics",
-        "Exceptions and debugging",
-        "Git and GitHub"
+        "Exceptions, debugging and Git"
       ],
       "learn": [
         {
@@ -94,11 +92,9 @@ export const roadmap = {
       "weeks": "2 to 3",
       "goal": "Write the C# that real codebases use.",
       "topics": [
-        "LINQ queries and method syntax",
-        "async and await, Task and cancellation",
-        "Delegates, lambdas and events",
-        "Pattern matching and switch expressions",
-        "Records, init-only properties and immutability",
+        "LINQ",
+        "async and await with cancellation",
+        "Lambdas and pattern matching",
         "Dependency injection basics",
         "Unit tests with xUnit"
       ],
@@ -159,11 +155,11 @@ export const roadmap = {
       "weeks": "2 to 3",
       "goal": "Store and query data correctly.",
       "topics": [
-        "SQL: SELECT, JOINs, GROUP BY, indexes, transactions",
-        "SQL Server or PostgreSQL locally (Docker is fine)",
-        "EF Core: DbContext, migrations, relationships",
-        "Querying efficiently: AsNoTracking, projections, avoiding N+1",
-        "Dapper for raw SQL when you need speed"
+        "SQL: joins, grouping and indexes",
+        "A local SQL Server or PostgreSQL",
+        "EF Core: DbContext, migrations and relationships",
+        "Efficient queries: projections and no N+1",
+        "Dapper for raw SQL"
       ],
       "learn": [
         {
@@ -223,12 +219,10 @@ export const roadmap = {
       "goal": "Build secure, documented REST APIs.",
       "topics": [
         "Minimal APIs and controllers",
-        "Routing, model binding and validation",
+        "Validation and error handling with ProblemDetails",
         "Middleware, logging and configuration",
-        "Auth with JWT and ASP.NET Core Identity",
-        "OpenAPI docs and versioning",
-        "Error handling with ProblemDetails",
-        "Integration tests with WebApplicationFactory"
+        "Auth with JWT",
+        "Integration tests and OpenAPI docs"
       ],
       "learn": [
         {
@@ -287,12 +281,11 @@ export const roadmap = {
       "weeks": "3 to 4",
       "goal": "Structure, ship and run it like a team would.",
       "topics": [
-        "Clean architecture and vertical slices, and when not to use them",
-        "Caching with IMemoryCache and Redis",
+        "Clean architecture, and when not to use it",
+        "Caching with Redis",
         "Background jobs with hosted services",
-        "Real-time features with SignalR",
         "Docker and GitHub Actions CI",
-        "Deploying to Azure, logs and health checks"
+        "Deploying to Azure with health checks"
       ],
       "learn": [
         {
@@ -342,7 +335,7 @@ export const roadmap = {
           "tip": "Follow the modules in order and push every lab to your GitHub."
         }
       ],
-      "build": "Take the production API capstone from the Karmatix .NET Academy and extend it with caching, a background job and a deploy pipeline.",
+      "build": "Take the Karmatix production API capstone and extend it with caching, a background job and a deploy pipeline.",
       "prove": "AZ-204 if your target companies use Azure, plus a live capstone.",
       "hint": null
     },
@@ -352,10 +345,9 @@ export const roadmap = {
       "goal": "Prepare for .NET interview rounds.",
       "topics": [
         "CLR, garbage collection, value vs reference types",
-        "async internals and common deadlocks",
+        "async internals and deadlocks",
         "DI lifetimes: singleton, scoped, transient",
-        "EF Core performance questions",
-        "REST design and HTTP status codes",
+        "REST design and status codes",
         "SOLID with examples from your own code"
       ],
       "learn": [
@@ -395,7 +387,7 @@ export const roadmap = {
           "tip": "Do problems by pattern, not at random. Use the NeetCode list to stay focused."
         }
       ],
-      "build": "Answer the Karmatix .NET Academy interview questions out loud and record yourself once.",
+      "build": "Answer the Karmatix .NET interview questions out loud and record yourself once.",
       "prove": "Two deployed APIs, tests in CI and confident answers on the common topics.",
       "hint": null
     }

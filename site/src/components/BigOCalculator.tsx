@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Layers, AlertCircle } from 'lucide-react';
+import { Layers, AlertCircle } from 'lucide-react';
 import { Card } from './ui/Card';
 import { CodeBlock } from './ui/CodeBlock';
 
@@ -181,11 +181,7 @@ export const BigOCalculator: React.FC = () => {
   return (
     <Card className="p-6 sm:p-8 space-y-6">
       <div className="space-y-2 border-b border-slate-200 dark:border-slate-800 pb-4">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
-          <Sparkles className="w-3.5 h-3.5 text-violet-500" />
-          <span>Interactive Problem Solver &amp; Formula Estimator</span>
-        </div>
-        <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
           .NET Big-O Complexity &amp; Memory Allocation Calculator
         </h2>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
@@ -249,12 +245,12 @@ export const BigOCalculator: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3">
           <div>
             <span className="text-xs text-slate-400 block font-medium">Selected Scenario</span>
-            <div className="font-extrabold text-base text-slate-900 dark:text-white">
+            <div className="font-bold text-base text-slate-900 dark:text-white">
               {selectedCollection} &bull; {selectedOperation}
             </div>
           </div>
 
-          <div className={`px-4 py-1.5 rounded-xl border text-sm font-black shadow-xs ${getBadgeColor(currentData.timeClass)}`}>
+          <div className={`px-4 py-1.5 rounded-xl border text-sm font-bold shadow-xs ${getBadgeColor(currentData.timeClass)}`}>
             {currentData.timeComplexity}
           </div>
         </div>

@@ -103,7 +103,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
               <span>Tailored for Absolute Beginners &amp; Enterprise Engineers</span>
             </div>
 
-            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-5xl dark:text-white leading-tight">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-white leading-tight">
               Master .NET from Scratch.{' '}
               <span className="text-violet-600 dark:text-violet-400">
                 Build Enterprise Systems.
@@ -159,7 +159,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     Overall Course Progress
                   </span>
                   <div className="mt-1 flex items-baseline gap-2">
-                    <span className="text-3xl font-extrabold text-slate-900 dark:text-white">
+                    <span className="text-3xl font-bold text-slate-900 dark:text-white">
                       {progressPercent}%
                     </span>
                     <span className="text-xs text-slate-500 dark:text-slate-400">
@@ -213,7 +213,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-50 text-violet-600 dark:bg-violet-950/60 dark:text-violet-400 mb-2 mx-auto sm:mx-0">
                   <Layers className="h-5 w-5" />
                 </div>
-                <div className="text-xl font-black text-slate-900 dark:text-white">12</div>
+                <div className="text-xl font-bold text-slate-900 dark:text-white">12</div>
                 <div className="text-xs text-slate-500 dark:text-slate-400">Core Modules</div>
               </div>
 
@@ -221,7 +221,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-50 text-violet-600 dark:bg-violet-950/60 dark:text-violet-400 mb-2 mx-auto sm:mx-0">
                   <Code2 className="h-5 w-5" />
                 </div>
-                <div className="text-xl font-black text-slate-900 dark:text-white">16</div>
+                <div className="text-xl font-bold text-slate-900 dark:text-white">16</div>
                 <div className="text-xs text-slate-500 dark:text-slate-400">Tested Capstones</div>
               </div>
 
@@ -229,7 +229,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-50 text-violet-600 dark:bg-violet-950/60 dark:text-violet-400 mb-2 mx-auto sm:mx-0">
                   <Award className="h-5 w-5" />
                 </div>
-                <div className="text-xl font-black text-slate-900 dark:text-white">200+</div>
+                <div className="text-xl font-bold text-slate-900 dark:text-white">200+</div>
                 <div className="text-xs text-slate-500 dark:text-slate-400">Interview Q&amp;As</div>
               </div>
             </div>
@@ -273,7 +273,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         <div className="space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
-              <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                 Curriculum Modules
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
@@ -304,7 +304,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   <div className="space-y-4">
                     {/* Module Header */}
                     <div className="flex items-start justify-between gap-2">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600 font-extrabold text-sm dark:bg-violet-950/60 dark:text-violet-400">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-50 text-violet-600 font-bold text-sm dark:bg-violet-950/60 dark:text-violet-400">
                         M{module.id}
                       </div>
 
@@ -392,7 +392,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                   className="flex items-center justify-between rounded-xl border border-slate-100 bg-slate-50/70 p-3 text-xs transition text-left hover:border-violet-300 hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-950/40 dark:hover:border-slate-700"
                 >
                   <div className="flex items-center gap-2.5 truncate">
-                    <span className="shrink-0 rounded-md border border-violet-200/80 bg-violet-50 px-2 py-0.5 text-[10px] font-extrabold uppercase text-violet-700 dark:border-violet-800/80 dark:bg-violet-950/80 dark:text-violet-300">
+                    <span className="shrink-0 rounded-md border border-violet-200/80 bg-violet-50 px-2 py-0.5 text-[10px] font-bold uppercase text-violet-700 dark:border-violet-800/80 dark:bg-violet-950/80 dark:text-violet-300">
                       M{lesson.module}
                     </span>
                     <span className="truncate font-medium text-slate-800 dark:text-slate-200">

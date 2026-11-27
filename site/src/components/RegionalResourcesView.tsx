@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Languages, ExternalLink, Users } from 'lucide-react';
+import { ExternalLink, Users } from 'lucide-react';
 import { regionalResourcesData } from '../content/learningSupport/regionalResourcesData';
 import { Button } from './ui/Button';
 import { Badge } from './ui/Badge';
@@ -17,20 +17,16 @@ export const RegionalResourcesView: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
       {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
-          <Languages className="w-3.5 h-3.5" />
-          <span>Regional & Indian Language Learning</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          .NET & C# in Hindi & Indian Languages
+      <div className="kx-glow space-y-3 rounded-2xl border border-slate-800 p-6 sm:p-10">
+        <h1 className="text-3xl sm:text-[2.6rem] font-semibold leading-tight tracking-[-0.03em] text-slate-100">
+          .NET in Hindi and Indian languages
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="max-w-2xl text-base leading-relaxed text-slate-400">
           Learning complex software engineering concepts in your native language makes mental models click faster. Here are verified, active, high-quality Indian educators and localized documentation.
         </p>
 
         {/* Language Filter */}
-        <div className="flex flex-wrap justify-center gap-2 pt-2">
+        <div className="flex flex-wrap gap-2 pt-2">
           {languages.map((lang) => (
             <Button
               key={lang}

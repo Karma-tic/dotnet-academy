@@ -172,7 +172,7 @@ export const CurriculumTracks: React.FC<CurriculumTracksProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="space-y-3 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#9b7ff7]">
             <span>ENGINEERING TRACKS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
@@ -193,14 +193,14 @@ export const CurriculumTracks: React.FC<CurriculumTracksProps> = ({
                 onClick={() => setActiveTrackId(t.id)}
                 className={`px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium whitespace-nowrap transition-colors min-h-[44px] flex items-center gap-2 ${
                   isActive
-                    ? 'bg-[#ff6433] text-black font-semibold shadow-sm'
+                    ? 'bg-[#9b7ff7] text-black font-semibold shadow-sm'
                     : 'bg-[#171614] border border-[#2b2926] text-[#b9b2a8] hover:text-[#f4f1ec] hover:border-[#3a3733]'
                 }`}
               >
                 <span>{t.name}</span>
                 {t.isFlagship && (
                   <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
-                    isActive ? 'bg-black/20 text-black' : 'bg-[#ff6433]/15 text-[#ff6433]'
+                    isActive ? 'bg-black/20 text-black' : 'bg-[#9b7ff7]/15 text-[#9b7ff7]'
                   }`}>
                     Active
                   </span>
@@ -231,7 +231,7 @@ export const CurriculumTracks: React.FC<CurriculumTracksProps> = ({
             {/* Price Badge */}
             <div className="p-4 rounded-xl bg-[#121110] border border-[#2b2926] text-left md:text-right font-mono shrink-0 w-full md:w-auto">
               <span className="text-xs text-[#8f887f] block">TUITION & ACCESS</span>
-              <p className="text-xl sm:text-2xl font-bold text-[#ff6433]">{activeTrack.price}</p>
+              <p className="text-xl sm:text-2xl font-bold text-[#9b7ff7]">{activeTrack.price}</p>
               <p className="text-[11px] text-[#b9b2a8]">{activeTrack.emi}</p>
             </div>
           </div>
@@ -241,7 +241,7 @@ export const CurriculumTracks: React.FC<CurriculumTracksProps> = ({
             {/* Left: Track Overview & Prerequisites */}
             <div className="lg:col-span-5 min-w-0 space-y-6">
               <div className="space-y-3">
-                <span className="font-mono text-xs font-semibold text-[#ff6433] uppercase tracking-wider block">
+                <span className="font-mono text-xs font-semibold text-[#9b7ff7] uppercase tracking-wider block">
                   Prerequisites Checklist
                 </span>
                 <div className="space-y-2">
@@ -265,7 +265,7 @@ export const CurriculumTracks: React.FC<CurriculumTracksProps> = ({
                 </div>
                 <div className="flex items-center justify-between text-[#b9b2a8]">
                   <span>Capstone Project:</span>
-                  <span className="text-[#ff6433] font-semibold text-right max-w-[200px] truncate">{activeTrack.capstoneName}</span>
+                  <span className="text-[#9b7ff7] font-semibold text-right max-w-[200px] truncate">{activeTrack.capstoneName}</span>
                 </div>
               </div>
 
@@ -274,7 +274,7 @@ export const CurriculumTracks: React.FC<CurriculumTracksProps> = ({
                 {activeTrack.isFlagship ? (
                   <button
                     onClick={onEnterDotNetCourse}
-                    className="px-6 py-3 bg-[#ff6433] hover:bg-[#ff8a5c] text-black font-semibold text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center justify-center gap-2"
+                    className="px-6 py-3 bg-[#9b7ff7] hover:bg-[#b39dfc] text-black font-semibold text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center justify-center gap-2"
                   >
                     <Sparkles className="w-4 h-4" />
                     <span>Enter .NET Academy (12 Modules)</span>
@@ -285,7 +285,7 @@ export const CurriculumTracks: React.FC<CurriculumTracksProps> = ({
                     href="https://wa.me/919999999999?text=Hi%20Karmatix%2C%20I%20am%20interested%20in%20enrolling%20in%20the%20track."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 bg-[#ff6433] hover:bg-[#ff8a5c] text-black font-semibold text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center justify-center gap-2"
+                    className="px-6 py-3 bg-[#9b7ff7] hover:bg-[#b39dfc] text-black font-semibold text-sm rounded-full transition-transform active:scale-95 shadow-sm min-h-[44px] flex items-center justify-center gap-2"
                   >
                     <MessageSquare className="w-4 h-4 text-black" />
                     <span>Enroll via WhatsApp (+91)</span>
@@ -307,7 +307,7 @@ export const CurriculumTracks: React.FC<CurriculumTracksProps> = ({
             {/* Right: Interactive Capstone File Tree */}
             <div className="lg:col-span-7 min-w-0 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-xs font-semibold text-[#ff6433] uppercase tracking-wider flex items-center gap-2">
+                <span className="font-mono text-xs font-semibold text-[#9b7ff7] uppercase tracking-wider flex items-center gap-2">
                   <Terminal className="w-3.5 h-3.5" />
                   <span>Capstone Repository Architecture</span>
                 </span>
@@ -324,9 +324,9 @@ export const CurriculumTracks: React.FC<CurriculumTracksProps> = ({
                   <div key={idx} className="space-y-1">
                     <button
                       onClick={() => item.isFolder && toggleFolder(item.name)}
-                      className="flex items-center gap-2 text-[#f4f1ec] hover:text-[#ff6433] w-full text-left font-semibold"
+                      className="flex items-center gap-2 text-[#f4f1ec] hover:text-[#9b7ff7] w-full text-left font-semibold"
                     >
-                      <Folder className="w-4 h-4 text-[#ff6433]" />
+                      <Folder className="w-4 h-4 text-[#9b7ff7]" />
                       <span>{item.name}</span>
                     </button>
 

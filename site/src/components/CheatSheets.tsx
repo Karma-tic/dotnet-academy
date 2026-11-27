@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Printer, Copy, Check, Download } from 'lucide-react';
+import { Printer, Copy, Check } from 'lucide-react';
 import { Button } from './ui/Button';
 import { Badge } from './ui/Badge';
 import { cheatSheetsData, CheatSheet } from '../content/cheatsheets/cheatsheetsData';
@@ -23,22 +23,18 @@ export const CheatSheets: React.FC = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-8">
+    <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-8">
       {/* Header */}
-      <div className="text-center space-y-3 no-print">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 dark:bg-violet-950/50 text-violet-700 dark:text-violet-300 text-xs font-semibold">
-          <Download className="w-3.5 h-3.5" />
-          <span>Offline Developer Kit (8 Reference Sheets)</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Offline Kit: One-Page Printable Cheat Sheets
+      <div className="kx-glow space-y-3 rounded-2xl border border-slate-800 p-6 sm:p-10 no-print">
+        <h1 className="text-3xl sm:text-[2.6rem] font-semibold leading-tight tracking-[-0.03em] text-slate-100">
+          Cheat sheets
         </h1>
-        <p className="text-sm text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        <p className="max-w-2xl text-base leading-relaxed text-slate-400">
           High-density reference sheets for C# 14, LINQ, EF Core, ASP.NET Core, .NET CLI, Git, SQL, and HTTP status codes. Print directly or save as PDF via your browser print dialog.
         </p>
 
         {/* Sheet Switcher */}
-        <div className="flex flex-wrap justify-center gap-2 pt-2">
+        <div className="flex flex-wrap gap-2 pt-2">
           {cheatSheetsData.map((sheet) => {
             const isSelected = activeSheet.id === sheet.id;
             return (

@@ -25,6 +25,8 @@ interface Props {
   heroCta: { to: string; label: string };
   InternalLink: InternalLink;
   after?: React.ReactNode;
+  heroVisual?: React.ReactNode;
+  stack?: React.ReactNode;
 }
 
 const TYPE_ICON: Record<string, React.ElementType> = {
@@ -61,7 +63,7 @@ const ResCard: React.FC<{ r: Res; showTip?: boolean }> = ({ r, showTip = true })
   );
 };
 
-export const RoadmapView: React.FC<Props> = ({ roadmap: k, extras, storageKey, heroCta, InternalLink, after }) => {
+export const RoadmapView: React.FC<Props> = ({ roadmap: k, extras, storageKey, heroCta, InternalLink, after, heroVisual, stack }) => {
   const total = useMemo(() => k.stages.reduce((n, s) => n + s.topics.length, 0), [k]);
   const [done, setDone] = useState<Set<string>>(() => {
     try { return new Set(JSON.parse(localStorage.getItem(storageKey) || '[]')); } catch { return new Set(); }
@@ -77,30 +79,33 @@ export const RoadmapView: React.FC<Props> = ({ roadmap: k, extras, storageKey, h
     <div className="bg-neutral-950 text-neutral-100">
       {/* Hero */}
       <section className="kx-glow border-b border-neutral-800">
-        <div className="mx-auto max-w-6xl px-4 pb-12 pt-10 sm:px-6 sm:pt-14">
+        <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)] items-center gap-12 px-4 pb-12 pt-10 sm:px-6 sm:pt-14 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+          <div>
           <nav aria-label="Breadcrumb" className="text-sm text-neutral-500">
             <a href="https://learn.karmatix.in/roadmaps/" className="inline-flex min-h-9 items-center hover:text-neutral-100">Karmatix Learn roadmaps</a>
             <span aria-hidden="true"> / </span><span className="text-neutral-400">{k.name}</span>
           </nav>
-          <h1 className="mt-3 text-[2.4rem] font-semibold leading-[1.05] tracking-[-0.03em] text-neutral-100 sm:text-6xl">
+          <h1 className="mt-3 text-[2.4rem] font-semibold leading-[1.05] tracking-[-0.03em] text-neutral-100 sm:text-[3.4rem]">
             {k.name} roadmap. <span className="italic font-normal text-ember" style={{ fontFamily: '"Instrument Serif", Georgia, serif' }}>Every skill, in order.</span>
           </h1>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-neutral-400">
-            {k.tagline} Each stage lists what you must know, the best place to learn it, where to practise here for free, what to build and how to prove it.
+            {k.tagline} <span className="hidden sm:inline">{k.why}</span>
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a href="#stage-1" className="inline-flex min-h-11 items-center rounded-full bg-ember px-5 font-semibold text-ember-ink transition-colors hover:bg-ember-soft">Start stage 1</a>
             <InternalLink to={heroCta.to} className="inline-flex min-h-11 items-center rounded-full border border-neutral-700 px-5 font-semibold text-neutral-100 transition-colors hover:border-neutral-500 hover:bg-neutral-900">{heroCta.label}</InternalLink>
           </div>
-          <dl className="mt-9 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-neutral-800 bg-neutral-800 sm:grid-cols-4">
+          <dl className="mt-8 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-xl border border-neutral-800 bg-neutral-800">
             {[
-              ['Become a', k.role], ['Time, part time', `${k.months} months`], ['Start with', k.start], ['Skills to learn', String(total)],
+              ['Become a', k.role], ['Time, part time', `${k.months} months`], ['Skills', `${total} essentials`],
             ].map(([dt, dd]) => (
-              <div key={dt} className="bg-neutral-900 p-4"><dt className="text-xs text-neutral-500">{dt}</dt><dd className="mt-1 text-sm font-medium text-neutral-100">{dd}</dd></div>
+              <div key={dt} className="bg-neutral-900 p-3 sm:p-4"><dt className="text-xs text-neutral-500">{dt}</dt><dd className="mt-1 text-sm font-medium text-neutral-100">{dd}</dd></div>
             ))}
           </dl>
-          <p className="mt-5 flex max-w-3xl gap-2 text-sm leading-relaxed text-neutral-400"><Briefcase className="mt-0.5 h-4 w-4 shrink-0 text-ember" />{k.why}</p>
-          <nav aria-label="Stages" className="mt-6">
+          {stack && <div className="mt-7">{stack}</div>}
+          </div>
+          {heroVisual && <div>{heroVisual}</div>}
+          <nav aria-label="Stages" className="lg:col-span-2">
             <ol className="kx-scroll-row">
               {k.stages.map((s, i) => (
                 <li key={s.title}><a href={`#stage-${i + 1}`} className="inline-flex min-h-9 items-center gap-1.5 whitespace-nowrap rounded-full border border-neutral-800 bg-neutral-900 px-3.5 text-sm text-neutral-400 transition-colors hover:border-neutral-700 hover:text-neutral-100"><span className="text-ember">{i + 1}</span>{s.title}</a></li>
@@ -223,16 +228,6 @@ export const RoadmapView: React.FC<Props> = ({ roadmap: k, extras, storageKey, h
             <a href="https://learn.karmatix.in/certifications/" className="mt-2 inline-flex min-h-9 items-center text-sm text-ember-soft underline-offset-4 hover:underline">Compare all certifications</a>
           </section>
 
-          {[{ label: 'Tools to install', Icon: Wrench, list: k.tools }, { label: 'Channels to follow', Icon: PlayCircle, list: k.channels }, { label: 'Communities to join', Icon: Users, list: k.communities }].map(({ label, Icon, list }) => (
-            <section key={label}>
-              <h2 className="flex items-center gap-2 text-sm font-semibold text-neutral-100"><Icon className="h-4 w-4 text-ember" />{label}</h2>
-              <ul className="mt-2">{list.map((r) => (
-                <li key={r.id}><a href={r.url} target="_blank" rel="noopener noreferrer" className="group flex min-h-11 items-center justify-between gap-3 border-b border-neutral-800 text-sm text-neutral-400 transition-colors hover:text-neutral-100">
-                  <span className="min-w-0 truncate">{r.name}</span><ArrowUpRight className="h-4 w-4 shrink-0 text-neutral-500 group-hover:text-ember" />
-                </a></li>
-              ))}</ul>
-            </section>
-          ))}
           <a href="https://learn.karmatix.in/roadmaps/" className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-neutral-700 px-4 text-sm font-semibold text-neutral-100 transition-colors hover:border-neutral-500">All stack roadmaps</a>
         </aside>
       </div>

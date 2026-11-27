@@ -25,7 +25,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
               <Shield className="w-4 h-4" />
               <span>India DPDP Act 2023 Compliant</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
               Privacy Policy
             </h1>
             <p className="text-xs text-slate-500">Last updated: November 6, 2026</p>
@@ -94,7 +94,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
               <FileText className="w-4 h-4" />
               <span>Standard Terms</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
               Terms of Use
             </h1>
             <p className="text-xs text-slate-500">Effective: November 6, 2026</p>
@@ -151,7 +151,7 @@ export const LegalPages: React.FC<LegalProps> = ({ page }) => {
               <Mail className="w-4 h-4" />
               <span>Get in Touch</span>
             </div>
-            <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
               Contact & Educational Support
             </h1>
             <p className="text-xs text-slate-500">We welcome feedback, corrections, and enterprise partnerships.</p>

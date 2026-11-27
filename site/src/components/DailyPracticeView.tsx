@@ -20,7 +20,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
   streakData,
   onRecordProblemSolved,
 }) => {
-  // Deterministic Problem of the Day based on day of year
+  // Deterministic Daily practice based on day of year
   const now = new Date();
   const startOfYear = new Date(now.getFullYear(), 0, 0);
   const diff = now.getTime() - startOfYear.getTime();
@@ -69,15 +69,11 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
       {/* Header with Streak Counter */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-6 sm:p-8 bg-linear-to-r from-amber-500/10 via-orange-500/10 to-violet-500/10 dark:from-amber-950/20 dark:via-orange-950/20 dark:to-violet-950/20 rounded-3xl border border-amber-200 dark:border-amber-900/40">
-        <div className="space-y-2 text-center md:text-left">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 text-xs font-bold">
-            <Flame className="w-4 h-4 text-orange-500 fill-orange-500" />
-            <span>Daily Engineering Streak</span>
-          </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-            Problem of the Day
+        <div className="space-y-2">
+          <h1 className="text-3xl sm:text-[2.6rem] font-semibold leading-tight tracking-[-0.03em] text-slate-100">
+            Daily practice
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl">
+          <p className="max-w-2xl text-base leading-relaxed text-slate-400">
             Consistency beats intensity. Solve one .NET algorithm or architectural coding challenge every day to build permanent problem-solving reflexes.
           </p>
         </div>
@@ -85,7 +81,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
         {/* Streak Stats Badges */}
         <div className="flex items-center gap-4 shrink-0">
           <div className="px-5 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-            <div className="flex items-center justify-center gap-1.5 text-2xl font-black text-amber-500">
+            <div className="flex items-center justify-center gap-1.5 text-2xl font-bold text-amber-500">
               <Flame className="w-5 h-5 fill-amber-500" />
               <span>{streakData.currentStreak || 0}</span>
             </div>
@@ -95,7 +91,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
           </div>
 
           <div className="px-5 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-            <div className="flex items-center justify-center gap-1.5 text-2xl font-black text-violet-500">
+            <div className="flex items-center justify-center gap-1.5 text-2xl font-bold text-violet-500">
               <Award className="w-5 h-5" />
               <span>{streakData.longestStreak || 0}</span>
             </div>
@@ -105,7 +101,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
           </div>
 
           <div className="px-5 py-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center shadow-xs">
-            <div className="flex items-center justify-center gap-1.5 text-2xl font-black text-emerald-500">
+            <div className="flex items-center justify-center gap-1.5 text-2xl font-bold text-emerald-500">
               <CheckCircle2 className="w-5 h-5" />
               <span>{streakData.solvedProblemIds?.length || 0}</span>
             </div>
@@ -136,7 +132,7 @@ export const DailyPracticeView: React.FC<DailyPracticeViewProps> = ({
                   </span>
                 )}
               </div>
-              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                 {activeProblem.title}
               </h2>
             </div>

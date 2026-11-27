@@ -177,7 +177,7 @@ export const CertificateModal: React.FC<CertificateModalProps> = ({
               Karmatix Educational Platform
             </div>
 
-            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
               Certificate of Completion
             </h1>
 

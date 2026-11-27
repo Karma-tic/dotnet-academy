@@ -37,8 +37,8 @@ export const EngineeringFaq: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Section Header */}
         <div className="space-y-3 text-center sm:text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
-            <HelpCircle className="w-3.5 h-3.5 text-[#ff6433]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#9b7ff7]">
+            <HelpCircle className="w-3.5 h-3.5 text-[#9b7ff7]" />
             <span>DIRECT ANSWERS</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
@@ -60,13 +60,13 @@ export const EngineeringFaq: React.FC = () => {
               >
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-[#f4f1ec] hover:text-[#ff6433] transition-colors min-h-[52px]"
+                  className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-sm sm:text-base text-[#f4f1ec] hover:text-[#9b7ff7] transition-colors min-h-[52px]"
                   aria-expanded={isOpen}
                 >
                   <span>{faq.q}</span>
                   <ChevronDown
                     className={`w-5 h-5 text-[#b9b2a8] shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'transform rotate-180 text-[#ff6433]' : ''
+                      isOpen ? 'transform rotate-180 text-[#9b7ff7]' : ''
                     }`}
                   />
                 </button>

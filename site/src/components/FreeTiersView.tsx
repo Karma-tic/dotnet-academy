@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Cloud, ShieldAlert, ExternalLink } from 'lucide-react';
+import { ShieldAlert, ExternalLink } from 'lucide-react';
 import { cloudFreeTiersData } from '../content/learningSupport/freeTiersData';
 import { Button } from './ui/Button';
 import { Badge } from './ui/Badge';
@@ -17,20 +17,16 @@ export const FreeTiersView: React.FC = () => {
   return (
     <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
       {/* Header */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 text-xs font-semibold">
-          <Cloud className="w-3.5 h-3.5" />
-          <span>Deployment & Practice Infrastructure</span>
-        </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Verified Free Cloud Tiers Guide
+      <div className="kx-glow space-y-3 rounded-2xl border border-slate-800 p-6 sm:p-10">
+        <h1 className="text-3xl sm:text-[2.6rem] font-semibold leading-tight tracking-[-0.03em] text-slate-100">
+          Free cloud tiers
         </h1>
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        <p className="max-w-2xl text-base leading-relaxed text-slate-400">
           Practicing production deployment should not cost money. Here is our verified guide to zero-cost cloud tiers, exact quota boundaries, credit card safety rules, and retired services.
         </p>
 
         {/* Category Switcher */}
-        <div className="flex flex-wrap justify-center gap-2 pt-2">
+        <div className="flex flex-wrap gap-2 pt-2">
           {categories.map((cat) => (
             <Button
               key={cat}

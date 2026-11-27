@@ -124,8 +124,8 @@ export const PinnedDissection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12">
         {/* Section Header */}
         <div className="mb-10 space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#ff6433]">
-            <Radio className="w-3.5 h-3.5 text-[#ff6433]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#171614] border border-[#2b2926] text-xs font-mono font-medium text-[#9b7ff7]">
+            <Radio className="w-3.5 h-3.5 text-[#9b7ff7]" />
             <span>SYSTEMS DISSECTION</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#f4f1ec]">
@@ -148,7 +148,7 @@ export const PinnedDissection: React.FC = () => {
                   onClick={() => setActiveChapterIndex(idx)}
                   className={`px-3 py-1.5 rounded-full font-mono text-xs transition-colors min-h-[36px] flex items-center gap-1.5 ${
                     activeChapterIndex === idx
-                      ? 'bg-[#ff6433] text-black font-semibold'
+                      ? 'bg-[#9b7ff7] text-black font-semibold'
                       : 'bg-[#171614] border border-[#2b2926] text-[#b9b2a8] hover:text-[#f4f1ec]'
                   }`}
                 >
@@ -158,7 +158,7 @@ export const PinnedDissection: React.FC = () => {
             </div>
 
             <div className="p-6 rounded-xl border border-[#2b2926] bg-[#171614] shadow-inset-highlight space-y-4">
-              <span className="font-mono text-xs font-bold text-[#ff6433] tracking-wider block">
+              <span className="font-mono text-xs font-bold text-[#9b7ff7] tracking-wider block">
                 {activeChapter.badge}
               </span>
               <h3 className="text-2xl font-bold text-[#f4f1ec] leading-snug">
@@ -182,7 +182,7 @@ export const PinnedDissection: React.FC = () => {
                 {activeChapter.specs.map((s, idx) => (
                   <div key={idx} className="p-2 rounded bg-[#121110] border border-[#2b2926] text-center font-mono">
                     <span className="text-[10px] text-[#8f887f] block">{s.label}</span>
-                    <span className="text-xs font-bold text-[#ff6433]">{s.val}</span>
+                    <span className="text-xs font-bold text-[#9b7ff7]">{s.val}</span>
                   </div>
                 ))}
               </div>
@@ -201,7 +201,7 @@ export const PinnedDissection: React.FC = () => {
               <div className="p-6 rounded-lg bg-[#121110] border border-[#2b2926] min-h-[300px] flex flex-col justify-center items-center text-center space-y-4">
                 {activeChapterIndex === 0 && (
                   <div className="space-y-3 w-full">
-                    <Server className="w-12 h-12 text-[#ff6433] mx-auto animate-pulse" />
+                    <Server className="w-12 h-12 text-[#9b7ff7] mx-auto animate-pulse" />
                     <p className="font-mono text-sm font-bold text-[#f4f1ec]">epoll_wait() Event Multiplexing</p>
                     <p className="text-xs text-[#b9b2a8] max-w-sm mx-auto">
                       Non-blocking file descriptors waiting on kernel readiness queue. Zero context-switching overhead.
@@ -214,12 +214,12 @@ export const PinnedDissection: React.FC = () => {
 
                 {activeChapterIndex === 1 && (
                   <div className="space-y-3 w-full">
-                    <Cpu className="w-12 h-12 text-[#ff6433] mx-auto animate-pulse" />
+                    <Cpu className="w-12 h-12 text-[#9b7ff7] mx-auto animate-pulse" />
                     <p className="font-mono text-sm font-bold text-[#f4f1ec]">Atomic Ring Buffer & Backpressure</p>
                     <p className="text-xs text-[#b9b2a8] max-w-sm mx-auto">
                       Lock-free circular FIFO memory buffer. When consumer lags, upstream socket reads pause automatically.
                     </p>
-                    <div className="p-2.5 rounded bg-[#171614] border border-[#2b2926] font-mono text-xs text-[#ff6433]">
+                    <div className="p-2.5 rounded bg-[#171614] border border-[#2b2926] font-mono text-xs text-[#9b7ff7]">
                       RING FILL: 42% | LOCKLESS CAS OPS: 4.8M/sec | DROPS: 0
                     </div>
                   </div>
@@ -227,7 +227,7 @@ export const PinnedDissection: React.FC = () => {
 
                 {activeChapterIndex === 2 && (
                   <div className="space-y-3 w-full">
-                    <HardDrive className="w-12 h-12 text-[#ff6433] mx-auto animate-pulse" />
+                    <HardDrive className="w-12 h-12 text-[#9b7ff7] mx-auto animate-pulse" />
                     <p className="font-mono text-sm font-bold text-[#f4f1ec]">Write Ahead Log & Atomic Disk Sync</p>
                     <p className="text-xs text-[#b9b2a8] max-w-sm mx-auto">
                       Append-only sequential disk writes. Group commits guarantee complete transaction persistence through power outage.
@@ -247,7 +247,7 @@ export const PinnedDissection: React.FC = () => {
           {CHAPTERS.map((c, idx) => (
             <div key={c.id} className="relative">
               <div className="p-5 rounded-xl border border-[#2b2926] bg-[#171614] shadow-inset-highlight space-y-3">
-                <span className="font-mono text-xs font-bold text-[#ff6433] tracking-wider block">
+                <span className="font-mono text-xs font-bold text-[#9b7ff7] tracking-wider block">
                   {c.badge}
                 </span>
                 <h3 className="text-lg font-bold text-[#f4f1ec]">
@@ -266,7 +266,7 @@ export const PinnedDissection: React.FC = () => {
                 </div>
               </div>
               {idx < CHAPTERS.length - 1 && (
-                <div className="flex justify-center my-2 text-[#ff6433]">
+                <div className="flex justify-center my-2 text-[#9b7ff7]">
                   <ArrowDown className="w-4 h-4 animate-bounce" />
                 </div>
               )}
