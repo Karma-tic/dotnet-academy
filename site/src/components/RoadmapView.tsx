@@ -123,7 +123,7 @@ export const RoadmapView: React.FC<Props> = ({ roadmap: k, extras, storageKey, h
               const all = stageDone === keys.length;
               const ex = extras[i];
               return (
-                <li key={s.title} id={`stage-${i + 1}`} className="relative scroll-mt-24 pb-14 pl-14 last:pb-0">
+                <li key={s.title} id={`stage-${i + 1}`} className="relative scroll-mt-32 pb-14 pl-14 last:pb-0">
                   <span className={`absolute left-0 top-0 inline-flex h-9 w-9 items-center justify-center rounded-full border-2 border-ember text-sm font-semibold ${all ? 'bg-ember text-ember-ink' : 'bg-neutral-950 text-ember'}`}>
                     {all ? <Check className="h-4 w-4" /> : i + 1}
                   </span>
@@ -188,7 +188,7 @@ export const RoadmapView: React.FC<Props> = ({ roadmap: k, extras, storageKey, h
         </div>
 
         {/* Kit */}
-        <aside className="space-y-8 lg:sticky lg:top-24 lg:max-h-[calc(100dvh-7rem)] lg:self-start lg:overflow-y-auto lg:pb-6" aria-label="Roadmap kit">
+        <aside className="space-y-8 lg:sticky lg:top-32 lg:max-h-[calc(100dvh-9rem)] lg:self-start lg:overflow-y-auto lg:pb-6" aria-label="Roadmap kit">
           <section className="rounded-xl border border-neutral-800 bg-neutral-900 p-4" aria-labelledby="kx-prog">
             <h2 id="kx-prog" className="text-sm font-semibold text-neutral-100">Your progress</h2>
             <p className="mt-2 text-2xl font-semibold text-neutral-100">{done.size}<span className="text-base font-normal text-neutral-500"> of {total} skills</span></p>

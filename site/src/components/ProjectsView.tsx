@@ -26,7 +26,7 @@ const capstones: Project[] = [
 ];
 
 const Card = ({ p }: { p: Project }) => (
-  <article id={p.id} className="group relative flex scroll-mt-24 flex-col rounded-xl border border-slate-800 bg-slate-900/60 p-5 transition-colors hover:border-slate-700 hover:bg-slate-900">
+  <article id={p.id} className="group relative flex scroll-mt-32 flex-col rounded-xl border border-slate-800 bg-slate-900/60 p-5 transition-colors hover:border-slate-700 hover:bg-slate-900">
     <div className="flex items-start justify-between gap-3">
       <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-800 text-ember"><FolderGit2 className="h-4 w-4" /></span>
       <span className="rounded-md bg-slate-800 px-2 py-0.5 text-xs text-slate-400">Roadmap stage {p.stage}</span>
